@@ -1,0 +1,67 @@
+#-----------------------------------------------------------
+# Vivado v2021.2 (64-bit)
+# SW Build 3367213 on Tue Oct 19 02:47:39 MDT 2021
+# IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
+# Start of session at: Mon Jul 19 11:03:38 2021
+# Process ID: 10759
+# Current directory: /home/sjson/fd_ws/verilog/vta-gemm-core/gemm_project
+# Command line: vivado
+# Log file: /home/sjson/fd_ws/verilog/vta-gemm-core/gemm_project/vivado.log
+# Journal file: /home/sjson/fd_ws/verilog/vta-gemm-core/gemm_project/vivado.jou
+# Running On: sjson, OS: Linux, CPU Frequency: 1700.000 MHz, CPU Physical cores: 4, Host memory: 33322 MB
+#-----------------------------------------------------------
+start_gui
+create_project vta_gemm /home/sjson/fd_ws/verilog/vta-gemm-core/gemm_project/vta_gemm -part xc7z020clg484-1
+add_files -norecurse {/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/proc_elem.v /home/sjson/fd_ws/verilog/vta-gemm-core/rtl/uop_fetch.v /home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm_op.v /home/sjson/fd_ws/verilog/vta-gemm-core/rtl/idx_decode.v /home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v /home/sjson/fd_ws/verilog/vta-gemm-core/rtl/systolic_row.v}
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top gemm [current_fileset]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode All [current_project]
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+add_files -norecurse {/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/write_back.v /home/sjson/fd_ws/verilog/vta-gemm-core/rtl/mem_read.v}
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+open_run synth_1 -name synth_1
+close_design
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+close_design
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+refresh_design
+close_design
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+close_design
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+close_design
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+open_run synth_1 -name synth_1
+close_design
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+refresh_design
+close_design
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+close_design

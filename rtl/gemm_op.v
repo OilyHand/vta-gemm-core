@@ -1,10 +1,10 @@
 module gemm_op #(
   parameter INP_WIDTH = 8
           , WGT_WIDTH = 8
-          , ACC_WIDTH = 32 
+          , ACC_WIDTH = 32
           , IT_WIDTH  = INP_WIDTH * 16
           , WT_WIDTH  = WGT_WIDTH * 16 * 16
-          , AT_WIDTH  = ACC_WIDTH * 16     
+          , AT_WIDTH  = ACC_WIDTH * 16
 )(
   input  wire [IT_WIDTH-1:0] i_tensor, // 1x16 input matrix, size of each tile is 8 bits (16 * 8 bits = 128 bits)
   input  wire [WT_WIDTH-1:0] w_tensor, // 16x16 weight matrix, size of each tile is 8 bits (16 * 16 * 8 bits = 2048 bits)

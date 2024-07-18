@@ -1,0 +1,1183 @@
+#-----------------------------------------------------------
+# Vivado v2021.2 (64-bit)
+# SW Build 3367213 on Tue Oct 19 02:47:39 MDT 2021
+# IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
+# Start of session at: Mon Jul 19 17:00:29 2021
+# Process ID: 107495
+# Current directory: /home/sjson/fd_ws/verilog/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1
+# Command line: vivado -log gemm.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source gemm.tcl
+# Log file: /home/sjson/fd_ws/verilog/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/gemm.vds
+# Journal file: /home/sjson/fd_ws/verilog/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/vivado.jou
+# Running On: sjson, OS: Linux, CPU Frequency: 3680.625 MHz, CPU Physical cores: 4, Host memory: 33322 MB
+#-----------------------------------------------------------
+source gemm.tcl -notrace
+create_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:06 . Memory (MB): peak = 2611.945 ; gain = 5.961 ; free physical = 14842 ; free virtual = 25617
+Command: read_checkpoint -auto_incremental -incremental /home/sjson/fd_ws/verilog/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.srcs/utils_1/imports/synth_1/gemm.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from /home/sjson/fd_ws/verilog/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.srcs/utils_1/imports/synth_1/gemm.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top gemm -part xc7z020clg484-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+WARNING: [Designutils 20-4072] Reference run did not run incremental synthesis because the design is too small; reverting to default synthesis
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 107593
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2612.027 ; gain = 0.000 ; free physical = 13499 ; free virtual = 24270
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'gemm' [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v:1]
+INFO: [Synth 8-6157] synthesizing module 'uop_fetch' [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/uop_fetch.v:51]
+INFO: [Synth 8-6155] done synthesizing module 'uop_fetch' (1#1) [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/uop_fetch.v:51]
+INFO: [Synth 8-6157] synthesizing module 'idx_decode' [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/idx_decode.v:35]
+INFO: [Synth 8-6155] done synthesizing module 'idx_decode' (2#1) [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/idx_decode.v:35]
+INFO: [Synth 8-6157] synthesizing module 'mem_read' [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/mem_read.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'mem_read' (3#1) [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/mem_read.v:1]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v:139]
+INFO: [Synth 8-6157] synthesizing module 'gemm_op' [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm_op.v:1]
+INFO: [Synth 8-6157] synthesizing module 'systolic_row_lut' [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/systolic_row.v:1]
+INFO: [Synth 8-6157] synthesizing module 'mac_lut' [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/proc_elem.v:30]
+INFO: [Synth 8-6155] done synthesizing module 'mac_lut' (4#1) [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/proc_elem.v:30]
+INFO: [Synth 8-6155] done synthesizing module 'systolic_row_lut' (5#1) [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/systolic_row.v:1]
+INFO: [Synth 8-6157] synthesizing module 'systolic_row_dsp' [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/systolic_row.v:132]
+INFO: [Synth 8-6157] synthesizing module 'mac_dsp' [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/proc_elem.v:2]
+INFO: [Synth 8-6155] done synthesizing module 'mac_dsp' (6#1) [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/proc_elem.v:2]
+INFO: [Synth 8-6155] done synthesizing module 'systolic_row_dsp' (7#1) [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/systolic_row.v:132]
+INFO: [Synth 8-6155] done synthesizing module 'gemm_op' (8#1) [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm_op.v:1]
+WARNING: [Synth 8-7071] port 'i_tensor' of module 'gemm_op' is unconnected for instance 'U_EXE' [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v:139]
+WARNING: [Synth 8-7071] port 'w_tensor' of module 'gemm_op' is unconnected for instance 'U_EXE' [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v:139]
+WARNING: [Synth 8-7071] port 'a_tensor' of module 'gemm_op' is unconnected for instance 'U_EXE' [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v:139]
+WARNING: [Synth 8-7071] port 'o_tensor' of module 'gemm_op' is unconnected for instance 'U_EXE' [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v:139]
+WARNING: [Synth 8-7023] instance 'U_EXE' of module 'gemm_op' has 4 connections declared, but only 0 given [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v:139]
+INFO: [Synth 8-6157] synthesizing module 'write_back' [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/write_back.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'write_back' (9#1) [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/write_back.v:1]
+WARNING: [Synth 8-6014] Unused sequential element u2i_reg_reset_reg was removed.  [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v:67]
+WARNING: [Synth 8-6014] Unused sequential element i2m_reg_reset_reg was removed.  [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v:114]
+WARNING: [Synth 8-6014] Unused sequential element i2m_dst_idx_reg was removed.  [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v:115]
+WARNING: [Synth 8-6014] Unused sequential element i2m_src_idx_reg was removed.  [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v:116]
+WARNING: [Synth 8-6014] Unused sequential element i2m_wgt_idx_reg was removed.  [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v:117]
+WARNING: [Synth 8-3848] Net inst in module/entity gemm does not have driver. [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v:44]
+INFO: [Synth 8-6155] done synthesizing module 'gemm' (10#1) [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v:1]
+WARNING: [Synth 8-7129] Port insn[127] in module uop_fetch is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[34] in module uop_fetch is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[7] in module uop_fetch is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[6] in module uop_fetch is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[5] in module uop_fetch is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[4] in module uop_fetch is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[3] in module uop_fetch is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[2] in module uop_fetch is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[1] in module uop_fetch is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[0] in module uop_fetch is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[127] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[126] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[125] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[124] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[123] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[122] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[121] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[120] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[119] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[118] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[117] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[116] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[115] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[114] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[113] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[112] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[111] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[110] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[109] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[108] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[107] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[106] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[105] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[104] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[103] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[102] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[101] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[100] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[99] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[98] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[97] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[96] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[95] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[94] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[93] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[92] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[91] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[90] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[89] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[88] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[87] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[86] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[85] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[84] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[83] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[82] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[81] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[80] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[79] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[78] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[77] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[76] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[75] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[74] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[73] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[72] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[71] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[70] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[69] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[68] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[67] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[66] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[65] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[64] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[63] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[62] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[61] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[60] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[59] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[58] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[57] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[56] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[55] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[54] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[53] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[52] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[51] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[50] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[49] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[48] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[47] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[46] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[45] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[44] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[43] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[42] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[41] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[40] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[39] in module gemm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[38] in module gemm is either unconnected or has no load
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2612.027 ; gain = 0.000 ; free physical = 14456 ; free virtual = 25228
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2612.027 ; gain = 0.000 ; free physical = 14474 ; free virtual = 25246
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg484-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2619.949 ; gain = 7.922 ; free physical = 14474 ; free virtual = 25246
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xc7z020clg484-1
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2619.949 ; gain = 7.922 ; free physical = 14450 ; free virtual = 25223
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   32 Bit       Adders := 48    
+	   2 Input   14 Bit       Adders := 2     
+	   2 Input   13 Bit       Adders := 1     
+	   3 Input   12 Bit       Adders := 2     
+	   3 Input   11 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 1     
+	               11 Bit    Registers := 8     
+	               10 Bit    Registers := 4     
++---Multipliers : 
+	                8x8  Multipliers := 48    
++---Muxes : 
+	   2 Input    1 Bit        Muxes := 2     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
+DSP Report: operator sum_out is absorbed into DSP sum_out.
+DSP Report: operator mul is absorbed into DSP sum_out.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2619.949 ; gain = 7.922 ; free physical = 14139 ; free virtual = 24933
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
++------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name | DSP Mapping | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|mac_dsp     | C+A*B       | 8      | 8      | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
++------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2619.949 ; gain = 7.922 ; free physical = 14138 ; free virtual = 24932
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2619.949 ; gain = 7.922 ; free physical = 14137 ; free virtual = 24931
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+INFO: [Synth 8-4649] Removing BlackBox instance U_MEM of module mem_read having unconnected or no output ports
+INFO: [Synth 8-4649] Removing BlackBox instance U_WRB of module write_back having unconnected or no output ports
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:22 ; elapsed = 00:00:22 . Memory (MB): peak = 2619.949 ; gain = 7.922 ; free physical = 14148 ; free virtual = 24935
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:22 ; elapsed = 00:00:22 . Memory (MB): peak = 2619.949 ; gain = 7.922 ; free physical = 14148 ; free virtual = 24935
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:22 ; elapsed = 00:00:22 . Memory (MB): peak = 2619.949 ; gain = 7.922 ; free physical = 14148 ; free virtual = 24935
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:22 ; elapsed = 00:00:22 . Memory (MB): peak = 2619.949 ; gain = 7.922 ; free physical = 14148 ; free virtual = 24935
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:22 ; elapsed = 00:00:22 . Memory (MB): peak = 2619.949 ; gain = 7.922 ; free physical = 14148 ; free virtual = 24935
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:22 ; elapsed = 00:00:22 . Memory (MB): peak = 2619.949 ; gain = 7.922 ; free physical = 14148 ; free virtual = 24935
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     1|
+|2     |CARRY4 |     6|
+|3     |LUT1   |     2|
+|4     |LUT3   |    12|
+|5     |LUT5   |     1|
+|6     |LUT6   |     1|
+|7     |FDCE   |    11|
+|8     |IBUF   |     2|
+|9     |OBUF   |    13|
++------+-------+------+
+
+Report Instance Areas: 
++------+---------+----------+------+
+|      |Instance |Module    |Cells |
++------+---------+----------+------+
+|1     |top      |          |    49|
+|2     |  U_UOP  |uop_fetch |    33|
++------+---------+----------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:22 ; elapsed = 00:00:22 . Memory (MB): peak = 2619.949 ; gain = 7.922 ; free physical = 14148 ; free virtual = 24935
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 311 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 2619.949 ; gain = 7.922 ; free physical = 14157 ; free virtual = 24945
+Synthesis Optimization Complete : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 2619.957 ; gain = 7.922 ; free physical = 14157 ; free virtual = 24945
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2619.957 ; gain = 0.000 ; free physical = 14245 ; free virtual = 25033
+INFO: [Netlist 29-17] Analyzing 6 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2619.957 ; gain = 0.000 ; free physical = 14179 ; free virtual = 24983
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete, checksum: 5d44fb70
+INFO: [Common 17-83] Releasing license: Synthesis
+38 Infos, 114 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:31 ; elapsed = 00:00:25 . Memory (MB): peak = 2619.957 ; gain = 8.012 ; free physical = 14366 ; free virtual = 25169
+INFO: [Common 17-1381] The checkpoint '/home/sjson/fd_ws/verilog/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/gemm.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file gemm_utilization_synth.rpt -pb gemm_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Mon Jul 19 17:01:12 2021...
