@@ -1,15 +1,16 @@
 module systolic_row_lut #(
-  parameter INP_WIDTH = 8
-          , WGT_WIDTH = 8
-          , ACC_WIDTH = 32 
-          , IT_WIDTH  = INP_WIDTH * 16
-          , WT_WIDTH  = WGT_WIDTH * 16
-          , AT_WIDTH  = ACC_WIDTH * 16     
+  parameter
+    INP_WIDTH = 8,
+    WGT_WIDTH = 8,
+    ACC_WIDTH = 32,
+    IT_WIDTH  = INP_WIDTH * 16,
+    WT_WIDTH  = WGT_WIDTH * 16,
+    AT_WIDTH  = ACC_WIDTH * 16    
 )(
-    input wire  [IT_WIDTH-1:0] i_row
-  , input wire  [WT_WIDTH-1:0] w_row
-  , input wire  [AT_WIDTH-1:0] a_row
-  , output wire [AT_WIDTH-1:0] o_row
+  input wire  [IT_WIDTH-1:0] i_row,
+  input wire  [WT_WIDTH-1:0] w_row,
+  input wire  [AT_WIDTH-1:0] a_row,
+  output wire [AT_WIDTH-1:0] o_row
 );
 
   mac_lut U_mac_lut_00 (

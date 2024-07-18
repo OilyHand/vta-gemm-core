@@ -24,6 +24,8 @@ module mac_dsp #(
 
 endmodule
 
+//=======================================================
+
 (* use_dsp = "no" *)
 module mac_lut #(
   parameter INP_WIDTH=8

@@ -32,7 +32,7 @@ micro-op field
    ---------------------------------------
 */
 
-module idx_compute (
+module idx_decode (
   input  wire [31:0] uop,
   input  wire [13:0] iter_out,
   input  wire [13:0] iter_in,

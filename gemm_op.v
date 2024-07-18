@@ -6,10 +6,10 @@ module gemm_op #(
           , WT_WIDTH  = WGT_WIDTH * 16 * 16
           , AT_WIDTH  = ACC_WIDTH * 16     
 )(
-    input  wire [IT_WIDTH-1:0] i_tensor, // 1x16 input matrix, size of each tile is 8 bits (16 * 8 bits = 128 bits)
-    input  wire [WT_WIDTH-1:0] w_tensor, // 16x16 weight matrix, size of each tile is 8 bits (16 * 16 * 8 bits = 2048 bits)
-    input  wire [AT_WIDTH-1:0] a_tensor,  //  1x16 accumulator matrix, size of each tile is 32 bits (16 * 32 = 512 bits)
-    output wire [AT_WIDTH-1:0] o_tensor // 1x16 result matrix, each element is 8 bits
+  input  wire [IT_WIDTH-1:0] i_tensor, // 1x16 input matrix, size of each tile is 8 bits (16 * 8 bits = 128 bits)
+  input  wire [WT_WIDTH-1:0] w_tensor, // 16x16 weight matrix, size of each tile is 8 bits (16 * 16 * 8 bits = 2048 bits)
+  input  wire [AT_WIDTH-1:0] a_tensor,  //  1x16 accumulator matrix, size of each tile is 32 bits (16 * 32 = 512 bits)
+  output wire [AT_WIDTH-1:0] o_tensor // 1x16 result matrix, each element is 8 bits
 );
 
   wire [AT_WIDTH-1:0] srow_00, srow_01, srow_02, srow_03;
