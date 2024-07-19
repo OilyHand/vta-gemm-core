@@ -1,0 +1,1140 @@
+/*
+
+Xilinx Vivado v2021.2 (64-bit) [Major: 2021, Minor: 2]
+SW Build: 3367213 on Tue Oct 19 02:47:39 MDT 2021
+IP Build: 3369179 on Thu Oct 21 08:25:16 MDT 2021
+
+Process ID (PID): 4459
+License: Customer
+Mode: GUI Mode
+
+Current time: 	Tue Jul 20 13:24:59 KST 2021
+Time zone: 	Korean Standard Time (Asia/Seoul)
+
+OS: Ubuntu
+OS Version: 5.15.0-113-generic
+OS Architecture: amd64
+Available processors (cores): 8
+
+Display: 0
+Screen size: 1920x1080
+Screen resolution (DPI): 100
+Available screens: 2
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+Scale size: 12
+
+Java version: 	11.0.11 64-bit
+Java home: 	/tools/Xilinx/Vivado/2021.2/tps/lnx64/jre11.0.11_9
+Java executable: 	/tools/Xilinx/Vivado/2021.2/tps/lnx64/jre11.0.11_9/bin/java
+Java arguments: 	[-Dsun.java2d.pmoffscreen=false, -Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2, -Dsun.java2d.xrender=false, -Djdk.gtk.version=2, -Dsun.java2d.uiScale.enabled=false, -Xverify:none, -Dswing.aatext=true, -XX:-UsePerfData, -Djdk.map.althashing.threshold=512, -XX:StringTableSize=4072, --add-opens=java.base/java.nio=ALL-UNNAMED, --add-opens=java.desktop/sun.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-opens=java.desktop/com.sun.awt=ALL-UNNAMED, --add-opens=java.desktop/sun.awt.X11=ALL-UNNAMED, -XX:NewSize=60m, -XX:MaxNewSize=60m, -Xms256m, -Xmx3072m, -Xss5m, -Xrs]
+Java initial memory (-Xms): 	256 MB
+Java maximum memory (-Xmx):	 3 GB
+
+
+User name: 	sjson
+User home directory: /home/sjson
+User working directory: /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: /tools/Xilinx/Vivado
+HDI_APPROOT: /tools/Xilinx/Vivado/2021.2
+RDI_DATADIR: /tools/Xilinx/Vivado/2021.2/data
+RDI_BINDIR: /tools/Xilinx/Vivado/2021.2/bin
+
+Vivado preferences file: /home/sjson/.Xilinx/Vivado/2021.2/vivado.xml
+Vivado preferences directory: /home/sjson/.Xilinx/Vivado/2021.2/
+Vivado layouts directory: /home/sjson/.Xilinx/Vivado/2021.2/data/layouts
+PlanAhead jar file: 	/tools/Xilinx/Vivado/2021.2/lib/classes/planAhead.jar
+Vivado log file: 	/home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vivado.log
+Vivado journal file: 	/home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vivado.jou
+Engine tmp dir: 	./.Xil/Vivado-4459-sjson
+
+Xilinx Environment Variables
+----------------------------
+XILINX: /tools/Xilinx/Vivado/2021.2/ids_lite/ISE
+XILINX_DSP: /tools/Xilinx/Vivado/2021.2/ids_lite/ISE
+XILINX_HLS: /tools/Xilinx/Vitis_HLS/2021.2
+XILINX_PLANAHEAD: /tools/Xilinx/Vivado/2021.2
+XILINX_VITIS: 
+XILINX_VIVADO: /tools/Xilinx/Vivado/2021.2
+XILINX_VIVADO_HLS: /tools/Xilinx/Vivado/2021.2
+
+
+GUI allocated memory:	308 MB
+GUI max memory:		3,072 MB
+Engine allocated memory: 1,805 MB
+
+Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// TclEventType: PROJECT_OPEN_DIALOG
+// [GUI Memory]: 99 MB (+101319kb) [00:00:07]
+// [Engine Memory]: 1,791 MB (+1726306kb) [00:00:07]
+// Opening Vivado Project: vta_gemm.xpr. Version: Vivado v2021.2 
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: FLOW_ADDED
+// Tcl Message: open_project vta_gemm.xpr 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,756 MB. GUI used memory: 55 MB. Current time: 7/20/21, 1:25:01 PM KST
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_DASHBOARD_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_NEW
+// [GUI Memory]: 104 MB (+141kb) [00:00:15]
+// WARNING: HEventQueue.dispatchEvent() is taking  3416 ms.
+// Tcl Message: open_project vta_gemm.xpr 
+// Tcl Message: INFO: [filemgmt 56-3] Default IP Output Path : Could not find the directory '/home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.gen/sources_1'. 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2021.2/data/ip'. 
+// Tcl Message: open_project: Time (s): cpu = 00:00:24 ; elapsed = 00:00:09 . Memory (MB): peak = 7631.078 ; gain = 80.230 ; free physical = 24124 ; free virtual = 31534 
+// Project name: vta_gemm; location: /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm; part: xc7z020clg484-1
+dismissDialog("Open Project"); // bA
+// [Engine Memory]: 1,890 MB (+10344kb) [00:00:23]
+// Tcl Message: update_compile_order -fileset sources_1 
+// PAPropertyPanels.initPanels (gemm.v) elapsed time: 0.2s
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, gemm (gemm.v)]", 3, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, gemm (gemm.v)]", 3, true, false, false, false, false, true); // D - Double Click - Node
+// WARNING: HEventQueue.dispatchEvent() is taking  1730 ms.
+// [GUI Memory]: 128 MB (+19372kb) [00:00:26]
+// HMemoryUtils.trashcanNow. Engine heap size: 1,914 MB. GUI used memory: 70 MB. Current time: 7/20/21, 1:25:16 PM KST
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, gemm (gemm.v)]", 3, true, false, false, false, true, false); // D - Popup Trigger - Node
+selectTab((HResource) null, "PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "gemm.v", 1, true, false); // m - Popup Trigger
+selectCodeEditor("gemm.v", 46, 144); // be
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "gemm.v", 1); // m
+floatFrame(PAResourceOtoP.PAViews_CODE, "gemm.v"); // aA
+// PAResourceOtoP.PAViews_CODE: Code: float view
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Non-module Files]", 2, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Non-module Files]", 2, true, false, false, false, false, true); // D - Double Click - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Non-module Files, write_back.v]", 3, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Non-module Files, write_back.v]", 3, false, false, false, false, false, true); // D - Double Click
+// WARNING: HEventQueue.dispatchEvent() is taking  1603 ms.
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Syntax Error Files]", 1, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Syntax Error Files]", 1, true, false, false, false, false, true); // D - Double Click - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Syntax Error Files, write_back.v]", 2, false); // D
+selectCodeEditor("write_back.v", 73, 79); // be
+selectCodeEditor("write_back.v", 73, 79, false, false, false, false, true); // be - Double Click
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, gemm (gemm.v), U_WB : xil_defaultlib.write_back]", 10, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, gemm (gemm.v), U_MEM : mem_read (mem_read.v)]", 8, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, gemm (gemm.v), U_MEM : mem_read (mem_read.v)]", 8, false, false, false, false, false, true); // D - Double Click
+// WARNING: HEventQueue.dispatchEvent() is taking  2088 ms.
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, gemm (gemm.v), U_MEM : mem_read (mem_read.v)]", 8, false); // D
+// HMemoryUtils.trashcanNow. Engine heap size: 1,955 MB. GUI used memory: 75 MB. Current time: 7/20/21, 1:25:41 PM KST
+closeView(PAResourceOtoP.PAViews_CODE, "Code"); // D
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+floatFrame(PAResourceOtoP.PAViews_CODE, "mem_read.v"); // aA
+// PAResourceOtoP.PAViews_CODE: Code: float view
+selectCodeEditor("mem_read.v", 550, 270); // be
+selectCodeEditor("mem_read.v", 378, 452); // be
+selectCodeEditor("mem_read.v", 376, 492); // be
+selectCodeEditor("mem_read.v", 339, 314); // be
+selectCodeEditor("mem_read.v", 339, 314, false, false, false, false, true); // be - Double Click
+selectCodeEditor("mem_read.v", 343, 320); // be
+selectCodeEditor("mem_read.v", 343, 320, false, false, false, false, true); // be - Double Click
+selectCodeEditor("mem_read.v", 363, 279); // be
+selectCodeEditor("mem_read.v", 394, 300); // be
+selectCodeEditor("mem_read.v", 405, 282); // be
+selectCodeEditor("mem_read.v", 173, 181); // be
+selectCodeEditor("mem_read.v", 173, 181, false, false, false, false, true); // be - Double Click
+selectCodeEditor("mem_read.v", 167, 103); // be
+selectCodeEditor("mem_read.v", 167, 103, false, false, false, false, true); // be - Double Click
+selectCodeEditor("mem_read.v", 169, 109); // be
+selectCodeEditor("mem_read.v", 169, 109, false, false, false, false, true); // be - Double Click
+typeControlKey((HResource) null, "mem_read.v", 'c'); // be
+selectCodeEditor("mem_read.v", 134, 304); // be
+typeControlKey((HResource) null, "mem_read.v", 'v'); // be
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// [Engine Memory]: 1,992 MB (+7101kb) [00:01:34]
+// Elapsed time: 19 seconds
+selectCodeEditor("mem_read.v", 157, 185); // be
+selectCodeEditor("mem_read.v", 157, 185, false, false, false, false, true); // be - Double Click
+typeControlKey((HResource) null, "mem_read.v", 'c'); // be
+selectCodeEditor("mem_read.v", 134, 365); // be
+typeControlKey((HResource) null, "mem_read.v", 'v'); // be
+// HMemoryUtils.trashcanNow. Engine heap size: 1,993 MB. GUI used memory: 79 MB. Current time: 7/20/21, 1:26:36 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// [GUI Memory]: 138 MB (+4133kb) [00:01:56]
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 2,025 MB. GUI used memory: 114 MB. Current time: 7/20/21, 1:26:56 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 46 seconds
+selectCodeEditor("gemm.v", 228, 146); // be
+selectCodeEditor("gemm.v", 222, 345); // be
+selectCodeEditor("gemm.v", 209, 421); // be
+selectCodeEditor("gemm.v", 146, 525); // be
+selectCodeEditor("gemm.v", 144, 490); // be
+selectCodeEditor("gemm.v", 87, 507); // be
+selectCodeEditor("gemm.v", 123, 479); // be
+selectCodeEditor("gemm.v", 123, 479, false, false, false, false, true); // be - Double Click
+selectCodeEditor("gemm.v", 241, 485); // be
+selectCodeEditor("gemm.v", 214, 518); // be
+selectCodeEditor("mem_read.v", 314, 515); // be
+selectCodeEditor("mem_read.v", 301, 372); // be
+selectCodeEditor("mem_read.v", 441, 303); // be
+selectCodeEditor("mem_read.v", 393, 366); // be
+// Elapsed time: 23 seconds
+selectCodeEditor("gemm.v", 371, 326); // be
+selectCodeEditor("gemm.v", 359, 345); // be
+selectCodeEditor("gemm.v", 403, 335); // be
+selectCodeEditor("gemm.v", 403, 335, false, false, false, false, true); // be - Double Click
+selectCodeEditor("gemm.v", 397, 267); // be
+selectCodeEditor("gemm.v", 397, 267, false, false, false, false, true); // be - Double Click
+selectCodeEditor("gemm.v", 396, 189); // be
+selectCodeEditor("gemm.v", 396, 189, false, false, false, false, true); // be - Double Click
+selectCodeEditor("gemm.v", 176, 518); // be
+selectCodeEditor("gemm.v", 86, 516); // be
+selectCodeEditor("gemm.v", 107, 486); // be
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, gemm (gemm.v), U_MEM : mem_read (mem_read.v)]", 4, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, gemm (gemm.v), U_EX : gemm_op (gemm_op.v)]", 5, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, gemm (gemm.v), U_EX : gemm_op (gemm_op.v), U_ROW_04 : systolic_row_dsp (systolic_row.v)]", 10, true, false, false, false, false, true); // D - Double Click - Node
+// WARNING: HEventQueue.dispatchEvent() is taking  1595 ms.
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, gemm (gemm.v), U_EX : gemm_op (gemm_op.v)]", 5); // D
+selectCodeEditor("mem_read.v", 465, 232); // be
+selectCodeEditor("mem_read.v", 394, 305); // be
+typeControlKey((HResource) null, "mem_read.v", 'c'); // be
+selectCodeEditor("gemm.v", 525, 338); // be
+selectCodeEditor("mem_read.v", 500, 367); // be
+typeControlKey((HResource) null, "mem_read.v", 'v'); // be
+typeControlKey((HResource) null, "mem_read.v", 'c'); // be
+typeControlKey((HResource) null, "mem_read.v", 'v'); // be
+typeControlKey((HResource) null, "mem_read.v", 'c'); // be
+typeControlKey((HResource) null, "mem_read.v", 'v'); // be
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 2,060 MB. GUI used memory: 115 MB. Current time: 7/20/21, 1:28:46 PM KST
+// Elapsed time: 19 seconds
+selectCodeEditor("gemm.v", 131, 606); // be
+selectCodeEditor("gemm.v", 225, 574); // be
+selectCodeEditor("gemm.v", 202, 620); // be
+selectCodeEditor("gemm.v", 187, 596); // be
+selectCodeEditor("gemm.v", 243, 529); // be
+selectCodeEditor("mem_read.v", 358, 352); // be
+selectCodeEditor("gemm.v", 152, 581); // be
+selectCodeEditor("gemm.v", 116, 575); // be
+selectCodeEditor("mem_read.v", 136, 262); // be
+selectCodeEditor("mem_read.v", 290, 307, true, false, false, false, false); // be - Shift Key
+selectCodeEditor("mem_read.v", 290, 309); // be
+typeControlKey((HResource) null, "mem_read.v", 'c'); // be
+selectCodeEditor("gemm.v", 135, 452); // be
+selectCodeEditor("gemm.v", 135, 480); // be
+selectCodeEditor("gemm.v", 116, 607); // be
+selectCodeEditor("gemm.v", 115, 543); // be
+selectCodeEditor("gemm.v", 116, 594); // be
+selectCodeEditor("gemm.v", 99, 614); // be
+typeControlKey((HResource) null, "gemm.v", 'v'); // be
+typeControlKey(null, null, 'z');
+selectCodeEditor("mem_read.v", 302, 302); // be
+selectCodeEditor("mem_read.v", 256, 311); // be
+selectCodeEditor("mem_read.v", 293, 304); // be
+// Elapsed time: 10 seconds
+selectCodeEditor("mem_read.v", 366, 524); // be
+selectCodeEditor("mem_read.v", 298, 265); // be
+// Elapsed time: 13 seconds
+selectCodeEditor("mem_read.v", 177, 268); // be
+selectCodeEditor("mem_read.v", 213, 311); // be
+selectButton(RDIResource.HCodeView_TOGGLE_COLUMN_SELECTION_MODE, (String) null); // w: FALSE
+selectButton(RDIResource.HCodeView_TOGGLE_COLUMN_SELECTION_MODE, (String) null); // w: FALSE
+selectCodeEditor("mem_read.v", 281, 305); // be
+selectCodeEditor("mem_read.v", 176, 252); // be
+selectButton(RDIResource.HCodeView_TOGGLE_COLUMN_SELECTION_MODE, (String) null); // w: TRUE
+selectCodeEditor("mem_read.v", 296, 301); // be
+typeControlKey((HResource) null, "mem_read.v", 'c'); // be
+selectCodeEditor("gemm.v", 19, 616); // be
+typeControlKey((HResource) null, "gemm.v", 'v'); // be
+selectButton(RDIResource.HCodeView_TOGGLE_COLUMN_SELECTION_MODE, (String) null); // w: TRUE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 13 seconds
+typeControlKey((HResource) null, "gemm.v", 'c'); // be
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+typeControlKey((HResource) null, "gemm.v", 'v'); // be
+// [GUI Memory]: 147 MB (+2079kb) [00:05:40]
+typeControlKey((HResource) null, "gemm.v", 'v'); // be
+// [Engine Memory]: 2,094 MB (+2551kb) [00:05:42]
+selectCodeEditor("mem_read.v", 339, 260); // be
+selectCodeEditor("mem_read.v", 339, 260, false, false, false, false, true); // be - Double Click
+selectCodeEditor("gemm.v", 285, 667); // be
+selectCodeEditor("gemm.v", 292, 691); // be
+// HMemoryUtils.trashcanNow. Engine heap size: 2,094 MB. GUI used memory: 77 MB. Current time: 7/20/21, 1:30:36 PM KST
+// Elapsed time: 13 seconds
+typeControlKey((HResource) null, "gemm.v", 'c'); // be
+typeControlKey((HResource) null, "gemm.v", 'v'); // be
+typeControlKey((HResource) null, "gemm.v", 'v'); // be
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectCodeEditor("gemm.v", 148, 416); // be
+selectCodeEditor("gemm.v", 155, 321); // be
+selectCodeEditor("gemm.v", 219, 461); // be
+selectCodeEditor("gemm.v", 219, 461, false, false, false, false, true); // be - Double Click
+selectCodeEditor("gemm.v", 236, 462); // be
+selectCodeEditor("gemm.v", 234, 465, false, false, false, false, true); // be - Double Click
+selectCodeEditor("gemm.v", 212, 567); // be
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+selectCodeEditor("gemm.v", 199, 702); // be
+selectCodeEditor("gemm.v", 354, 711); // be
+selectCodeEditor("gemm.v", 409, 491); // be
+selectCodeEditor("gemm.v", 356, 489); // be
+selectCodeEditor("gemm.v", 356, 489, false, false, false, false, true); // be - Double Click
+// HMemoryUtils.trashcanNow. Engine heap size: 2,127 MB. GUI used memory: 76 MB. Current time: 7/20/21, 1:31:11 PM KST
+selectCodeEditor("gemm.v", 425, 517); // be
+selectCodeEditor("gemm.v", 400, 488); // be
+selectCodeEditor("gemm.v", 400, 488, false, false, false, false, true); // be - Double Click
+selectCodeEditor("gemm.v", 379, 535); // be
+selectCodeEditor("gemm.v", 378, 496); // be
+// Elapsed time: 10 seconds
+typeControlKey((HResource) null, "gemm.v", 'c'); // be
+typeControlKey((HResource) null, "gemm.v", 'v'); // be
+selectCodeEditor("gemm.v", 499, 532); // be
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectCodeEditor("gemm.v", 467, 518); // be
+selectCodeEditor("gemm.v", 465, 505); // be
+selectCodeEditor("gemm.v", 466, 492); // be
+// Elapsed time: 10 seconds
+selectCodeEditor("gemm.v", 397, 363); // be
+selectCodeEditor("gemm.v", 397, 363, false, false, false, false, true); // be - Double Click
+typeControlKey((HResource) null, "gemm.v", 'c'); // be
+selectCodeEditor("gemm.v", 396, 476); // be
+selectCodeEditor("gemm.v", 398, 476, false, false, false, false, true); // be - Double Click
+selectCodeEditor("gemm.v", 348, 509); // be
+typeControlKey((HResource) null, "gemm.v", 'v'); // be
+typeControlKey((HResource) null, "gemm.v", 'v'); // be
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectButton(RDIResource.HCodeView_TOGGLE_COLUMN_SELECTION_MODE, (String) null); // w: FALSE
+selectButton(RDIResource.HCodeView_TOGGLE_COLUMN_SELECTION_MODE, (String) null); // w: FALSE
+// HMemoryUtils.trashcanNow. Engine heap size: 2,160 MB. GUI used memory: 76 MB. Current time: 7/20/21, 1:32:11 PM KST
+selectCodeEditor("gemm.v", 279, 193); // be
+selectCodeEditor("gemm.v", 67, 392); // be
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectCodeEditor("gemm.v", 344, 423); // be
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+// HMemoryUtils.trashcanNow. Engine heap size: 2,193 MB. GUI used memory: 77 MB. Current time: 7/20/21, 1:32:31 PM KST
+// Elapsed time: 10 seconds
+selectCodeEditor("gemm.v", 288, 254); // be
+selectCodeEditor("gemm.v", 281, 247); // be
+selectCodeEditor("gemm.v", 281, 247, false, false, false, false, true); // be - Double Click
+selectCodeEditor("gemm.v", 131, 323); // be
+selectCodeEditor("gemm.v", 131, 323, false, false, false, false, true); // be - Double Click
+selectCodeEditor("gemm.v", 129, 394); // be
+selectCodeEditor("gemm.v", 129, 394, false, false, false, false, true); // be - Double Click
+selectCodeEditor("gemm.v", 127, 361); // be
+selectCodeEditor("gemm.v", 127, 363, false, false, false, false, true); // be - Double Click
+selectCodeEditor("gemm.v", 125, 351); // be
+selectCodeEditor("gemm.v", 125, 351, false, false, false, false, true); // be - Double Click
+typeControlKey((HResource) null, "gemm.v", 'c'); // be
+selectCodeEditor("gemm.v", 236, 577); // be
+typeControlKey((HResource) null, "gemm.v", 'v'); // be
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// [Engine Memory]: 2,209 MB (+11214kb) [00:07:57]
+typeControlKey((HResource) null, "gemm.v", 'c'); // be
+selectCodeEditor("gemm.v", 434, 174); // be
+selectCodeEditor("gemm.v", 437, 195); // be
+selectCodeEditor("gemm.v", 448, 166); // be
+selectCodeEditor("gemm.v", 446, 182); // be
+selectCodeEditor("gemm.v", 448, 189); // be
+selectCodeEditor("gemm.v", 443, 181); // be
+selectCodeEditor("gemm.v", 403, 309); // be
+selectCodeEditor("gemm.v", 384, 325); // be
+selectCodeEditor("gemm.v", 384, 325, false, false, false, false, true); // be - Double Click
+typeControlKey((HResource) null, "gemm.v", 'c'); // be
+selectCodeEditor("gemm.v", 343, 706); // be
+typeControlKey((HResource) null, "gemm.v", 'v'); // be
+selectCodeEditor("gemm.v", 361, 391); // be
+selectCodeEditor("gemm.v", 361, 391, false, false, false, false, true); // be - Double Click
+typeControlKey((HResource) null, "gemm.v", 'c'); // be
+selectCodeEditor("gemm.v", 246, 520); // be
+typeControlKey((HResource) null, "gemm.v", 'v'); // be
+selectCodeEditor("gemm.v", 138, 282); // be
+selectCodeEditor("gemm.v", 138, 282, false, false, false, false, true); // be - Double Click
+typeControlKey((HResource) null, "gemm.v", 'c'); // be
+selectCodeEditor("gemm.v", 247, 515); // be
+typeControlKey((HResource) null, "gemm.v", 'v'); // be
+selectCodeEditor("gemm.v", 113, 308); // be
+selectCodeEditor("gemm.v", 114, 308, false, false, false, false, true); // be - Double Click
+typeControlKey((HResource) null, "gemm.v", 'c'); // be
+selectCodeEditor("gemm.v", 277, 525); // be
+typeControlKey((HResource) null, "gemm.v", 'v'); // be
+selectCodeEditor("gemm.v", 337, 514); // be
+selectCodeEditor("gemm.v", 440, 260); // be
+selectCodeEditor("gemm.v", 387, 535); // be
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 2,226 MB. GUI used memory: 77 MB. Current time: 7/20/21, 1:33:41 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 17 seconds
+selectCodeEditor("gemm_op.v", 271, 316); // be
+// Elapsed time: 77 seconds
+selectCodeEditor("gemm_op.v", 508, 197); // be
+selectCodeEditor("mem_read.v", 615, 337); // be
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// PAResourceOtoP.PAViews_CODE: Code: close view
+closeFrame(PAResourceOtoP.PAViews_CODE, "mem_read.v"); // aA
+dockFrame(PAResourceOtoP.PAViews_CODE, "mem_read.v"); // aA
+closeView(PAResourceOtoP.PAViews_CODE, "Code"); // D
+// HMemoryUtils.trashcanNow. Engine heap size: 2,259 MB. GUI used memory: 77 MB. Current time: 7/20/21, 1:35:21 PM KST
+// PAResourceOtoP.PAViews_CODE: Code: close view
+closeFrame(PAResourceOtoP.PAViews_CODE, "gemm.v"); // aA
+dockFrame(PAResourceOtoP.PAViews_CODE, "gemm.v"); // aA
+selectCodeEditor("gemm_op.v", 327, 115); // be
+closeView(PAResourceOtoP.PAViews_CODE, "Code"); // D
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 2,287 MB. GUI used memory: 76 MB. Current time: 7/20/21, 1:48:56 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 2,319 MB. GUI used memory: 76 MB. Current time: 7/20/21, 1:50:01 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// [Engine Memory]: 2,335 MB (+16514kb) [00:25:22]
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 2,351 MB. GUI used memory: 76 MB. Current time: 7/20/21, 1:50:46 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 2,383 MB. GUI used memory: 76 MB. Current time: 7/20/21, 1:52:26 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// HMemoryUtils.trashcanNow. Engine heap size: 2,432 MB. GUI used memory: 126 MB. Current time: 7/20/21, 1:53:16 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// [Engine Memory]: 2,464 MB (+12251kb) [00:30:10]
+// HMemoryUtils.trashcanNow. Engine heap size: 2,464 MB. GUI used memory: 76 MB. Current time: 7/20/21, 1:55:01 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 2,496 MB. GUI used memory: 76 MB. Current time: 7/20/21, 1:55:36 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 2,576 MB. GUI used memory: 76 MB. Current time: 7/20/21, 1:56:51 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// [Engine Memory]: 2,592 MB (+5520kb) [00:32:12]
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// HMemoryUtils.trashcanNow. Engine heap size: 2,608 MB. GUI used memory: 76 MB. Current time: 7/20/21, 1:57:06 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 2,640 MB. GUI used memory: 76 MB. Current time: 7/20/21, 1:58:06 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// HMemoryUtils.trashcanNow. Engine heap size: 2,673 MB. GUI used memory: 76 MB. Current time: 7/20/21, 1:58:41 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 2,705 MB. GUI used memory: 76 MB. Current time: 7/20/21, 1:59:46 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 2,737 MB. GUI used memory: 76 MB. Current time: 7/20/21, 2:01:16 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// [Engine Memory]: 2,737 MB (+16053kb) [00:36:27]
+// Tcl Message: update_compile_order -fileset sources_1 
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 2,769 MB. GUI used memory: 76 MB. Current time: 7/20/21, 2:03:31 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 2,802 MB. GUI used memory: 76 MB. Current time: 7/20/21, 2:04:21 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 2,866 MB. GUI used memory: 76 MB. Current time: 7/20/21, 2:05:01 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+// [Engine Memory]: 2,882 MB (+8290kb) [00:40:15]
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// Elapsed time: 1785 seconds
+dismissDialog("Invalid Top Module"); // I
+// TclEventType: FILE_SET_CHANGE
+dismissDialog("Invalid Top Module"); // I
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+// HMemoryUtils.trashcanNow. Engine heap size: 2,923 MB. GUI used memory: 77 MB. Current time: 7/20/21, 2:05:26 PM KST
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 2,980 MB. GUI used memory: 77 MB. Current time: 7/20/21, 2:07:36 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 3,012 MB. GUI used memory: 86 MB. Current time: 7/20/21, 2:08:46 PM KST
+// [Engine Memory]: 3,028 MB (+2153kb) [00:43:57]
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 3,044 MB. GUI used memory: 77 MB. Current time: 7/20/21, 2:09:26 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+// Elapsed time: 269 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Syntax Error Files]", 1); // D
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Syntax Error Files]", 1); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, gemm (gemm.v)]", 2, true); // D - Node
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 3,109 MB. GUI used memory: 77 MB. Current time: 7/20/21, 2:10:11 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 3,141 MB. GUI used memory: 77 MB. Current time: 7/20/21, 2:10:46 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+// HMemoryUtils.trashcanNow. Engine heap size: 3,173 MB. GUI used memory: 68 MB. Current time: 7/20/21, 2:35:16 PM KST
+// [Engine Memory]: 3,189 MB (+9813kb) [01:10:28]
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// Elapsed time: 1539 seconds
+dismissDialog("Invalid Top Module"); // I
+dismissDialog("Invalid Top Module"); // I
+// HMemoryUtils.trashcanNow. Engine heap size: 3,197 MB. GUI used memory: 68 MB. Current time: 7/20/21, 2:35:31 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 3,229 MB. GUI used memory: 68 MB. Current time: 7/20/21, 2:36:36 PM KST
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 3,253 MB. GUI used memory: 68 MB. Current time: 7/20/21, 2:37:36 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 3,285 MB. GUI used memory: 68 MB. Current time: 7/20/21, 2:39:16 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 3,317 MB. GUI used memory: 68 MB. Current time: 7/20/21, 2:40:11 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// [Engine Memory]: 3,349 MB (+1154kb) [01:16:12]
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 3,365 MB. GUI used memory: 68 MB. Current time: 7/20/21, 2:41:06 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 3,397 MB. GUI used memory: 68 MB. Current time: 7/20/21, 2:41:41 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 3,429 MB. GUI used memory: 68 MB. Current time: 7/20/21, 2:42:16 PM KST
+// Elapsed time: 420 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, gemm (gemm.v)]", 1, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, gemm (gemm.v)]", 1, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, gemm (gemm.v)]", 1, true, false, false, false, false, true); // D - Double Click - Node
+// WARNING: HEventQueue.dispatchEvent() is taking  1607 ms.
+dismissDialog("Opening Editor"); // bA
+closeView(PAResourceOtoP.PAViews_CODE, "Code"); // D
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 72 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, mem_read (mem_read.v)]", 5, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, write_back (write_back.v)]", 6, false, false, true, false, false, false); // D - Control Key
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, write_back (write_back.v)]", 6, false, false, false, false, true, false); // D - Popup Trigger
+selectMenuItem(PAResourceCommand.PACommandNames_SRC_DISABLE, "Disable File"); // ao
+// Run Command: PAResourceCommand.PACommandNames_SRC_DISABLE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: set_property is_enabled false [get_files  {/home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/mem_read.v /home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/write_back.v}] 
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, gemm (gemm.v)]", 1); // D
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, gemm (gemm.v)]", 1); // D
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, gemm (gemm.v)]", 1); // D
+// WARNING: HEventQueue.dispatchEvent() is taking  1594 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1578 ms.
+// HMemoryUtils.trashcanNow. Engine heap size: 3,472 MB. GUI used memory: 69 MB. Current time: 7/20/21, 2:44:02 PM KST
+selectCodeEditor("mem_read.v", 329, 223); // be
+selectCodeEditor("mem_read.v", 378, 185); // be
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // n
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// Tcl Message: INFO: [Project 1-1161] Replacing file /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.srcs/utils_1/imports/synth_1/gemm.dcp with file /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/gemm.dcp 
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_STATUS_CHANGE
+// Tcl Message: launch_runs synth_1 -jobs 4 
+// Tcl Message: [Tue Jul 20 14:44:07 2021] Launched synth_1... Run output will be captured here: /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/runme.log 
+dismissDialog("Starting Design Runs"); // bA
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_FAILED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// Elapsed time: 37 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_MESSAGE_WINDOW
+dismissDialog("Synthesis Failed"); // ag
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-1031] A_IDX_WIDTH is not declared [/home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/gemm.v:64]. ]", 1, true); // ah - Node
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;/home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/gemm.v;-;;-;16;-;line;-;64;-;;-;16;-;"); // ah
+// WARNING: HEventQueue.dispatchEvent() is taking  1579 ms.
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 25 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // n
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// Tcl Message: launch_runs synth_1 -jobs 4 
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_STATUS_CHANGE
+// Tcl Message: [Tue Jul 20 14:45:17 2021] Launched synth_1... Run output will be captured here: /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/runme.log 
+dismissDialog("Starting Design Runs"); // bA
+closeView(PAResourceOtoP.PAViews_CODE, "Code"); // D
+// TclEventType: RUN_STATUS_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 3,498 MB. GUI used memory: 70 MB. Current time: 7/20/21, 2:45:21 PM KST
+// TclEventType: RUN_FAILED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// Elapsed time: 30 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_MESSAGE_WINDOW
+dismissDialog("Synthesis Failed"); // ag
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // n
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_STATUS_CHANGE
+// Tcl Message: launch_runs synth_1 -jobs 4 
+// Tcl Message: [Tue Jul 20 14:45:57 2021] Launched synth_1... Run output will be captured here: /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/runme.log 
+dismissDialog("Starting Design Runs"); // bA
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_FAILED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// Elapsed time: 29 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_MESSAGE_WINDOW
+dismissDialog("Synthesis Failed"); // ag
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 17 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // n
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_STATUS_CHANGE
+// Tcl Message: launch_runs synth_1 -jobs 4 
+// Tcl Message: [Tue Jul 20 14:46:45 2021] Launched synth_1... Run output will be captured here: /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/runme.log 
+dismissDialog("Starting Design Runs"); // bA
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_FAILED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// Elapsed time: 32 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_MESSAGE_WINDOW
+dismissDialog("Synthesis Failed"); // ag
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-1031] A_IDX_WIDTH is not declared [/home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/gemm.v:100]. ]", 1, true); // ah - Node
+selectButton(PAResourceItoN.MsgView_CLEAR_MESSAGES_RESULTING_FROM_USER_EXECUTED, "Messages_cleanUpMessages"); // D
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 14 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // n
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// Tcl Message: launch_runs synth_1 -jobs 4 
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// [Engine Memory]: 3,531 MB (+15096kb) [01:22:55]
+// TclEventType: RUN_STATUS_CHANGE
+// Tcl Message: [Tue Jul 20 14:47:45 2021] Launched synth_1... Run output will be captured here: /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/runme.log 
+dismissDialog("Starting Design Runs"); // bA
+// HMemoryUtils.trashcanNow. Engine heap size: 3,532 MB. GUI used memory: 70 MB. Current time: 7/20/21, 2:47:46 PM KST
+// TclEventType: RUN_STATUS_CHANGE
+// Elapsed time: 65 seconds
+selectTab((HResource) null, (HResource) null, "Messages", 1); // aL
+selectTab((HResource) null, (HResource) null, "Log", 2); // aL
+selectTab((HResource) null, (HResource) null, "Reports", 3); // aL
+selectTab((HResource) null, (HResource) null, "Messages", 1); // aL
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+dismissDialog("Synthesis Completed"); // ag
+selectCheckBox(PAResourceItoN.MsgView_WARNING_MESSAGES, (String) null, true); // g: TRUE
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Designutils 20-4072] Reference run did not run incremental synthesis because the design is too small; reverting to default synthesis. ]", 1, false); // ah
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Designutils 20-4072] Reference run did not run incremental synthesis because the design is too small; reverting to default synthesis. ]", 1, false); // ah
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Designutils 20-4072] Reference run did not run incremental synthesis because the design is too small; reverting to default synthesis. ]", 1, false); // ah
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Designutils 20-4072] Reference run did not run incremental synthesis because the design is too small; reverting to default synthesis. ]", 1, false); // ah
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Designutils 20-4072] Reference run did not run incremental synthesis because the design is too small; reverting to default synthesis. ]", 1, false); // ah
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-3917] design gemm has port acc_mem_wr_en[15] driven by constant 0. ]", 2, true); // ah - Node
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-3917] design gemm has port acc_mem_wr_en[15] driven by constant 0. ]", 2, true); // ah - Node
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-3917] design gemm has port acc_mem_wr_en[15] driven by constant 0. ]", 2, true); // ah - Node
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-3917] design gemm has port acc_mem_wr_en[15] driven by constant 0. ]", 2, true); // ah - Node
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-3917] design gemm has port acc_mem_wr_en[15] driven by constant 0. ]", 2, true); // ah - Node
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-3917] design gemm has port acc_mem_wr_en[15] driven by constant 0. ]", 2, true); // ah - Node
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-7129] Port insn[127] in module uop_fetch is either unconnected or has no load. ]", 3, true); // ah - Node
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-7129] Port insn[127] in module uop_fetch is either unconnected or has no load. ]", 3, true); // ah - Node
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-7129] Port insn[127] in module uop_fetch is either unconnected or has no load. ]", 3, true); // ah - Node
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-7129] Port insn[127] in module uop_fetch is either unconnected or has no load. ]", 3, true); // ah - Node
+// Elapsed time: 90 seconds
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-7129] Port insn[127] in module uop_fetch is either unconnected or has no load. ]", 3, true); // ah - Node
+expandTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-7129] Port insn[127] in module uop_fetch is either unconnected or has no load. ]", 3); // ah
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-7129] Port insn[127] in module uop_fetch is either unconnected or has no load. , [Synth 8-7129] Port insn[34] in module uop_fetch is either unconnected or has no load. ]", 4, false); // ah
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-7129] Port insn[127] in module uop_fetch is either unconnected or has no load. , [Synth 8-7129] Port insn[6] in module uop_fetch is either unconnected or has no load. ]", 6, false); // ah
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-7129] Port insn[127] in module uop_fetch is either unconnected or has no load. , [Synth 8-7129] Port insn[3] in module uop_fetch is either unconnected or has no load. ]", 9, false); // ah
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-7129] Port insn[127] in module uop_fetch is either unconnected or has no load. , [Synth 8-7129] Port insn[5] in module gemm is either unconnected or has no load. ]", 16, false); // ah
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-7129] Port insn[127] in module uop_fetch is either unconnected or has no load. , [Synth 8-7129] Port insn[0] in module gemm is either unconnected or has no load. ]", 21, false); // ah
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-7080] Parallel synthesis criteria is not met. ]", 22, false); // ah
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-7129] Port insn[127] in module uop_fetch is either unconnected or has no load. ]", 3, true); // ah - Node
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-3917] design gemm has port acc_mem_wr_en[15] driven by constant 0. ]", 2, true); // ah - Node
+collapseTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-7129] Port insn[127] in module uop_fetch is either unconnected or has no load. ]", 3); // ah
+expandTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-3917] design gemm has port acc_mem_wr_en[15] driven by constant 0. ]", 2); // ah
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Open Synthesized Design]", 15, true); // n - Node
+// Run Command: PAResourceCommand.PACommandNames_GOTO_NETLIST_DESIGN
+// Tcl Message: open_run synth_1 -name synth_1 
+// Tcl Message: Design is defaulting to impl run constrset: constrs_1 Design is defaulting to synth run part: xc7z020clg484-1 
+selectButton(RDIResource.ProgressDialog_BACKGROUND, "Background"); // a
+// TclEventType: FLOORPLAN_MODIFY
+// TclEventType: DESIGN_NEW
+// HMemoryUtils.trashcanNow. Engine heap size: 3,574 MB. GUI used memory: 71 MB. Current time: 7/20/21, 2:51:29 PM KST
+// TclEventType: DESIGN_NEW
+// Xgd.load filename: /tools/Xilinx/Vivado/2021.2/data/parts/xilinx/zynq/devint/zynq/xc7z020/xc7z020.xgd; ZipEntry: xc7z020_detail.xgd elapsed time: 0.8s
+// DeviceModel: Load Xgds SwingWorker Join Forever elapsed time: 1s
+// TclEventType: HFED_INIT_ROUTE_STORAGE_COMPLETED
+// DeviceView Instantiated
+// WARNING: HEventQueue.dispatchEvent() is taking  2144 ms.
+// TclEventType: CURR_DESIGN_SET
+// Tcl Message: INFO: [Device 21-403] Loading part xc7z020clg484-1 
+// Tcl Message: Netlist sorting complete. Time (s): cpu = 00:00:00.27 ; elapsed = 00:00:00.19 . Memory (MB): peak = 9289.895 ; gain = 0.000 ; free physical = 19104 ; free virtual = 27288 
+// Tcl Message: INFO: [Netlist 29-17] Analyzing 1223 Unisim elements for replacement INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds INFO: [Project 1-479] Netlist was created with Vivado 2021.2 INFO: [Project 1-570] Preparing netlist for logic optimization INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s). 
+// Tcl Message: Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 9329.914 ; gain = 0.000 ; free physical = 18945 ; free virtual = 27172 
+// Tcl Message: INFO: [Project 1-111] Unisim Transformation Summary: No Unisim elements were transformed.  
+// [GUI Memory]: 156 MB (+2125kb) [01:26:43]
+// Device view-level: 0.0
+// Tcl Message: open_run: Time (s): cpu = 00:00:29 ; elapsed = 00:00:13 . Memory (MB): peak = 9390.945 ; gain = 101.051 ; free physical = 18840 ; free virtual = 27040 
+// Elapsed time: 12 seconds
+dismissDialog("Open Synthesized Design"); // bA
+closeView(PAResourceOtoP.PAViews_DEVICE, "Device"); // U
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Open Synthesized Design, Schematic]", 27, false); // n
+// Run Command: PAResourceCommand.PACommandNames_SCHEMATIC
+dismissDialog("Generate Schematic"); // u
+// [Engine Memory]: 3,914 MB (+215872kb) [01:26:53]
+// RouteApi::initDelayMediator elapsed time: 11s
+// RouteApi: Init Delay Mediator Swing Worker Finished
+// HMemoryUtils.trashcanNow. Engine heap size: 3,940 MB. GUI used memory: 102 MB. Current time: 7/20/21, 2:51:46 PM KST
+selectButton(PAResourceQtoS.SchematicView_NEXT_PAGE, (String) null); // j
+// Elapsed time: 10 seconds
+selectButton(PAResourceTtoZ.TaskBanner_CLOSE, (String) null); // j
+closeTask("Synthesis", "Synthesized Design", "DesignTask.NETLIST_PLANNING");
+// TclEventType: DESIGN_CLOSE
+// HMemoryUtils.trashcanNow. Engine heap size: 3,941 MB. GUI used memory: 99 MB. Current time: 7/20/21, 2:52:00 PM KST
+// Engine heap size: 3,941 MB. GUI used memory: 100 MB. Current time: 7/20/21, 2:52:00 PM KST
+// TclEventType: CURR_DESIGN_SET
+// Tcl Message: close_design 
+// TclEventType: DESIGN_CLOSE
+dismissDialog("Close"); // bA
+expandTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis]", 13); // n
+collapseTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis]", 13); // n
+collapseTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis]", 13); // n
+expandTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis]", 13); // n
+expandTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Open Synthesized Design]", 15); // n
+collapseTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Open Synthesized Design]", 15); // n
+collapseTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, RTL Analysis, Open Elaborated Design]", 12); // n
+expandTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, RTL Analysis, Open Elaborated Design]", 12); // n
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, RTL Analysis, Open Elaborated Design, Schematic]", 15, false); // n
+// TclEventType: ELABORATE_START
+// Tcl Message: synth_design -rtl -rtl_skip_mlo -name rtl_1 
+// Tcl Message: Command: synth_design -rtl -rtl_skip_mlo -name rtl_1 Starting synth_design Using part: xc7z020clg484-1 Top: gemm 
+selectButton(RDIResource.ProgressDialog_BACKGROUND, "Background"); // a
+selectTab(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_PANEL_TABBED, PAResourceOtoP.ProjectSummaryUtilizationPanel_TABLE, "Table", 1); // e
+selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "DSP ; 208 ; 220 ; 94.545456", 2, "DSP", 0); // s
+selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "DSP ; 208 ; 220 ; 94.545456", 2, "DSP", 0); // s
+// TclEventType: ELABORATE_FINISH
+selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "DSP ; 208 ; 220 ; 94.545456", 2, "208", 1); // s
+selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "FF ; 4071 ; 106400 ; 3.826128", 1, "3.826128", 3); // s
+selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "DSP ; 208 ; 220 ; 94.545456", 2, "94.545456", 3); // s
+// TclEventType: FLOORPLAN_MODIFY
+// TclEventType: DESIGN_NEW
+// [Engine Memory]: 4,288 MB (+187440kb) [01:27:26]
+// HMemoryUtils.trashcanNow. Engine heap size: 4,246 MB. GUI used memory: 76 MB. Current time: 7/20/21, 2:52:15 PM KST
+selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "IO ; 3825 ; 200 ; 1912.5", 3, "3825", 1); // s
+// TclEventType: DESIGN_NEW
+// TclEventType: HFED_INIT_ROUTE_STORAGE_COMPLETED
+// WARNING: HEventQueue.dispatchEvent() is taking  1249 ms.
+// TclEventType: CURR_DESIGN_SET
+// Tcl Message: --------------------------------------------------------------------------------- 
+// Tcl Message: Starting RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:05 . Memory (MB): peak = 9759.535 ; gain = 110.762 ; free physical = 18266 ; free virtual = 26490 
+// Tcl Message: --------------------------------------------------------------------------------- 
+// Tcl Message: INFO: [Common 17-14] Message 'Synth 8-3917' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings. 
+// Tcl Message: --------------------------------------------------------------------------------- 
+// Tcl Message: Finished RTL Elaboration : Time (s): cpu = 00:00:12 ; elapsed = 00:00:06 . Memory (MB): peak = 9819.910 ; gain = 171.137 ; free physical = 18278 ; free virtual = 26513 
+// Tcl Message: --------------------------------------------------------------------------------- 
+// Tcl Message: --------------------------------------------------------------------------------- Start Handling Custom Attributes --------------------------------------------------------------------------------- --------------------------------------------------------------------------------- 
+// Tcl Message: Finished Handling Custom Attributes : Time (s): cpu = 00:00:13 ; elapsed = 00:00:07 . Memory (MB): peak = 9837.723 ; gain = 188.949 ; free physical = 18282 ; free virtual = 26514 
+// Tcl Message: --------------------------------------------------------------------------------- --------------------------------------------------------------------------------- 
+// Tcl Message: Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:07 . Memory (MB): peak = 9837.723 ; gain = 188.949 ; free physical = 18282 ; free virtual = 26514 
+// Tcl Message: --------------------------------------------------------------------------------- 
+// Tcl Message: Netlist sorting complete. Time (s): cpu = 00:00:00.27 ; elapsed = 00:00:00.15 . Memory (MB): peak = 9837.723 ; gain = 0.000 ; free physical = 18283 ; free virtual = 26498 
+// Tcl Message: INFO: [Project 1-570] Preparing netlist for logic optimization 
+// Tcl Message:  Processing XDC Constraints Initializing timing engine Completed Processing XDC Constraints  
+// Tcl Message: Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 9987.496 ; gain = 0.000 ; free physical = 18200 ; free virtual = 26412 
+// Tcl Message: INFO: [Project 1-111] Unisim Transformation Summary: No Unisim elements were transformed.  
+// Tcl Message: RTL Elaboration Complete:  : Time (s): cpu = 00:00:25 ; elapsed = 00:00:11 . Memory (MB): peak = 10089.570 ; gain = 440.797 ; free physical = 18207 ; free virtual = 26396 
+// Tcl Message: 19 Infos, 110 Warnings, 0 Critical Warnings and 0 Errors encountered. synth_design completed successfully 
+// Tcl Message: synth_design: Time (s): cpu = 00:00:25 ; elapsed = 00:00:11 . Memory (MB): peak = 10089.570 ; gain = 440.797 ; free physical = 18207 ; free virtual = 26396 
+// Run Command: PAResourceCommand.PACommandNames_SCHEMATIC
+dismissDialog("Open Elaborated Design"); // bA
+closeView(PAResourceOtoP.PAViews_SCHEMATIC, "Schematic"); // f
+// [GUI Memory]: 165 MB (+424kb) [01:27:40]
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: DESIGN_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DESIGN_STALE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 169 seconds
+selectButton(PAResourceTtoZ.TaskBanner_CLOSE, (String) null); // j
+closeTask("RTL Analysis", "Elaborated Design", "DesignTask.RTL_PLANNING");
+// TclEventType: DESIGN_CLOSE
+// HMemoryUtils.trashcanNow. Engine heap size: 4,358 MB. GUI used memory: 104 MB. Current time: 7/20/21, 2:55:10 PM KST
+// Engine heap size: 4,358 MB. GUI used memory: 104 MB. Current time: 7/20/21, 2:55:10 PM KST
+// TclEventType: CURR_DESIGN_SET
+// Tcl Message: close_design 
+// TclEventType: DESIGN_CLOSE
+dismissDialog("Close"); // bA
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, RTL Analysis, Open Elaborated Design, Schematic]", 15, false); // n
+// TclEventType: ELABORATE_START
+// Tcl Message: synth_design -rtl -rtl_skip_mlo -name rtl_1 
+// Tcl Message: Command: synth_design -rtl -rtl_skip_mlo -name rtl_1 Starting synth_design Using part: xc7z020clg484-1 Top: gemm 
+// TclEventType: ELABORATE_FINISH
+// TclEventType: FLOORPLAN_MODIFY
+// TclEventType: DESIGN_NEW
+// HMemoryUtils.trashcanNow. Engine heap size: 4,341 MB. GUI used memory: 78 MB. Current time: 7/20/21, 2:55:23 PM KST
+// TclEventType: DESIGN_NEW
+// TclEventType: HFED_INIT_ROUTE_STORAGE_COMPLETED
+// WARNING: HEventQueue.dispatchEvent() is taking  1194 ms.
+// TclEventType: CURR_DESIGN_SET
+// Tcl Message: --------------------------------------------------------------------------------- 
+// Tcl Message: Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:05 . Memory (MB): peak = 10098.059 ; gain = 0.000 ; free physical = 18039 ; free virtual = 26322 
+// Tcl Message: --------------------------------------------------------------------------------- 
+// Tcl Message: --------------------------------------------------------------------------------- 
+// Tcl Message: Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:06 . Memory (MB): peak = 10098.059 ; gain = 0.000 ; free physical = 18072 ; free virtual = 26359 
+// Tcl Message: --------------------------------------------------------------------------------- 
+// Tcl Message: --------------------------------------------------------------------------------- Start Handling Custom Attributes --------------------------------------------------------------------------------- --------------------------------------------------------------------------------- 
+// Tcl Message: Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:06 . Memory (MB): peak = 10098.059 ; gain = 0.000 ; free physical = 18074 ; free virtual = 26361 
+// Tcl Message: --------------------------------------------------------------------------------- --------------------------------------------------------------------------------- 
+// Tcl Message: Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:06 . Memory (MB): peak = 10098.059 ; gain = 0.000 ; free physical = 18074 ; free virtual = 26361 
+// Tcl Message: --------------------------------------------------------------------------------- 
+// Tcl Message: Netlist sorting complete. Time (s): cpu = 00:00:00.28 ; elapsed = 00:00:00.18 . Memory (MB): peak = 10098.059 ; gain = 0.000 ; free physical = 18048 ; free virtual = 26369 
+// Tcl Message: INFO: [Project 1-570] Preparing netlist for logic optimization 
+// Tcl Message:  Processing XDC Constraints Initializing timing engine Completed Processing XDC Constraints  
+// Tcl Message: Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 10098.059 ; gain = 0.000 ; free physical = 17969 ; free virtual = 26288 
+// Tcl Message: INFO: [Project 1-111] Unisim Transformation Summary: No Unisim elements were transformed.  
+// Tcl Message: RTL Elaboration Complete:  : Time (s): cpu = 00:00:18 ; elapsed = 00:00:10 . Memory (MB): peak = 10143.074 ; gain = 45.016 ; free physical = 17918 ; free virtual = 26224 
+// Tcl Message: 18 Infos, 10 Warnings, 0 Critical Warnings and 0 Errors encountered. synth_design completed successfully 
+// Tcl Message: synth_design: Time (s): cpu = 00:00:18 ; elapsed = 00:00:10 . Memory (MB): peak = 10143.074 ; gain = 45.016 ; free physical = 17918 ; free virtual = 26224 
+// Run Command: PAResourceCommand.PACommandNames_SCHEMATIC
+// Elapsed time: 10 seconds
+dismissDialog("Open Elaborated Design"); // bA
+// Elapsed time: 18 seconds
+selectTab((HResource) null, (HResource) null, "Messages", 1); // aL
+// Elapsed time: 23 seconds
+selectTree(PAResourceItoN.NetlistTreeView_NETLIST_TREE, "[gemm, Nets (7973), acc_mem_wr_en, acc_mem_wr_en[15]]", 517, false); // bD
+// PAPropertyPanels.initPanels (out_mem_wr_en) elapsed time: 0.2s
+// Elapsed time: 28 seconds
+selectTab((HResource) null, (HResource) null, "Sources", 0); // aL
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, gemm (gemm.v)]", 1, true); // D - Node
+// PAPropertyPanels.initPanels (out_mem_wr_en) elapsed time: 0.2s
+// Elapsed time: 24 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 18, false); // n
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// Tcl Message: INFO: [Project 1-1161] Replacing file /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.srcs/utils_1/imports/synth_1/gemm.dcp with file /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/gemm.dcp 
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_STATUS_CHANGE
+// Tcl Message: launch_runs synth_1 -jobs 4 
+// Tcl Message: [Tue Jul 20 14:57:03 2021] Launched synth_1... Run output will be captured here: /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/runme.log 
+dismissDialog("Starting Design Runs"); // bA
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_STATUS_CHANGE
+closeView(PAResourceOtoP.PAViews_SCHEMATIC, "Schematic"); // f
+selectButton(PAResourceTtoZ.TaskBanner_CLOSE, (String) null); // j
+closeTask("RTL Analysis", "Elaborated Design", "DesignTask.RTL_PLANNING");
+// TclEventType: DESIGN_CLOSE
+// HMemoryUtils.trashcanNow. Engine heap size: 4,384 MB. GUI used memory: 107 MB. Current time: 7/20/21, 2:57:08 PM KST
+// Engine heap size: 4,384 MB. GUI used memory: 107 MB. Current time: 7/20/21, 2:57:08 PM KST
+// TclEventType: CURR_DESIGN_SET
+// Tcl Message: close_design 
+// TclEventType: DESIGN_CLOSE
+dismissDialog("Close"); // bA
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 208 seconds
+dismissDialog("Synthesis Completed"); // ag
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 17, false); // n
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// Tcl Message: INFO: [Project 1-1161] Replacing file /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.srcs/utils_1/imports/synth_1/gemm.dcp with file /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/gemm.dcp 
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_STATUS_CHANGE
+// Tcl Message: launch_runs synth_1 -jobs 4 
+// Tcl Message: [Tue Jul 20 15:00:40 2021] Launched synth_1... Run output will be captured here: /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/runme.log 
+dismissDialog("Starting Design Runs"); // bA
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// Elapsed time: 88 seconds
+dismissDialog("Synthesis Completed"); // ag
+selectTab(PAResourceOtoP.ProjectSummaryUtilizationGadget_PROJECT_SUMMARY_UTILIZATION_GADGET_TABBED, PAResourceOtoP.ProjectSummaryUtilizationGadget_POST_IMPLEMENTATION, "Post-Implementation", 1); // b
+selectTab(PAResourceOtoP.ProjectSummaryUtilizationGadget_PROJECT_SUMMARY_UTILIZATION_GADGET_TABBED, PAResourceOtoP.ProjectSummaryUtilizationGadget_POST_SYNTHESIS, "Post-Synthesis", 0); // b
+selectTab(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_PANEL_TABBED, PAResourceOtoP.ProjectSummaryUtilizationPanel_TABLE, "Table", 1); // e
+selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "IO ; 3825 ; 200 ; 1912.5", 3, "3825", 1); // s
+selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "DSP ; 208 ; 220 ; 94.545456", 2, "208", 1); // s
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 4,396 MB. GUI used memory: 81 MB. Current time: 7/20/21, 3:09:56 PM KST
+// Elapsed time: 463 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 17, false); // n
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// Tcl Message: INFO: [Project 1-1161] Replacing file /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.srcs/utils_1/imports/synth_1/gemm.dcp with file /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/gemm.dcp 
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_STATUS_CHANGE
+// Tcl Message: launch_runs synth_1 -jobs 4 
+// Tcl Message: [Tue Jul 20 15:09:57 2021] Launched synth_1... Run output will be captured here: /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/runme.log 
+dismissDialog("Starting Design Runs"); // bA
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_FAILED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// Elapsed time: 122 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_MESSAGE_WINDOW
+dismissDialog("Synthesis Failed"); // ag
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 35 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, RTL Analysis, Open Elaborated Design, Schematic]", 15, false); // n
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 17, false); // n
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// Tcl Message: launch_runs synth_1 -jobs 4 
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_STATUS_CHANGE
+// Tcl Message: [Tue Jul 20 15:12:39 2021] Launched synth_1... Run output will be captured here: /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/runme.log 
+dismissDialog("Starting Design Runs"); // bA
+// HMemoryUtils.trashcanNow. Engine heap size: 4,417 MB. GUI used memory: 81 MB. Current time: 7/20/21, 3:12:41 PM KST
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// Elapsed time: 74 seconds
+dismissDialog("Synthesis Completed"); // ag
+selectCheckBox(PAResourceItoN.MsgView_WARNING_MESSAGES, (String) null, true); // g: TRUE
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-6901] identifier 'gemm_res' is used before its declaration [/home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/gemm.v:179]. ]", 2, false); // ah
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-6901] identifier 'gemm_res' is used before its declaration [/home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/gemm.v:179]. ]", 2, false); // ah
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;/home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/gemm.v;-;;-;16;-;line;-;179;-;;-;16;-;"); // ah
+// WARNING: HEventQueue.dispatchEvent() is taking  1586 ms.
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 4,447 MB. GUI used memory: 82 MB. Current time: 7/20/21, 3:17:46 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 231 seconds
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-6901] identifier 'gemm_res' is used before its declaration [/home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/gemm.v:179]. ]", 2, false); // ah
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-6901] identifier 'gemm_res' is used before its declaration [/home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/gemm.v:179]. ]", 2, false); // ah
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-7129] Port insn[127] in module uop_fetch is either unconnected or has no load. ]", 3, true); // ah - Node
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-7129] Port insn[127] in module uop_fetch is either unconnected or has no load. ]", 3, true); // ah - Node
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-7129] Port insn[127] in module uop_fetch is either unconnected or has no load. ]", 3, true); // ah - Node
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-7080] Parallel synthesis criteria is not met. ]", 4, false); // ah
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Designutils 20-4072] Reference run did not run incremental synthesis because the design is too small; reverting to default synthesis. ]", 1, false); // ah
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 17, false); // n
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// Tcl Message: INFO: [Project 1-1161] Replacing file /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.srcs/utils_1/imports/synth_1/gemm.dcp with file /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/gemm.dcp 
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_STATUS_CHANGE
+// Tcl Message: launch_runs synth_1 -jobs 4 
+// Tcl Message: [Tue Jul 20 15:18:09 2021] Launched synth_1... Run output will be captured here: /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/runme.log 
+dismissDialog("Starting Design Runs"); // bA
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// Elapsed time: 90 seconds
+dismissDialog("Synthesis Completed"); // ag
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-7129] Port insn[127] in module uop_fetch is either unconnected or has no load. ]", 2, true); // ah - Node
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Designutils 20-4072] Reference run did not run incremental synthesis because the design is too small; reverting to default synthesis. ]", 1, false); // ah
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Designutils 20-4072] Reference run did not run incremental synthesis because the design is too small; reverting to default synthesis. ]", 1, false); // ah
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Designutils 20-4072] Reference run did not run incremental synthesis because the design is too small; reverting to default synthesis. ]", 1, false); // ah
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Project Summary", 0); // m
+selectTab(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_PANEL_TABBED, PAResourceOtoP.ProjectSummaryUtilizationPanel_TABLE, "Table", 1); // e
+selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "IO ; 3828 ; 200 ; 1914.0", 3, "1914.0", 3); // s
+selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "IO ; 3828 ; 200 ; 1914.0", 3, "3828", 1); // s
+selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "DSP ; 208 ; 220 ; 94.545456", 2, "208", 1); // s
+selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "DSP ; 208 ; 220 ; 94.545456", 2, "220", 2); // s
+selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "IO ; 3828 ; 200 ; 1914.0", 3, "3828", 1); // s
+selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "FF ; 4075 ; 106400 ; 3.8298872", 1, "4075", 1); // s
+selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "FF ; 4075 ; 106400 ; 3.8298872", 1, "106400", 2); // s
+selectTableHeader(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "Estimation", 1); // s
+selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "LUT ; 5140 ; 53200 ; 9.661654", 0, "53200", 2); // s
+selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "DSP ; 208 ; 220 ; 94.545456", 2, "220", 2); // s
+selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "BUFG ; 1 ; 32 ; 3.125", 4, "32", 2); // s
+selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "BUFG ; 1 ; 32 ; 3.125", 4, "BUFG", 0); // s

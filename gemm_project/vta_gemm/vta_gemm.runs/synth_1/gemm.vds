@@ -2,18 +2,17 @@
 # Vivado v2021.2 (64-bit)
 # SW Build 3367213 on Tue Oct 19 02:47:39 MDT 2021
 # IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
-# Start of session at: Mon Jul 19 17:00:29 2021
-# Process ID: 107495
-# Current directory: /home/sjson/fd_ws/verilog/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1
+# Start of session at: Tue Jul 20 15:18:13 2021
+# Process ID: 30603
+# Current directory: /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1
 # Command line: vivado -log gemm.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source gemm.tcl
-# Log file: /home/sjson/fd_ws/verilog/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/gemm.vds
-# Journal file: /home/sjson/fd_ws/verilog/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/vivado.jou
-# Running On: sjson, OS: Linux, CPU Frequency: 3680.625 MHz, CPU Physical cores: 4, Host memory: 33322 MB
+# Log file: /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/gemm.vds
+# Journal file: /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/vivado.jou
+# Running On: sjson, OS: Linux, CPU Frequency: 1700.000 MHz, CPU Physical cores: 4, Host memory: 33322 MB
 #-----------------------------------------------------------
 source gemm.tcl -notrace
-create_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:06 . Memory (MB): peak = 2611.945 ; gain = 5.961 ; free physical = 14842 ; free virtual = 25617
-Command: read_checkpoint -auto_incremental -incremental /home/sjson/fd_ws/verilog/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.srcs/utils_1/imports/synth_1/gemm.dcp
-INFO: [Vivado 12-5825] Read reference checkpoint from /home/sjson/fd_ws/verilog/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.srcs/utils_1/imports/synth_1/gemm.dcp for incremental synthesis
+Command: read_checkpoint -auto_incremental -incremental /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.srcs/utils_1/imports/synth_1/gemm.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.srcs/utils_1/imports/synth_1/gemm.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
 Command: synth_design -top gemm -part xc7z020clg484-1
 Starting synth_design
@@ -23,42 +22,26 @@ WARNING: [Designutils 20-4072] Reference run did not run incremental synthesis b
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 107593
+INFO: [Synth 8-7075] Helper process launched with PID 30736
 ---------------------------------------------------------------------------------
-Starting Synthesize : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2612.027 ; gain = 0.000 ; free physical = 13499 ; free virtual = 24270
+Starting Synthesize : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2612.031 ; gain = 0.000 ; free physical = 16697 ; free virtual = 24935
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'gemm' [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v:1]
-INFO: [Synth 8-6157] synthesizing module 'uop_fetch' [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/uop_fetch.v:51]
-INFO: [Synth 8-6155] done synthesizing module 'uop_fetch' (1#1) [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/uop_fetch.v:51]
-INFO: [Synth 8-6157] synthesizing module 'idx_decode' [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/idx_decode.v:35]
-INFO: [Synth 8-6155] done synthesizing module 'idx_decode' (2#1) [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/idx_decode.v:35]
-INFO: [Synth 8-6157] synthesizing module 'mem_read' [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/mem_read.v:1]
-INFO: [Synth 8-6155] done synthesizing module 'mem_read' (3#1) [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/mem_read.v:1]
-WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v:139]
-INFO: [Synth 8-6157] synthesizing module 'gemm_op' [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm_op.v:1]
-INFO: [Synth 8-6157] synthesizing module 'systolic_row_lut' [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/systolic_row.v:1]
-INFO: [Synth 8-6157] synthesizing module 'mac_lut' [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/proc_elem.v:30]
-INFO: [Synth 8-6155] done synthesizing module 'mac_lut' (4#1) [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/proc_elem.v:30]
-INFO: [Synth 8-6155] done synthesizing module 'systolic_row_lut' (5#1) [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/systolic_row.v:1]
-INFO: [Synth 8-6157] synthesizing module 'systolic_row_dsp' [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/systolic_row.v:132]
-INFO: [Synth 8-6157] synthesizing module 'mac_dsp' [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/proc_elem.v:2]
-INFO: [Synth 8-6155] done synthesizing module 'mac_dsp' (6#1) [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/proc_elem.v:2]
-INFO: [Synth 8-6155] done synthesizing module 'systolic_row_dsp' (7#1) [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/systolic_row.v:132]
-INFO: [Synth 8-6155] done synthesizing module 'gemm_op' (8#1) [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm_op.v:1]
-WARNING: [Synth 8-7071] port 'i_tensor' of module 'gemm_op' is unconnected for instance 'U_EXE' [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v:139]
-WARNING: [Synth 8-7071] port 'w_tensor' of module 'gemm_op' is unconnected for instance 'U_EXE' [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v:139]
-WARNING: [Synth 8-7071] port 'a_tensor' of module 'gemm_op' is unconnected for instance 'U_EXE' [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v:139]
-WARNING: [Synth 8-7071] port 'o_tensor' of module 'gemm_op' is unconnected for instance 'U_EXE' [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v:139]
-WARNING: [Synth 8-7023] instance 'U_EXE' of module 'gemm_op' has 4 connections declared, but only 0 given [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v:139]
-INFO: [Synth 8-6157] synthesizing module 'write_back' [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/write_back.v:1]
-INFO: [Synth 8-6155] done synthesizing module 'write_back' (9#1) [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/write_back.v:1]
-WARNING: [Synth 8-6014] Unused sequential element u2i_reg_reset_reg was removed.  [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v:67]
-WARNING: [Synth 8-6014] Unused sequential element i2m_reg_reset_reg was removed.  [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v:114]
-WARNING: [Synth 8-6014] Unused sequential element i2m_dst_idx_reg was removed.  [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v:115]
-WARNING: [Synth 8-6014] Unused sequential element i2m_src_idx_reg was removed.  [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v:116]
-WARNING: [Synth 8-6014] Unused sequential element i2m_wgt_idx_reg was removed.  [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v:117]
-WARNING: [Synth 8-3848] Net inst in module/entity gemm does not have driver. [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v:44]
-INFO: [Synth 8-6155] done synthesizing module 'gemm' (10#1) [/home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v:1]
+INFO: [Synth 8-6157] synthesizing module 'gemm' [/home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/gemm.v:1]
+INFO: [Synth 8-6157] synthesizing module 'uop_fetch' [/home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/uop_fetch.v:51]
+INFO: [Synth 8-6155] done synthesizing module 'uop_fetch' (1#1) [/home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/uop_fetch.v:51]
+INFO: [Synth 8-6157] synthesizing module 'idx_decode' [/home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/idx_decode.v:35]
+INFO: [Synth 8-6155] done synthesizing module 'idx_decode' (2#1) [/home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/idx_decode.v:35]
+INFO: [Synth 8-6157] synthesizing module 'gemm_op' [/home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/gemm_op.v:1]
+INFO: [Synth 8-6157] synthesizing module 'systolic_row_lut' [/home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/systolic_row.v:1]
+INFO: [Synth 8-6157] synthesizing module 'mac_lut' [/home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/proc_elem.v:30]
+INFO: [Synth 8-6155] done synthesizing module 'mac_lut' (3#1) [/home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/proc_elem.v:30]
+INFO: [Synth 8-6155] done synthesizing module 'systolic_row_lut' (4#1) [/home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/systolic_row.v:1]
+INFO: [Synth 8-6157] synthesizing module 'systolic_row_dsp' [/home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/systolic_row.v:132]
+INFO: [Synth 8-6157] synthesizing module 'mac_dsp' [/home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/proc_elem.v:2]
+INFO: [Synth 8-6155] done synthesizing module 'mac_dsp' (5#1) [/home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/proc_elem.v:2]
+INFO: [Synth 8-6155] done synthesizing module 'systolic_row_dsp' (6#1) [/home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/systolic_row.v:132]
+INFO: [Synth 8-6155] done synthesizing module 'gemm_op' (7#1) [/home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/gemm_op.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'gemm' (8#1) [/home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/gemm.v:1]
 WARNING: [Synth 8-7129] Port insn[127] in module uop_fetch is either unconnected or has no load
 WARNING: [Synth 8-7129] Port insn[34] in module uop_fetch is either unconnected or has no load
 WARNING: [Synth 8-7129] Port insn[7] in module uop_fetch is either unconnected or has no load
@@ -69,113 +52,22 @@ WARNING: [Synth 8-7129] Port insn[3] in module uop_fetch is either unconnected o
 WARNING: [Synth 8-7129] Port insn[2] in module uop_fetch is either unconnected or has no load
 WARNING: [Synth 8-7129] Port insn[1] in module uop_fetch is either unconnected or has no load
 WARNING: [Synth 8-7129] Port insn[0] in module uop_fetch is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[127] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[126] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[125] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[124] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[123] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[122] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[121] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[120] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[119] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[118] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[117] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[116] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[115] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[114] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[113] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[112] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[111] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[110] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[109] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[108] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[107] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[106] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[105] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[104] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[103] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[102] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[101] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[100] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[99] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[98] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[97] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[96] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[95] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[94] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[93] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[92] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[91] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[90] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[89] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[88] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[87] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[86] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[85] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[84] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[83] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[82] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[81] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[80] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[79] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[78] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[77] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[76] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[75] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[74] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[73] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[72] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[71] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[70] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[69] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[68] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[67] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[66] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[65] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[64] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[63] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[62] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[61] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[60] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[59] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[58] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[57] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[56] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[55] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[54] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[53] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[52] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[51] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[50] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[49] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[48] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[47] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[46] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[45] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[44] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[43] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[42] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[41] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[40] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[39] in module gemm is either unconnected or has no load
-WARNING: [Synth 8-7129] Port insn[38] in module gemm is either unconnected or has no load
-INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished Synthesize : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2612.027 ; gain = 0.000 ; free physical = 14456 ; free virtual = 25228
+Finished Synthesize : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2612.031 ; gain = 0.000 ; free physical = 17514 ; free virtual = 25762
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2612.027 ; gain = 0.000 ; free physical = 14474 ; free virtual = 25246
+Finished Constraint Validation : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2612.031 ; gain = 0.000 ; free physical = 17510 ; free virtual = 25758
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg484-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2619.949 ; gain = 7.922 ; free physical = 14474 ; free virtual = 25246
----------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2619.953 ; gain = 7.922 ; free physical = 17510 ; free virtual = 25758
 INFO: [Device 21-403] Loading part xc7z020clg484-1
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2619.949 ; gain = 7.922 ; free physical = 14450 ; free virtual = 25223
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 2619.953 ; gain = 7.922 ; free physical = 17448 ; free virtual = 25696
 ---------------------------------------------------------------------------------
 No constraint files found.
 ---------------------------------------------------------------------------------
@@ -189,12 +81,18 @@ Detailed RTL Component Info :
 	   3 Input   12 Bit       Adders := 2     
 	   3 Input   11 Bit       Adders := 1     
 +---Registers : 
+	             2048 Bit    Registers := 1     
+	              512 Bit    Registers := 4     
+	              128 Bit    Registers := 2     
 	               32 Bit    Registers := 1     
-	               11 Bit    Registers := 8     
+	               12 Bit    Registers := 2     
+	               11 Bit    Registers := 9     
 	               10 Bit    Registers := 4     
+	                1 Bit    Registers := 6     
 +---Multipliers : 
 	                8x8  Multipliers := 48    
 +---Muxes : 
+	   2 Input  512 Bit        Muxes := 2     
 	   2 Input    1 Bit        Muxes := 2     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
@@ -837,8 +735,18 @@ DSP Report: operator mul is absorbed into DSP sum_out.
 DSP Report: Generating DSP sum_out, operation Mode is: C+A*B.
 DSP Report: operator sum_out is absorbed into DSP sum_out.
 DSP Report: operator mul is absorbed into DSP sum_out.
+WARNING: [Synth 8-7129] Port insn[127] in module uop_fetch is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[34] in module uop_fetch is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[7] in module uop_fetch is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[6] in module uop_fetch is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[5] in module uop_fetch is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[4] in module uop_fetch is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[3] in module uop_fetch is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[2] in module uop_fetch is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[1] in module uop_fetch is either unconnected or has no load
+WARNING: [Synth 8-7129] Port insn[0] in module uop_fetch is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2619.949 ; gain = 7.922 ; free physical = 14139 ; free virtual = 24933
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 2619.953 ; gain = 7.922 ; free physical = 17172 ; free virtual = 25426
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -1067,13 +975,13 @@ No constraint files found.
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2619.949 ; gain = 7.922 ; free physical = 14138 ; free virtual = 24932
+Finished Timing Optimization : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 2619.953 ; gain = 7.922 ; free physical = 17170 ; free virtual = 25423
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2619.949 ; gain = 7.922 ; free physical = 14137 ; free virtual = 24931
+Finished Technology Mapping : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 2619.953 ; gain = 7.922 ; free physical = 17173 ; free virtual = 25428
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -1087,43 +995,41 @@ Finished Flattening Before IO Insertion
 ---------------------------------------------------------------------------------
 Start Final Netlist Cleanup
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-4649] Removing BlackBox instance U_MEM of module mem_read having unconnected or no output ports
-INFO: [Synth 8-4649] Removing BlackBox instance U_WRB of module write_back having unconnected or no output ports
 ---------------------------------------------------------------------------------
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:22 ; elapsed = 00:00:22 . Memory (MB): peak = 2619.949 ; gain = 7.922 ; free physical = 14148 ; free virtual = 24935
+Finished IO Insertion : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 2619.953 ; gain = 7.922 ; free physical = 17160 ; free virtual = 25420
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:22 ; elapsed = 00:00:22 . Memory (MB): peak = 2619.949 ; gain = 7.922 ; free physical = 14148 ; free virtual = 24935
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 2619.953 ; gain = 7.922 ; free physical = 17160 ; free virtual = 25420
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:22 ; elapsed = 00:00:22 . Memory (MB): peak = 2619.949 ; gain = 7.922 ; free physical = 14148 ; free virtual = 24935
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2619.953 ; gain = 7.922 ; free physical = 17161 ; free virtual = 25425
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:22 ; elapsed = 00:00:22 . Memory (MB): peak = 2619.949 ; gain = 7.922 ; free physical = 14148 ; free virtual = 24935
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2619.953 ; gain = 7.922 ; free physical = 17161 ; free virtual = 25425
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:22 ; elapsed = 00:00:22 . Memory (MB): peak = 2619.949 ; gain = 7.922 ; free physical = 14148 ; free virtual = 24935
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2619.953 ; gain = 7.922 ; free physical = 17160 ; free virtual = 25424
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:22 ; elapsed = 00:00:22 . Memory (MB): peak = 2619.949 ; gain = 7.922 ; free physical = 14148 ; free virtual = 24935
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2619.953 ; gain = 7.922 ; free physical = 17160 ; free virtual = 25424
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -1136,48 +1042,325 @@ Report BlackBoxes:
 +-+--------------+----------+
 
 Report Cell Usage: 
-+------+-------+------+
-|      |Cell   |Count |
-+------+-------+------+
-|1     |BUFG   |     1|
-|2     |CARRY4 |     6|
-|3     |LUT1   |     2|
-|4     |LUT3   |    12|
-|5     |LUT5   |     1|
-|6     |LUT6   |     1|
-|7     |FDCE   |    11|
-|8     |IBUF   |     2|
-|9     |OBUF   |    13|
-+------+-------+------+
++------+--------+------+
+|      |Cell    |Count |
++------+--------+------+
+|1     |BUFG    |     1|
+|2     |CARRY4  |  1016|
+|3     |DSP48E1 |   208|
+|4     |LUT1    |    50|
+|5     |LUT2    |  3195|
+|6     |LUT3    |   962|
+|7     |LUT4    |  1231|
+|8     |LUT5    |   288|
+|9     |LUT6    |  1264|
+|10    |FDCE    |  4075|
+|11    |IBUF    |  2844|
+|12    |OBUF    |   984|
++------+--------+------+
 
 Report Instance Areas: 
-+------+---------+----------+------+
-|      |Instance |Module    |Cells |
-+------+---------+----------+------+
-|1     |top      |          |    49|
-|2     |  U_UOP  |uop_fetch |    33|
-+------+---------+----------+------+
++------+-------------------+--------------------+------+
+|      |Instance           |Module              |Cells |
++------+-------------------+--------------------+------+
+|1     |top                |                    | 16118|
+|2     |  U_EX             |gemm_op             |  7904|
+|3     |    U_ROW_00       |systolic_row_lut    |  2448|
+|4     |      U_mac_lut_00 |mac_lut_252         |   153|
+|5     |      U_mac_lut_01 |mac_lut_253         |   153|
+|6     |      U_mac_lut_02 |mac_lut_254         |   153|
+|7     |      U_mac_lut_03 |mac_lut_255         |   153|
+|8     |      U_mac_lut_04 |mac_lut_256         |   153|
+|9     |      U_mac_lut_05 |mac_lut_257         |   153|
+|10    |      U_mac_lut_06 |mac_lut_258         |   153|
+|11    |      U_mac_lut_07 |mac_lut_259         |   153|
+|12    |      U_mac_lut_08 |mac_lut_260         |   153|
+|13    |      U_mac_lut_09 |mac_lut_261         |   153|
+|14    |      U_mac_lut_10 |mac_lut_262         |   153|
+|15    |      U_mac_lut_11 |mac_lut_263         |   153|
+|16    |      U_mac_lut_12 |mac_lut_264         |   153|
+|17    |      U_mac_lut_13 |mac_lut_265         |   153|
+|18    |      U_mac_lut_14 |mac_lut_266         |   153|
+|19    |      U_mac_lut_15 |mac_lut_267         |   153|
+|20    |    U_ROW_01       |systolic_row_lut_0  |  2288|
+|21    |      U_mac_lut_00 |mac_lut_236         |   143|
+|22    |      U_mac_lut_01 |mac_lut_237         |   143|
+|23    |      U_mac_lut_02 |mac_lut_238         |   143|
+|24    |      U_mac_lut_03 |mac_lut_239         |   143|
+|25    |      U_mac_lut_04 |mac_lut_240         |   143|
+|26    |      U_mac_lut_05 |mac_lut_241         |   143|
+|27    |      U_mac_lut_06 |mac_lut_242         |   143|
+|28    |      U_mac_lut_07 |mac_lut_243         |   143|
+|29    |      U_mac_lut_08 |mac_lut_244         |   143|
+|30    |      U_mac_lut_09 |mac_lut_245         |   143|
+|31    |      U_mac_lut_10 |mac_lut_246         |   143|
+|32    |      U_mac_lut_11 |mac_lut_247         |   143|
+|33    |      U_mac_lut_12 |mac_lut_248         |   143|
+|34    |      U_mac_lut_13 |mac_lut_249         |   143|
+|35    |      U_mac_lut_14 |mac_lut_250         |   143|
+|36    |      U_mac_lut_15 |mac_lut_251         |   143|
+|37    |    U_ROW_02       |systolic_row_lut_1  |  1936|
+|38    |      U_mac_lut_00 |mac_lut             |   121|
+|39    |      U_mac_lut_01 |mac_lut_221         |   121|
+|40    |      U_mac_lut_02 |mac_lut_222         |   121|
+|41    |      U_mac_lut_03 |mac_lut_223         |   121|
+|42    |      U_mac_lut_04 |mac_lut_224         |   121|
+|43    |      U_mac_lut_05 |mac_lut_225         |   121|
+|44    |      U_mac_lut_06 |mac_lut_226         |   121|
+|45    |      U_mac_lut_07 |mac_lut_227         |   121|
+|46    |      U_mac_lut_08 |mac_lut_228         |   121|
+|47    |      U_mac_lut_09 |mac_lut_229         |   121|
+|48    |      U_mac_lut_10 |mac_lut_230         |   121|
+|49    |      U_mac_lut_11 |mac_lut_231         |   121|
+|50    |      U_mac_lut_12 |mac_lut_232         |   121|
+|51    |      U_mac_lut_13 |mac_lut_233         |   121|
+|52    |      U_mac_lut_14 |mac_lut_234         |   121|
+|53    |      U_mac_lut_15 |mac_lut_235         |   121|
+|54    |    U_ROW_03       |systolic_row_dsp    |    16|
+|55    |      U_mac_dsp_00 |mac_dsp_205         |     1|
+|56    |      U_mac_dsp_01 |mac_dsp_206         |     1|
+|57    |      U_mac_dsp_02 |mac_dsp_207         |     1|
+|58    |      U_mac_dsp_03 |mac_dsp_208         |     1|
+|59    |      U_mac_dsp_04 |mac_dsp_209         |     1|
+|60    |      U_mac_dsp_05 |mac_dsp_210         |     1|
+|61    |      U_mac_dsp_06 |mac_dsp_211         |     1|
+|62    |      U_mac_dsp_07 |mac_dsp_212         |     1|
+|63    |      U_mac_dsp_08 |mac_dsp_213         |     1|
+|64    |      U_mac_dsp_09 |mac_dsp_214         |     1|
+|65    |      U_mac_dsp_10 |mac_dsp_215         |     1|
+|66    |      U_mac_dsp_11 |mac_dsp_216         |     1|
+|67    |      U_mac_dsp_12 |mac_dsp_217         |     1|
+|68    |      U_mac_dsp_13 |mac_dsp_218         |     1|
+|69    |      U_mac_dsp_14 |mac_dsp_219         |     1|
+|70    |      U_mac_dsp_15 |mac_dsp_220         |     1|
+|71    |    U_ROW_04       |systolic_row_dsp_2  |    16|
+|72    |      U_mac_dsp_00 |mac_dsp_189         |     1|
+|73    |      U_mac_dsp_01 |mac_dsp_190         |     1|
+|74    |      U_mac_dsp_02 |mac_dsp_191         |     1|
+|75    |      U_mac_dsp_03 |mac_dsp_192         |     1|
+|76    |      U_mac_dsp_04 |mac_dsp_193         |     1|
+|77    |      U_mac_dsp_05 |mac_dsp_194         |     1|
+|78    |      U_mac_dsp_06 |mac_dsp_195         |     1|
+|79    |      U_mac_dsp_07 |mac_dsp_196         |     1|
+|80    |      U_mac_dsp_08 |mac_dsp_197         |     1|
+|81    |      U_mac_dsp_09 |mac_dsp_198         |     1|
+|82    |      U_mac_dsp_10 |mac_dsp_199         |     1|
+|83    |      U_mac_dsp_11 |mac_dsp_200         |     1|
+|84    |      U_mac_dsp_12 |mac_dsp_201         |     1|
+|85    |      U_mac_dsp_13 |mac_dsp_202         |     1|
+|86    |      U_mac_dsp_14 |mac_dsp_203         |     1|
+|87    |      U_mac_dsp_15 |mac_dsp_204         |     1|
+|88    |    U_ROW_05       |systolic_row_dsp_3  |    16|
+|89    |      U_mac_dsp_00 |mac_dsp_173         |     1|
+|90    |      U_mac_dsp_01 |mac_dsp_174         |     1|
+|91    |      U_mac_dsp_02 |mac_dsp_175         |     1|
+|92    |      U_mac_dsp_03 |mac_dsp_176         |     1|
+|93    |      U_mac_dsp_04 |mac_dsp_177         |     1|
+|94    |      U_mac_dsp_05 |mac_dsp_178         |     1|
+|95    |      U_mac_dsp_06 |mac_dsp_179         |     1|
+|96    |      U_mac_dsp_07 |mac_dsp_180         |     1|
+|97    |      U_mac_dsp_08 |mac_dsp_181         |     1|
+|98    |      U_mac_dsp_09 |mac_dsp_182         |     1|
+|99    |      U_mac_dsp_10 |mac_dsp_183         |     1|
+|100   |      U_mac_dsp_11 |mac_dsp_184         |     1|
+|101   |      U_mac_dsp_12 |mac_dsp_185         |     1|
+|102   |      U_mac_dsp_13 |mac_dsp_186         |     1|
+|103   |      U_mac_dsp_14 |mac_dsp_187         |     1|
+|104   |      U_mac_dsp_15 |mac_dsp_188         |     1|
+|105   |    U_ROW_06       |systolic_row_dsp_4  |    16|
+|106   |      U_mac_dsp_00 |mac_dsp_157         |     1|
+|107   |      U_mac_dsp_01 |mac_dsp_158         |     1|
+|108   |      U_mac_dsp_02 |mac_dsp_159         |     1|
+|109   |      U_mac_dsp_03 |mac_dsp_160         |     1|
+|110   |      U_mac_dsp_04 |mac_dsp_161         |     1|
+|111   |      U_mac_dsp_05 |mac_dsp_162         |     1|
+|112   |      U_mac_dsp_06 |mac_dsp_163         |     1|
+|113   |      U_mac_dsp_07 |mac_dsp_164         |     1|
+|114   |      U_mac_dsp_08 |mac_dsp_165         |     1|
+|115   |      U_mac_dsp_09 |mac_dsp_166         |     1|
+|116   |      U_mac_dsp_10 |mac_dsp_167         |     1|
+|117   |      U_mac_dsp_11 |mac_dsp_168         |     1|
+|118   |      U_mac_dsp_12 |mac_dsp_169         |     1|
+|119   |      U_mac_dsp_13 |mac_dsp_170         |     1|
+|120   |      U_mac_dsp_14 |mac_dsp_171         |     1|
+|121   |      U_mac_dsp_15 |mac_dsp_172         |     1|
+|122   |    U_ROW_07       |systolic_row_dsp_5  |    16|
+|123   |      U_mac_dsp_00 |mac_dsp_141         |     1|
+|124   |      U_mac_dsp_01 |mac_dsp_142         |     1|
+|125   |      U_mac_dsp_02 |mac_dsp_143         |     1|
+|126   |      U_mac_dsp_03 |mac_dsp_144         |     1|
+|127   |      U_mac_dsp_04 |mac_dsp_145         |     1|
+|128   |      U_mac_dsp_05 |mac_dsp_146         |     1|
+|129   |      U_mac_dsp_06 |mac_dsp_147         |     1|
+|130   |      U_mac_dsp_07 |mac_dsp_148         |     1|
+|131   |      U_mac_dsp_08 |mac_dsp_149         |     1|
+|132   |      U_mac_dsp_09 |mac_dsp_150         |     1|
+|133   |      U_mac_dsp_10 |mac_dsp_151         |     1|
+|134   |      U_mac_dsp_11 |mac_dsp_152         |     1|
+|135   |      U_mac_dsp_12 |mac_dsp_153         |     1|
+|136   |      U_mac_dsp_13 |mac_dsp_154         |     1|
+|137   |      U_mac_dsp_14 |mac_dsp_155         |     1|
+|138   |      U_mac_dsp_15 |mac_dsp_156         |     1|
+|139   |    U_ROW_08       |systolic_row_dsp_6  |    16|
+|140   |      U_mac_dsp_00 |mac_dsp_125         |     1|
+|141   |      U_mac_dsp_01 |mac_dsp_126         |     1|
+|142   |      U_mac_dsp_02 |mac_dsp_127         |     1|
+|143   |      U_mac_dsp_03 |mac_dsp_128         |     1|
+|144   |      U_mac_dsp_04 |mac_dsp_129         |     1|
+|145   |      U_mac_dsp_05 |mac_dsp_130         |     1|
+|146   |      U_mac_dsp_06 |mac_dsp_131         |     1|
+|147   |      U_mac_dsp_07 |mac_dsp_132         |     1|
+|148   |      U_mac_dsp_08 |mac_dsp_133         |     1|
+|149   |      U_mac_dsp_09 |mac_dsp_134         |     1|
+|150   |      U_mac_dsp_10 |mac_dsp_135         |     1|
+|151   |      U_mac_dsp_11 |mac_dsp_136         |     1|
+|152   |      U_mac_dsp_12 |mac_dsp_137         |     1|
+|153   |      U_mac_dsp_13 |mac_dsp_138         |     1|
+|154   |      U_mac_dsp_14 |mac_dsp_139         |     1|
+|155   |      U_mac_dsp_15 |mac_dsp_140         |     1|
+|156   |    U_ROW_09       |systolic_row_dsp_7  |    16|
+|157   |      U_mac_dsp_00 |mac_dsp_109         |     1|
+|158   |      U_mac_dsp_01 |mac_dsp_110         |     1|
+|159   |      U_mac_dsp_02 |mac_dsp_111         |     1|
+|160   |      U_mac_dsp_03 |mac_dsp_112         |     1|
+|161   |      U_mac_dsp_04 |mac_dsp_113         |     1|
+|162   |      U_mac_dsp_05 |mac_dsp_114         |     1|
+|163   |      U_mac_dsp_06 |mac_dsp_115         |     1|
+|164   |      U_mac_dsp_07 |mac_dsp_116         |     1|
+|165   |      U_mac_dsp_08 |mac_dsp_117         |     1|
+|166   |      U_mac_dsp_09 |mac_dsp_118         |     1|
+|167   |      U_mac_dsp_10 |mac_dsp_119         |     1|
+|168   |      U_mac_dsp_11 |mac_dsp_120         |     1|
+|169   |      U_mac_dsp_12 |mac_dsp_121         |     1|
+|170   |      U_mac_dsp_13 |mac_dsp_122         |     1|
+|171   |      U_mac_dsp_14 |mac_dsp_123         |     1|
+|172   |      U_mac_dsp_15 |mac_dsp_124         |     1|
+|173   |    U_ROW_10       |systolic_row_dsp_8  |    16|
+|174   |      U_mac_dsp_00 |mac_dsp_93          |     1|
+|175   |      U_mac_dsp_01 |mac_dsp_94          |     1|
+|176   |      U_mac_dsp_02 |mac_dsp_95          |     1|
+|177   |      U_mac_dsp_03 |mac_dsp_96          |     1|
+|178   |      U_mac_dsp_04 |mac_dsp_97          |     1|
+|179   |      U_mac_dsp_05 |mac_dsp_98          |     1|
+|180   |      U_mac_dsp_06 |mac_dsp_99          |     1|
+|181   |      U_mac_dsp_07 |mac_dsp_100         |     1|
+|182   |      U_mac_dsp_08 |mac_dsp_101         |     1|
+|183   |      U_mac_dsp_09 |mac_dsp_102         |     1|
+|184   |      U_mac_dsp_10 |mac_dsp_103         |     1|
+|185   |      U_mac_dsp_11 |mac_dsp_104         |     1|
+|186   |      U_mac_dsp_12 |mac_dsp_105         |     1|
+|187   |      U_mac_dsp_13 |mac_dsp_106         |     1|
+|188   |      U_mac_dsp_14 |mac_dsp_107         |     1|
+|189   |      U_mac_dsp_15 |mac_dsp_108         |     1|
+|190   |    U_ROW_11       |systolic_row_dsp_9  |    16|
+|191   |      U_mac_dsp_00 |mac_dsp_77          |     1|
+|192   |      U_mac_dsp_01 |mac_dsp_78          |     1|
+|193   |      U_mac_dsp_02 |mac_dsp_79          |     1|
+|194   |      U_mac_dsp_03 |mac_dsp_80          |     1|
+|195   |      U_mac_dsp_04 |mac_dsp_81          |     1|
+|196   |      U_mac_dsp_05 |mac_dsp_82          |     1|
+|197   |      U_mac_dsp_06 |mac_dsp_83          |     1|
+|198   |      U_mac_dsp_07 |mac_dsp_84          |     1|
+|199   |      U_mac_dsp_08 |mac_dsp_85          |     1|
+|200   |      U_mac_dsp_09 |mac_dsp_86          |     1|
+|201   |      U_mac_dsp_10 |mac_dsp_87          |     1|
+|202   |      U_mac_dsp_11 |mac_dsp_88          |     1|
+|203   |      U_mac_dsp_12 |mac_dsp_89          |     1|
+|204   |      U_mac_dsp_13 |mac_dsp_90          |     1|
+|205   |      U_mac_dsp_14 |mac_dsp_91          |     1|
+|206   |      U_mac_dsp_15 |mac_dsp_92          |     1|
+|207   |    U_ROW_12       |systolic_row_dsp_10 |    16|
+|208   |      U_mac_dsp_00 |mac_dsp_61          |     1|
+|209   |      U_mac_dsp_01 |mac_dsp_62          |     1|
+|210   |      U_mac_dsp_02 |mac_dsp_63          |     1|
+|211   |      U_mac_dsp_03 |mac_dsp_64          |     1|
+|212   |      U_mac_dsp_04 |mac_dsp_65          |     1|
+|213   |      U_mac_dsp_05 |mac_dsp_66          |     1|
+|214   |      U_mac_dsp_06 |mac_dsp_67          |     1|
+|215   |      U_mac_dsp_07 |mac_dsp_68          |     1|
+|216   |      U_mac_dsp_08 |mac_dsp_69          |     1|
+|217   |      U_mac_dsp_09 |mac_dsp_70          |     1|
+|218   |      U_mac_dsp_10 |mac_dsp_71          |     1|
+|219   |      U_mac_dsp_11 |mac_dsp_72          |     1|
+|220   |      U_mac_dsp_12 |mac_dsp_73          |     1|
+|221   |      U_mac_dsp_13 |mac_dsp_74          |     1|
+|222   |      U_mac_dsp_14 |mac_dsp_75          |     1|
+|223   |      U_mac_dsp_15 |mac_dsp_76          |     1|
+|224   |    U_ROW_13       |systolic_row_dsp_11 |    16|
+|225   |      U_mac_dsp_00 |mac_dsp_45          |     1|
+|226   |      U_mac_dsp_01 |mac_dsp_46          |     1|
+|227   |      U_mac_dsp_02 |mac_dsp_47          |     1|
+|228   |      U_mac_dsp_03 |mac_dsp_48          |     1|
+|229   |      U_mac_dsp_04 |mac_dsp_49          |     1|
+|230   |      U_mac_dsp_05 |mac_dsp_50          |     1|
+|231   |      U_mac_dsp_06 |mac_dsp_51          |     1|
+|232   |      U_mac_dsp_07 |mac_dsp_52          |     1|
+|233   |      U_mac_dsp_08 |mac_dsp_53          |     1|
+|234   |      U_mac_dsp_09 |mac_dsp_54          |     1|
+|235   |      U_mac_dsp_10 |mac_dsp_55          |     1|
+|236   |      U_mac_dsp_11 |mac_dsp_56          |     1|
+|237   |      U_mac_dsp_12 |mac_dsp_57          |     1|
+|238   |      U_mac_dsp_13 |mac_dsp_58          |     1|
+|239   |      U_mac_dsp_14 |mac_dsp_59          |     1|
+|240   |      U_mac_dsp_15 |mac_dsp_60          |     1|
+|241   |    U_ROW_14       |systolic_row_dsp_12 |    16|
+|242   |      U_mac_dsp_00 |mac_dsp_29          |     1|
+|243   |      U_mac_dsp_01 |mac_dsp_30          |     1|
+|244   |      U_mac_dsp_02 |mac_dsp_31          |     1|
+|245   |      U_mac_dsp_03 |mac_dsp_32          |     1|
+|246   |      U_mac_dsp_04 |mac_dsp_33          |     1|
+|247   |      U_mac_dsp_05 |mac_dsp_34          |     1|
+|248   |      U_mac_dsp_06 |mac_dsp_35          |     1|
+|249   |      U_mac_dsp_07 |mac_dsp_36          |     1|
+|250   |      U_mac_dsp_08 |mac_dsp_37          |     1|
+|251   |      U_mac_dsp_09 |mac_dsp_38          |     1|
+|252   |      U_mac_dsp_10 |mac_dsp_39          |     1|
+|253   |      U_mac_dsp_11 |mac_dsp_40          |     1|
+|254   |      U_mac_dsp_12 |mac_dsp_41          |     1|
+|255   |      U_mac_dsp_13 |mac_dsp_42          |     1|
+|256   |      U_mac_dsp_14 |mac_dsp_43          |     1|
+|257   |      U_mac_dsp_15 |mac_dsp_44          |     1|
+|258   |    U_ROW_15       |systolic_row_dsp_13 |  1040|
+|259   |      U_mac_dsp_00 |mac_dsp             |    65|
+|260   |      U_mac_dsp_01 |mac_dsp_14          |    65|
+|261   |      U_mac_dsp_02 |mac_dsp_15          |    65|
+|262   |      U_mac_dsp_03 |mac_dsp_16          |    65|
+|263   |      U_mac_dsp_04 |mac_dsp_17          |    65|
+|264   |      U_mac_dsp_05 |mac_dsp_18          |    65|
+|265   |      U_mac_dsp_06 |mac_dsp_19          |    65|
+|266   |      U_mac_dsp_07 |mac_dsp_20          |    65|
+|267   |      U_mac_dsp_08 |mac_dsp_21          |    65|
+|268   |      U_mac_dsp_09 |mac_dsp_22          |    65|
+|269   |      U_mac_dsp_10 |mac_dsp_23          |    65|
+|270   |      U_mac_dsp_11 |mac_dsp_24          |    65|
+|271   |      U_mac_dsp_12 |mac_dsp_25          |    65|
+|272   |      U_mac_dsp_13 |mac_dsp_26          |    65|
+|273   |      U_mac_dsp_14 |mac_dsp_27          |    65|
+|274   |      U_mac_dsp_15 |mac_dsp_28          |    65|
+|275   |  U_IDX            |idx_decode          |    73|
+|276   |  U_UOP            |uop_fetch           |   336|
++------+-------------------+--------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:22 ; elapsed = 00:00:22 . Memory (MB): peak = 2619.949 ; gain = 7.922 ; free physical = 14148 ; free virtual = 24935
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2619.953 ; gain = 7.922 ; free physical = 17160 ; free virtual = 25424
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 311 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 2619.949 ; gain = 7.922 ; free physical = 14157 ; free virtual = 24945
-Synthesis Optimization Complete : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 2619.957 ; gain = 7.922 ; free physical = 14157 ; free virtual = 24945
+Synthesis finished with 0 errors, 0 critical warnings and 21 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2619.953 ; gain = 7.922 ; free physical = 17162 ; free virtual = 25426
+Synthesis Optimization Complete : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2619.961 ; gain = 7.922 ; free physical = 17162 ; free virtual = 25426
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2619.957 ; gain = 0.000 ; free physical = 14245 ; free virtual = 25033
-INFO: [Netlist 29-17] Analyzing 6 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00.26 ; elapsed = 00:00:00.25 . Memory (MB): peak = 2619.961 ; gain = 0.000 ; free physical = 17247 ; free virtual = 25511
+INFO: [Netlist 29-17] Analyzing 1224 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2619.957 ; gain = 0.000 ; free physical = 14179 ; free virtual = 24983
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2675.980 ; gain = 0.000 ; free physical = 17186 ; free virtual = 25448
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete, checksum: 5d44fb70
+Synth Design complete, checksum: d940e47f
 INFO: [Common 17-83] Releasing license: Synthesis
-38 Infos, 114 Warnings, 0 Critical Warnings and 0 Errors encountered.
+31 Infos, 22 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:31 ; elapsed = 00:00:25 . Memory (MB): peak = 2619.957 ; gain = 8.012 ; free physical = 14366 ; free virtual = 25169
-INFO: [Common 17-1381] The checkpoint '/home/sjson/fd_ws/verilog/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/gemm.dcp' has been generated.
+synth_design: Time (s): cpu = 00:00:47 ; elapsed = 00:00:41 . Memory (MB): peak = 2675.980 ; gain = 64.031 ; free physical = 17388 ; free virtual = 25650
+INFO: [Common 17-1381] The checkpoint '/home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/gemm.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file gemm_utilization_synth.rpt -pb gemm_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Mon Jul 19 17:01:12 2021...
+INFO: [Common 17-206] Exiting Vivado at Tue Jul 20 15:19:13 2021...

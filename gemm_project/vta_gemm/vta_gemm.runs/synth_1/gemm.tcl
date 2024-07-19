@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "/home/sjson/fd_ws/verilog/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/gemm.tcl"
+  variable script "/home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/gemm.tcl"
   variable category "vivado_synth"
 }
 
@@ -79,23 +79,21 @@ create_project -in_memory -part xc7z020clg484-1
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir /home/sjson/fd_ws/verilog/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.cache/wt [current_project]
-set_property parent.project_path /home/sjson/fd_ws/verilog/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.xpr [current_project]
+set_property webtalk.parent_dir /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.cache/wt [current_project]
+set_property parent.project_path /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
-set_property ip_output_repo /home/sjson/fd_ws/verilog/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.cache/ip [current_project]
+set_property ip_output_repo /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
-  /home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm_op.v
-  /home/sjson/fd_ws/verilog/vta-gemm-core/rtl/idx_decode.v
-  /home/sjson/fd_ws/verilog/vta-gemm-core/rtl/mem_read.v
-  /home/sjson/fd_ws/verilog/vta-gemm-core/rtl/proc_elem.v
-  /home/sjson/fd_ws/verilog/vta-gemm-core/rtl/systolic_row.v
-  /home/sjson/fd_ws/verilog/vta-gemm-core/rtl/uop_fetch.v
-  /home/sjson/fd_ws/verilog/vta-gemm-core/rtl/write_back.v
-  /home/sjson/fd_ws/verilog/vta-gemm-core/rtl/gemm.v
+  /home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/gemm_op.v
+  /home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/idx_decode.v
+  /home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/proc_elem.v
+  /home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/systolic_row.v
+  /home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/uop_fetch.v
+  /home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/gemm.v
 }
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -108,7 +106,7 @@ foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
 }
 set_param ips.enableIPCacheLiteLoad 1
 
-read_checkpoint -auto_incremental -incremental /home/sjson/fd_ws/verilog/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.srcs/utils_1/imports/synth_1/gemm.dcp
+read_checkpoint -auto_incremental -incremental /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.srcs/utils_1/imports/synth_1/gemm.dcp
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }

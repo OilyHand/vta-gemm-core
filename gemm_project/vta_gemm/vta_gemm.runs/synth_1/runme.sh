@@ -20,7 +20,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='/home/sjson/fd_ws/verilog/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1'
+HD_PWD='/home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
