@@ -2,15 +2,16 @@
 # Vivado v2021.2 (64-bit)
 # SW Build 3367213 on Tue Oct 19 02:47:39 MDT 2021
 # IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
-# Start of session at: Tue Jul 20 15:18:13 2021
-# Process ID: 30603
+# Start of session at: Tue Jul 20 15:44:40 2021
+# Process ID: 35438
 # Current directory: /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1
 # Command line: vivado -log gemm.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source gemm.tcl
 # Log file: /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/gemm.vds
 # Journal file: /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/vivado.jou
-# Running On: sjson, OS: Linux, CPU Frequency: 1700.000 MHz, CPU Physical cores: 4, Host memory: 33322 MB
+# Running On: sjson, OS: Linux, CPU Frequency: 1600.000 MHz, CPU Physical cores: 4, Host memory: 33322 MB
 #-----------------------------------------------------------
 source gemm.tcl -notrace
+create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2605.012 ; gain = 0.023 ; free physical = 17728 ; free virtual = 25997
 Command: read_checkpoint -auto_incremental -incremental /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.srcs/utils_1/imports/synth_1/gemm.dcp
 INFO: [Vivado 12-5825] Read reference checkpoint from /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.srcs/utils_1/imports/synth_1/gemm.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
@@ -22,9 +23,9 @@ WARNING: [Designutils 20-4072] Reference run did not run incremental synthesis b
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 30736
+INFO: [Synth 8-7075] Helper process launched with PID 35501
 ---------------------------------------------------------------------------------
-Starting Synthesize : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2612.031 ; gain = 0.000 ; free physical = 16697 ; free virtual = 24935
+Starting Synthesize : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2605.094 ; gain = 0.000 ; free physical = 16382 ; free virtual = 24651
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'gemm' [/home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/gemm.v:1]
 INFO: [Synth 8-6157] synthesizing module 'uop_fetch' [/home/sjson/fd_ws/rtl_project/vta-gemm-core/rtl/uop_fetch.v:51]
@@ -53,21 +54,21 @@ WARNING: [Synth 8-7129] Port insn[2] in module uop_fetch is either unconnected o
 WARNING: [Synth 8-7129] Port insn[1] in module uop_fetch is either unconnected or has no load
 WARNING: [Synth 8-7129] Port insn[0] in module uop_fetch is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished Synthesize : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2612.031 ; gain = 0.000 ; free physical = 17514 ; free virtual = 25762
+Finished Synthesize : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2605.094 ; gain = 0.000 ; free physical = 17357 ; free virtual = 25626
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2612.031 ; gain = 0.000 ; free physical = 17510 ; free virtual = 25758
+Finished Constraint Validation : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2605.094 ; gain = 0.000 ; free physical = 17364 ; free virtual = 25633
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg484-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2619.953 ; gain = 7.922 ; free physical = 17510 ; free virtual = 25758
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2613.016 ; gain = 7.922 ; free physical = 17364 ; free virtual = 25634
+---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7z020clg484-1
 ---------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 2619.953 ; gain = 7.922 ; free physical = 17448 ; free virtual = 25696
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2613.016 ; gain = 7.922 ; free physical = 17313 ; free virtual = 25583
 ---------------------------------------------------------------------------------
 No constraint files found.
 ---------------------------------------------------------------------------------
@@ -746,7 +747,7 @@ WARNING: [Synth 8-7129] Port insn[2] in module uop_fetch is either unconnected o
 WARNING: [Synth 8-7129] Port insn[1] in module uop_fetch is either unconnected or has no load
 WARNING: [Synth 8-7129] Port insn[0] in module uop_fetch is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 2619.953 ; gain = 7.922 ; free physical = 17172 ; free virtual = 25426
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 2613.016 ; gain = 7.922 ; free physical = 17040 ; free virtual = 25316
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -975,13 +976,13 @@ No constraint files found.
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 2619.953 ; gain = 7.922 ; free physical = 17170 ; free virtual = 25423
+Finished Timing Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 2613.016 ; gain = 7.922 ; free physical = 17044 ; free virtual = 25321
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 2619.953 ; gain = 7.922 ; free physical = 17173 ; free virtual = 25428
+Finished Technology Mapping : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2613.016 ; gain = 7.922 ; free physical = 17145 ; free virtual = 25416
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -999,37 +1000,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 2619.953 ; gain = 7.922 ; free physical = 17160 ; free virtual = 25420
+Finished IO Insertion : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 2613.016 ; gain = 7.922 ; free physical = 17143 ; free virtual = 25432
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 2619.953 ; gain = 7.922 ; free physical = 17160 ; free virtual = 25420
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 2613.016 ; gain = 7.922 ; free physical = 17143 ; free virtual = 25432
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2619.953 ; gain = 7.922 ; free physical = 17161 ; free virtual = 25425
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 2613.016 ; gain = 7.922 ; free physical = 17142 ; free virtual = 25431
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2619.953 ; gain = 7.922 ; free physical = 17161 ; free virtual = 25425
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 2613.016 ; gain = 7.922 ; free physical = 17142 ; free virtual = 25430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2619.953 ; gain = 7.922 ; free physical = 17160 ; free virtual = 25424
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 2613.016 ; gain = 7.922 ; free physical = 17141 ; free virtual = 25430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2619.953 ; gain = 7.922 ; free physical = 17160 ; free virtual = 25424
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:30 ; elapsed = 00:00:32 . Memory (MB): peak = 2613.016 ; gain = 7.922 ; free physical = 17141 ; free virtual = 25430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -1341,26 +1342,26 @@ Report Instance Areas:
 |276   |  U_UOP            |uop_fetch           |   336|
 +------+-------------------+--------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2619.953 ; gain = 7.922 ; free physical = 17160 ; free virtual = 25424
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 2613.016 ; gain = 7.922 ; free physical = 17141 ; free virtual = 25430
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 21 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2619.953 ; gain = 7.922 ; free physical = 17162 ; free virtual = 25426
-Synthesis Optimization Complete : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2619.961 ; gain = 7.922 ; free physical = 17162 ; free virtual = 25426
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 2613.016 ; gain = 7.922 ; free physical = 17152 ; free virtual = 25440
+Synthesis Optimization Complete : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 2613.023 ; gain = 7.922 ; free physical = 17152 ; free virtual = 25440
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.26 ; elapsed = 00:00:00.25 . Memory (MB): peak = 2619.961 ; gain = 0.000 ; free physical = 17247 ; free virtual = 25511
+Netlist sorting complete. Time (s): cpu = 00:00:00.25 ; elapsed = 00:00:00.25 . Memory (MB): peak = 2613.023 ; gain = 0.000 ; free physical = 17219 ; free virtual = 25505
 INFO: [Netlist 29-17] Analyzing 1224 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2675.980 ; gain = 0.000 ; free physical = 17186 ; free virtual = 25448
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2669.043 ; gain = 0.000 ; free physical = 17134 ; free virtual = 25412
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete, checksum: d940e47f
+Synth Design complete, checksum: 569d26e6
 INFO: [Common 17-83] Releasing license: Synthesis
 31 Infos, 22 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:47 ; elapsed = 00:00:41 . Memory (MB): peak = 2675.980 ; gain = 64.031 ; free physical = 17388 ; free virtual = 25650
+synth_design: Time (s): cpu = 00:00:44 ; elapsed = 00:00:39 . Memory (MB): peak = 2669.043 ; gain = 64.031 ; free physical = 17338 ; free virtual = 25615
 INFO: [Common 17-1381] The checkpoint '/home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/gemm.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file gemm_utilization_synth.rpt -pb gemm_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Tue Jul 20 15:19:13 2021...
+INFO: [Common 17-206] Exiting Vivado at Tue Jul 20 15:45:39 2021...

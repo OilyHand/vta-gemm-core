@@ -1138,3 +1138,154 @@ selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZ
 selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "DSP ; 208 ; 220 ; 94.545456", 2, "220", 2); // s
 selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "BUFG ; 1 ; 32 ; 3.125", 4, "32", 2); // s
 selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "BUFG ; 1 ; 32 ; 3.125", 4, "BUFG", 0); // s
+// Elapsed time: 173 seconds
+selectCheckBox(PAResourceItoN.MsgView_WARNING_MESSAGES, (String) null, false); // g: FALSE
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Open Synthesized Design, Schematic]", 29, false); // n
+// Tcl Message: open_run synth_1 -name synth_1 
+// Tcl Message: Design is defaulting to impl run constrset: constrs_1 Design is defaulting to synth run part: xc7z020clg484-1 
+// TclEventType: FLOORPLAN_MODIFY
+// TclEventType: DESIGN_NEW
+// HMemoryUtils.trashcanNow. Engine heap size: 4,471 MB. GUI used memory: 82 MB. Current time: 7/20/21, 3:23:03 PM KST
+// TclEventType: DESIGN_NEW
+// TclEventType: HFED_INIT_ROUTE_STORAGE_COMPLETED
+// DeviceView Instantiated
+// TclEventType: CURR_DESIGN_SET
+// Tcl Message: Netlist sorting complete. Time (s): cpu = 00:00:00.42 ; elapsed = 00:00:00.21 . Memory (MB): peak = 10206.926 ; gain = 0.000 ; free physical = 18185 ; free virtual = 26470 
+// Tcl Message: INFO: [Netlist 29-17] Analyzing 1224 Unisim elements for replacement INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds INFO: [Project 1-479] Netlist was created with Vivado 2021.2 INFO: [Project 1-570] Preparing netlist for logic optimization INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s). 
+// Tcl Message: Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 10206.926 ; gain = 0.000 ; free physical = 18122 ; free virtual = 26381 
+// Tcl Message: INFO: [Project 1-111] Unisim Transformation Summary: No Unisim elements were transformed.  
+// Device view-level: 0.0
+// RouteApi: Init Delay Mediator Swing Worker Finished
+// Tcl Message: open_run: Time (s): cpu = 00:00:11 ; elapsed = 00:00:06 . Memory (MB): peak = 10254.941 ; gain = 48.016 ; free physical = 18061 ; free virtual = 26329 
+// Run Command: PAResourceCommand.PACommandNames_SCHEMATIC
+dismissDialog("Open Synthesized Design"); // bA
+dismissDialog("Generate Schematic"); // u
+closeView(PAResourceOtoP.PAViews_SCHEMATIC, "Schematic"); // f
+selectCodeEditor("gemm.v", 121, 285); // be
+selectCodeEditor("gemm.v", 361, 315); // be
+// Elapsed time: 63 seconds
+selectCodeEditor("gemm.v", 575, 450); // be
+selectCodeEditor("gemm.v", 538, 246); // be
+selectCodeEditor("gemm.v", 286, 348); // be
+// Elapsed time: 13 seconds
+selectCodeEditor("gemm.v", 318, 352); // be
+selectCodeEditor("gemm.v", 318, 352, false, false, false, false, true); // be - Double Click
+selectCodeEditor("gemm.v", 171, 288); // be
+selectCodeEditor("gemm.v", 171, 288, false, false, false, false, true); // be - Double Click
+selectCodeEditor("gemm.v", 274, 309); // be
+selectCodeEditor("gemm.v", 350, 312); // be
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// [Engine Memory]: 4,505 MB (+2132kb) [02:00:06]
+// HMemoryUtils.trashcanNow. Engine heap size: 4,505 MB. GUI used memory: 112 MB. Current time: 7/20/21, 3:24:56 PM KST
+// Elapsed time: 15 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 18, false); // n
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// Tcl Message: INFO: [Project 1-1161] Replacing file /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.srcs/utils_1/imports/synth_1/gemm.dcp with file /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/gemm.dcp 
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_STATUS_CHANGE
+// Tcl Message: launch_runs synth_1 -jobs 4 
+// Tcl Message: [Tue Jul 20 15:25:03 2021] Launched synth_1... Run output will be captured here: /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/runme.log 
+dismissDialog("Starting Design Runs"); // bA
+// TclEventType: FILE_SET_CHANGE
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Device", 1); // m
+closeView(PAResourceOtoP.PAViews_DEVICE, "Device"); // U
+selectButton(PAResourceOtoP.ProjectTab_CLOSE_DESIGN, "Close Design"); // g
+// TclEventType: DESIGN_CLOSE
+// HMemoryUtils.trashcanNow. Engine heap size: 4,505 MB. GUI used memory: 106 MB. Current time: 7/20/21, 3:25:06 PM KST
+// TclEventType: RUN_STATUS_CHANGE
+// Engine heap size: 4,505 MB. GUI used memory: 107 MB. Current time: 7/20/21, 3:25:06 PM KST
+// TclEventType: CURR_DESIGN_SET
+// TclEventType: RUN_STATUS_CHANGE
+// Tcl Message: close_design 
+// TclEventType: DESIGN_CLOSE
+dismissDialog("Closing"); // bA
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// Elapsed time: 868 seconds
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel"); // a
+dismissDialog("Synthesis Completed"); // ag
+selectCheckBox(PAResourceItoN.MsgView_WARNING_MESSAGES, (String) null, true); // g: TRUE
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, gemm (gemm.v)]", 1, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, gemm (gemm.v)]", 1, true, false, false, false, false, true); // D - Double Click - Node
+dismissDialog("Opening Editor"); // bA
+closeView(PAResourceOtoP.PAViews_CODE, "Code"); // D
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 4,554 MB. GUI used memory: 81 MB. Current time: 7/20/21, 3:41:16 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 4,618 MB. GUI used memory: 81 MB. Current time: 7/20/21, 3:41:46 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 4,650 MB. GUI used memory: 80 MB. Current time: 7/20/21, 3:42:31 PM KST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 197 seconds
+selectTab(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_PANEL_TABBED, PAResourceOtoP.ProjectSummaryUtilizationPanel_TABLE, "Table", 1); // e
+selectTab(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_PANEL_TABBED, PAResourceOtoP.ProjectSummaryUtilizationPanel_GRAPH, "Graph", 0); // e
+selectTab(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_PANEL_TABBED, PAResourceOtoP.ProjectSummaryUtilizationPanel_TABLE, "Table", 1); // e
+selectTab(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_PANEL_TABBED, PAResourceOtoP.ProjectSummaryUtilizationPanel_GRAPH, "Graph", 0); // e
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 76 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 17, false); // n
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// Tcl Message: INFO: [Project 1-1161] Replacing file /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.srcs/utils_1/imports/synth_1/gemm.dcp with file /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/gemm.dcp 
+// Tcl Message: launch_runs synth_1 -jobs 4 
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_STATUS_CHANGE
+// Tcl Message: [Tue Jul 20 15:44:37 2021] Launched synth_1... Run output will be captured here: /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/runme.log 
+dismissDialog("Starting Design Runs"); // bA
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_STATUS_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 4,682 MB. GUI used memory: 80 MB. Current time: 7/20/21, 3:44:41 PM KST
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// Elapsed time: 70 seconds
+dismissDialog("Synthesis Completed"); // ag
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-7129] Port insn[127] in module uop_fetch is either unconnected or has no load. ]", 2, true); // ah - Node
+// Elapsed time: 10 seconds
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-7129] Port insn[127] in module uop_fetch is either unconnected or has no load. ]", 2, true); // ah - Node
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 219 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, gemm (gemm.v)]", 1, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, gemm (gemm.v)]", 1, true, false, false, false, true, false); // D - Popup Trigger - Node
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // al
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // al
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // al
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // al
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // al

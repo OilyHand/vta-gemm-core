@@ -2,12 +2,12 @@
 # Vivado v2021.2 (64-bit)
 # SW Build 3367213 on Tue Oct 19 02:47:39 MDT 2021
 # IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
-# Start of session at: Tue Jul 20 15:18:13 2021
-# Process ID: 30603
+# Start of session at: Tue Jul 20 15:44:40 2021
+# Process ID: 35438
 # Current directory: /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1
 # Command line: vivado -log gemm.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source gemm.tcl
 # Log file: /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/gemm.vds
 # Journal file: /home/sjson/fd_ws/rtl_project/vta-gemm-core/gemm_project/vta_gemm/vta_gemm.runs/synth_1/vivado.jou
-# Running On: sjson, OS: Linux, CPU Frequency: 1700.000 MHz, CPU Physical cores: 4, Host memory: 33322 MB
+# Running On: sjson, OS: Linux, CPU Frequency: 1600.000 MHz, CPU Physical cores: 4, Host memory: 33322 MB
 #-----------------------------------------------------------
 source gemm.tcl -notrace

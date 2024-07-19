@@ -1,13 +1,13 @@
 module gemm #(
   parameter UOP_WIDTH     = 32
           , UPC_WIDTH     = 13
-          , INS_WIDTH     = 128  
+          , INS_WIDTH     = 128
           , INP_WIDTH     = 8
           , WGT_WIDTH     = 8
-          , ACC_WIDTH     = 32 
-          , ACC_MEM_WIDTH = ACC_WIDTH * 16
-          , INP_MEM_WIDTH = INP_WIDTH * 16
-          , WGT_MEM_WIDTH = WGT_WIDTH * 16 * 16
+          , ACC_WIDTH     = 32
+          , ACC_MEM_WIDTH = ACC_WIDTH*16
+          , INP_MEM_WIDTH = INP_WIDTH*16
+          , WGT_MEM_WIDTH = WGT_WIDTH*16*16
           , ACC_IDX_WIDTH = 12
           , INP_IDX_WIDTH = 12
           , WGT_IDX_WIDTH = 11
@@ -50,7 +50,7 @@ module gemm #(
   reg [INP_IDX_WIDTH-2:0] u2i_src_offset_out;
   reg [WGT_IDX_WIDTH-2:0] u2i_wgt_offset_out;
   reg [ACC_IDX_WIDTH-2:0] u2i_dst_offset_in;
-  reg [INP_IDX_WIDTH-2:0] u2i_src_offset_in; 
+  reg [INP_IDX_WIDTH-2:0] u2i_src_offset_in;
   reg [WGT_IDX_WIDTH-2:0] u2i_wgt_offset_in;
   reg u2i_reg_reset;
   reg u2i_wr_en;
@@ -75,7 +75,7 @@ module gemm #(
   reg m2e_wr_en;
 
   // EX
-  wire [ACC_MEM_WIDTH-1:0] gemm_res;
+  wire [ACC_MEM_WIDTH-1:0] e_gemm_res;
 
   reg [ACC_MEM_WIDTH-1:0] e_a_tensor;
   reg [INP_MEM_WIDTH-1:0] e_o_tensor;
@@ -190,7 +190,7 @@ module gemm #(
     ///////////////////////////////////
       m2e_i_tenor <= inp_mem_rd_data;
       m2e_w_tenor <= wgt_mem_rd_data;
-      m2e_a_tenor <= (i2m_dst_idx == m2e_dst_idx) ? gemm_res : acc_mem_rd_data; // forwarding
+      m2e_a_tenor <= (i2m_dst_idx == m2e_dst_idx) ? e_gemm_res : acc_mem_rd_data; // forwarding
     end
   end
   
@@ -200,7 +200,7 @@ module gemm #(
     .i_tensor(m2e_i_tenor),
     .w_tensor(m2e_w_tenor),
     .a_tensor(m2e_a_tenor),
-    .o_tensor(gemm_res)
+    .o_tensor(e_gemm_res)
   );
 
   // --------------- reg E2W --------------- //
@@ -217,8 +217,8 @@ module gemm #(
       e2w_dst_idx <= m2e_dst_idx;
       e2w_wr_en   <= m2e_wr_en;
     ///////////////////////////////
-      e_a_tensor <= (m2e_reg_reset) ? 0 : gemm_res;
-      e_o_tensor <= gemm_res[INP_MEM_WIDTH-1:0];
+      e_a_tensor <= (m2e_reg_reset) ? 0 : e_gemm_res;
+      e_o_tensor <= e_gemm_res[INP_MEM_WIDTH-1:0];
     end
   end
 
@@ -228,7 +228,7 @@ module gemm #(
   // assign data
   assign acc_mem_wr_data = e_a_tensor;
   assign acc_mem_wr_addr = e2w_dst_idx;
-  assign acc_mem_wr_en   = { OUT_MEM_WREN{e2w_wr_en} };
+  assign acc_mem_wr_en   = { ACC_MEM_WREN{e2w_wr_en} };
   assign out_mem_wr_data = e_o_tensor;
   assign out_mem_wr_addr = e2w_dst_idx;
   assign out_mem_wr_en   = { OUT_MEM_WREN{e2w_wr_en} };
