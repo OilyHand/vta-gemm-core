@@ -4,23 +4,21 @@ module mac_dsp #(
           , WGT_WIDTH=8
           , ACC_WIDTH=32
 )(
-    input  wire [INP_WIDTH-1:0]  inp
-  , input  wire [WGT_WIDTH-1:0]  wgt
+    input  wire [INP_WIDTH-1:0] inp
+  , input  wire [WGT_WIDTH-1:0] wgt
   , input  wire [ACC_WIDTH-1:0] acc
-  , output wire [ACC_WIDTH-1:0] sum_out
+  , output wire [ACC_WIDTH-1:0] sum
 );
     wire signed [INP_WIDTH-1:0] a;
     wire signed [WGT_WIDTH-1:0] b;
     wire signed [ACC_WIDTH-1:0] c;
     wire signed [ACC_WIDTH-1:0] mul;
-//    wire signed [ACC_WIDTH-1:0] sum;
     
     assign a = $signed(inp);
     assign b = $signed(wgt);
     assign c = $signed(acc);
     assign mul = a * b;
     assign sum_out = mul + c;
-//    assign sum_out = sum;
 
 endmodule
 
@@ -32,22 +30,20 @@ module mac_lut #(
           , WGT_WIDTH=8
           , ACC_WIDTH=32
 )(
-    input  wire [INP_WIDTH-1:0]  inp
-  , input  wire [WGT_WIDTH-1:0]  wgt
+    input  wire [INP_WIDTH-1:0] inp
+  , input  wire [WGT_WIDTH-1:0] wgt
   , input  wire [ACC_WIDTH-1:0] acc
-  , output wire [ACC_WIDTH-1:0] sum_out
+  , output wire [ACC_WIDTH-1:0] sum
 );
     wire signed [INP_WIDTH-1:0] a;
     wire signed [WGT_WIDTH-1:0] b;
     wire signed [ACC_WIDTH-1:0] c;
     wire signed [ACC_WIDTH-1:0] mul;
-//    wire signed [ACC_WIDTH-1:0] sum;
     
     assign a = $signed(inp);
     assign b = $signed(wgt);
     assign c = $signed(acc);
     assign mul = a * b;
     assign sum_out = mul + c;
-//    assign sum_out = sum;
 
 endmodule
