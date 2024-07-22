@@ -40,7 +40,7 @@ module idx_decode (
   input  wire [10:0] dst_offset_in,
   input  wire [10:0] src_offset_in,
   input  wire [9:0]  wgt_offset_in,
-  output wire [11:0] dst_idx, // accum tensor index 
+  output wire [11:0] dst_idx, // accum tensor index
   output wire [11:0] src_idx, // input tensor index
   output wire [10:0] wgt_idx  // weight tensor index
 );

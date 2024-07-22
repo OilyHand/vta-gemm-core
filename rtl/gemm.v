@@ -42,7 +42,7 @@ module gemm #(
   wire [INP_IDX_WIDTH-2:0] u_src_offset_out;
   wire [WGT_IDX_WIDTH-2:0] u_wgt_offset_out;
   wire [ACC_IDX_WIDTH-2:0] u_dst_offset_in;
-  wire [INP_IDX_WIDTH-2:0] u_src_offset_in; 
+  wire [INP_IDX_WIDTH-2:0] u_src_offset_in;
   wire [WGT_IDX_WIDTH-2:0] u_wgt_offset_in;
 
   reg [UOP_WIDTH-1:0]     u2i_uop;

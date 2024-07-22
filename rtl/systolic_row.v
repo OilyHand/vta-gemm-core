@@ -5,7 +5,7 @@ module systolic_row_lut #(
     ACC_WIDTH = 32,
     IT_WIDTH  = INP_WIDTH * 16,
     WT_WIDTH  = WGT_WIDTH * 16,
-    AT_WIDTH  = ACC_WIDTH * 16    
+    AT_WIDTH  = ACC_WIDTH * 16
 )(
   input wire  [IT_WIDTH-1:0] i_row,
   input wire  [WT_WIDTH-1:0] w_row,
@@ -135,7 +135,7 @@ module systolic_row_dsp #(
           , ACC_WIDTH = 32 
           , IT_WIDTH  = INP_WIDTH * 16
           , WT_WIDTH  = WGT_WIDTH * 16
-          , AT_WIDTH  = ACC_WIDTH * 16     
+          , AT_WIDTH  = ACC_WIDTH * 16
 )(
     input  wire [IT_WIDTH-1:0] i_row
   , input  wire [WT_WIDTH-1:0] w_row

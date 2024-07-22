@@ -30,22 +30,6 @@ micro-op field
     11      [21:11]     input index
     10      [31:22]     weight index
    ---------------------------------------
-
-=================================================
-
-  register
-    iter_in   --> output
-    iter_out
-    upc
-
-  netlist
-    uop
-    insn.dst_factor
-    insn.src_factor
-    insn.wgt_factor
-    insn.reg_reset
-    insn.uop_bgn
-    insn.uop_end
 */
 
 module uop_fetch (
@@ -61,7 +45,7 @@ module uop_fetch (
   output reg  [9:0]   wgt_offset_in
 );
 
-//#############################################################################
+///////////////////////////////////////////////////////////////////////////////
   // instruction decode
   wire [12:0] insn_uop_bgn        = insn[20:8];
   wire [12:0] insn_uop_end        = insn[34:21];
@@ -74,7 +58,7 @@ module uop_fetch (
   wire [9:0]  insn_wgt_factor_out = insn[116:107];
   wire [9:0]  insn_wgt_factor_in  = insn[126:117];
 
-//#############################################################################
+///////////////////////////////////////////////////////////////////////////////
   wire [12:0] upc_next = upc + 4;
   
   always @(posedge clk, negedge rst) begin
@@ -91,7 +75,7 @@ module uop_fetch (
     end
   end
 
-//#############################################################################
+///////////////////////////////////////////////////////////////////////////////
   reg [13:0] iter_in, iter_out; // iteration counters
   wire [13:0] iter_out_next = iter_out + 1;
   wire [13:0] iter_in_next  = iter_in + 1;
@@ -106,22 +90,22 @@ module uop_fetch (
       // outer iteration increment
       if (iter_out_next == insn_iter_out)
         iter_out <= 0;
-      else if (iter_in_next == insn_iter_in) 
+      else if (iter_in_next == insn_iter_in)
         iter_out <= iter_out_next;
       else 
         iter_out <= iter_out;
       
       // inner iteration increment
-      if (iter_in_next == insn_iter_in) 
+      if (iter_in_next == insn_iter_in)
         iter_in <= 0;
-      else if (upc_next == insn_uop_end) 
+      else if (upc_next == insn_uop_end)
         iter_in <= iter_in_next;
       else 
         iter_in <= iter_in;
     end
   end
 
-//#############################################################################
+///////////////////////////////////////////////////////////////////////////////
   // index decode factors
   always @(posedge clk, negedge rst) begin
     // reset
