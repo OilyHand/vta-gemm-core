@@ -25,7 +25,7 @@ module gemm #(
   output wire [ACC_MEM_WIDTH-1:0] acc_mem_wr_data,
   output wire [ACC_IDX_WIDTH-1:0] acc_mem_rd_addr,
   output wire [ACC_IDX_WIDTH-1:0] acc_mem_wr_addr,
-  output wire [ACC_MEM_WREN-1:0]  acc_mem_wr_en,
+  output wire                     acc_mem_wr_en,
   // input memory(buffer) access
   input  wire [INP_MEM_WIDTH-1:0] inp_mem_rd_data,
   output wire [INP_IDX_WIDTH-1:0] inp_mem_rd_addr,
@@ -35,9 +35,11 @@ module gemm #(
   // output memory(buffer) access
   output wire [INP_MEM_WIDTH-1:0] out_mem_wr_data,
   output wire [ACC_IDX_WIDTH-1:0] out_mem_wr_addr,
-  output wire [OUT_MEM_WREN-1:0]  out_mem_wr_en
+  output wire                     out_mem_wr_en
 );
-  // UOP
+  //-------------------------------------//
+  //                 UOP                 //
+  //-------------------------------------//
   wire [ACC_IDX_WIDTH-2:0] u_dst_offset_out;
   wire [INP_IDX_WIDTH-2:0] u_src_offset_out;
   wire [WGT_IDX_WIDTH-2:0] u_wgt_offset_out;
@@ -55,7 +57,9 @@ module gemm #(
   reg u2i_reg_reset;
   reg u2i_wr_en;
 
-  // IDX
+  //-------------------------------------//
+  //                 IDX                 //
+  //-------------------------------------//
   wire [ACC_IDX_WIDTH-1:0] i_dst_idx;
   wire [INP_IDX_WIDTH-1:0] i_src_idx;
   wire [WGT_IDX_WIDTH-1:0] i_wgt_idx;
@@ -66,7 +70,9 @@ module gemm #(
   reg i2m_reg_reset;
   reg i2m_wr_en;
 
-  // MEM
+  //-------------------------------------//
+  //                 MEM                 //
+  //-------------------------------------//
   reg [INP_MEM_WIDTH-1:0] m2e_i_tenor;
   reg [WGT_MEM_WIDTH-1:0] m2e_w_tenor;
   reg [ACC_MEM_WIDTH-1:0] m2e_a_tenor;
@@ -74,7 +80,9 @@ module gemm #(
   reg m2e_reg_reset;
   reg m2e_wr_en;
 
-  // EX
+  //-------------------------------------//
+  //                 EX                  //
+  //-------------------------------------//
   wire [ACC_MEM_WIDTH-1:0] e_gemm_res;
 
   reg [ACC_MEM_WIDTH-1:0] e_a_tensor;
@@ -228,9 +236,9 @@ module gemm #(
   // assign data
   assign acc_mem_wr_data = e_a_tensor;
   assign acc_mem_wr_addr = e2w_dst_idx;
-  assign acc_mem_wr_en   = { ACC_MEM_WREN{e2w_wr_en} };
+  assign acc_mem_wr_en   = e2w_wr_en;
   assign out_mem_wr_data = e_o_tensor;
   assign out_mem_wr_addr = e2w_dst_idx;
-  assign out_mem_wr_en   = { OUT_MEM_WREN{e2w_wr_en} };
+  assign out_mem_wr_en   = e2w_wr_en;
   
 endmodule

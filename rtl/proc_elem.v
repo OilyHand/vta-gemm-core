@@ -9,8 +9,8 @@ module mac_dsp #(
   , input  wire [ACC_WIDTH-1:0] acc
   , output wire [ACC_WIDTH-1:0] sum
 );
-    wire signed [INP_WIDTH-1:0] a;
-    wire signed [WGT_WIDTH-1:0] b;
+    wire signed [ACC_WIDTH-1:0] a;
+    wire signed [ACC_WIDTH-1:0] b;
     wire signed [ACC_WIDTH-1:0] c;
     wire signed [ACC_WIDTH-1:0] mul;
     
@@ -35,8 +35,8 @@ module mac_lut #(
   , input  wire [ACC_WIDTH-1:0] acc
   , output wire [ACC_WIDTH-1:0] sum
 );
-    wire signed [INP_WIDTH-1:0] a;
-    wire signed [WGT_WIDTH-1:0] b;
+    wire signed [ACC_WIDTH-1:0] a;
+    wire signed [ACC_WIDTH-1:0] b;
     wire signed [ACC_WIDTH-1:0] c;
     wire signed [ACC_WIDTH-1:0] mul;
     

@@ -59,7 +59,7 @@ module uop_fetch (
   wire [9:0]  insn_wgt_factor_in  = insn[126:117];
 
 ///////////////////////////////////////////////////////////////////////////////
-  wire [12:0] upc_next = upc + 4;
+  wire [12:0] upc_next = upc + 1;
   
   always @(posedge clk, negedge rst) begin
     // reset

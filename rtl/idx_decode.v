@@ -45,8 +45,8 @@ module idx_decode (
   output wire [10:0] wgt_idx  // weight tensor index
 );
   
-  wire [10:0] x = uop[10:0];  // uop_acc_index 
-  wire [10:0] y = uop[21:11]; // uop_inp_index 
+  wire [10:0] x = uop[10:0];  // uop_acc_index
+  wire [10:0] y = uop[21:11]; // uop_inp_index
   wire [9:0]  z = uop[31:22]; // uop_wgt_index
   
   wire [10:0] x0 = dst_offset_out; // dst_factor_out
