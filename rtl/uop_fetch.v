@@ -32,17 +32,23 @@ micro-op field
    ---------------------------------------
 */
 
-module uop_fetch (
-  input  wire clk, // system clock
-  input  wire rst, // async active-low reset
-  input  wire [127:0] insn,
-  output reg  [12:0]  upc,
-  output reg  [10:0]  dst_offset_out,
-  output reg  [10:0]  src_offset_out,
-  output reg  [9:0]   wgt_offset_out,
-  output reg  [10:0]  dst_offset_in,
-  output reg  [10:0]  src_offset_in,
-  output reg  [9:0]   wgt_offset_in
+module uop_fetch #(
+  parameter INS_WIDTH = 128
+          , UPC_WIDTH = 13
+          , ACC_IDX_WIDTH = 11
+          , INP_IDX_WIDTH = 11
+          , WGT_IDX_WIDTH = 10
+)(
+  input  wire                     clk, // system clock
+  input  wire                     rst, // async active-low reset
+  input  wire [INS_WIDTH-1:0]     insn,
+  output reg  [UPC_WIDTH-1:0]     upc,
+  output reg  [ACC_IDX_WIDTH-1:0] dst_offset_out,
+  output reg  [INP_IDX_WIDTH-1:0] src_offset_out,
+  output reg  [WGT_IDX_WIDTH-1:0] wgt_offset_out,
+  output reg  [ACC_IDX_WIDTH-1:0] dst_offset_in,
+  output reg  [INP_IDX_WIDTH-1:0] src_offset_in,
+  output reg  [WGT_IDX_WIDTH-1:0] wgt_offset_in
 );
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -59,7 +65,7 @@ module uop_fetch (
   wire [9:0]  insn_wgt_factor_in  = insn[126:117];
 
 ///////////////////////////////////////////////////////////////////////////////
-  wire [12:0] upc_next = upc + 1;
+  wire [UPC_WIDTH-1:0] upc_next = upc + 1;
   
   always @(posedge clk, negedge rst) begin
     // reset
@@ -76,9 +82,13 @@ module uop_fetch (
   end
 
 ///////////////////////////////////////////////////////////////////////////////
-  reg [13:0] iter_in, iter_out; // iteration counters
+  reg  [13:0] iter_in, iter_out; // iteration counters
   wire [13:0] iter_out_next = iter_out + 1;
   wire [13:0] iter_in_next  = iter_in + 1;
+
+  wire isEnd_upc      = (upc_next      == insn_uop_end);
+  wire isEnd_iter_in  = (iter_in_next  == insn_iter_in);
+  wire isEnd_iter_out = (iter_out_next == insn_iter_out);
 
   always @(posedge clk, negedge rst) begin
     // reset
@@ -88,18 +98,20 @@ module uop_fetch (
     // count up
     end else begin
       // outer iteration increment
-      if (iter_out_next == insn_iter_out)
-        iter_out <= 0;
-      else if (iter_in_next == insn_iter_in)
-        iter_out <= iter_out_next;
+      if (isEnd_iter_in && isEnd_upc)
+        if (isEnd_iter_out)
+          iter_out <= 0;
+        else
+          iter_out <= iter_out_next;
       else 
         iter_out <= iter_out;
       
       // inner iteration increment
-      if (iter_in_next == insn_iter_in)
-        iter_in <= 0;
-      else if (upc_next == insn_uop_end)
-        iter_in <= iter_in_next;
+      if (isEnd_upc)
+        if (isEnd_iter_in)
+          iter_in <= 0;
+        else
+          iter_in <= iter_in_next;
       else 
         iter_in <= iter_in;
     end
@@ -118,32 +130,33 @@ module uop_fetch (
         wgt_offset_in  <= 0;
     end else begin
       // offset_out increment
-      if (iter_out_next == insn_iter_out) begin
-        dst_offset_out <= 0;
-        src_offset_out <= 0;
-        wgt_offset_out <= 0;
-      end
-      else if (iter_in_next == insn_iter_in) begin
-        dst_offset_out <= dst_offset_out + insn_dst_factor_out;
-        src_offset_out <= src_offset_out + insn_src_factor_out;
-        wgt_offset_out <= wgt_offset_out + insn_wgt_factor_out;
-      end
-      else begin
+      if (isEnd_iter_in && isEnd_upc) begin
+        if (isEnd_iter_out) begin
+          dst_offset_out <= 0;
+          src_offset_out <= 0;
+          wgt_offset_out <= 0;
+        end else begin
+          dst_offset_out <= dst_offset_out + insn_dst_factor_out;
+          src_offset_out <= src_offset_out + insn_src_factor_out;
+          wgt_offset_out <= wgt_offset_out + insn_wgt_factor_out;
+        end
+      end else begin
         dst_offset_out <= dst_offset_out;
         src_offset_out <= src_offset_out;
         wgt_offset_out <= wgt_offset_out;
       end
 
       // offset_in increment
-      if (iter_in_next == insn_iter_in) begin
-        dst_offset_in <= 0;
-        src_offset_in <= 0;
-        wgt_offset_in <= 0;
-      end
-      else if (upc_next == insn_uop_end)begin
-        dst_offset_in <= dst_offset_in + insn_dst_factor_in;
-        src_offset_in <= src_offset_in + insn_src_factor_in;
-        wgt_offset_in <= wgt_offset_in + insn_wgt_factor_in;
+      if (isEnd_upc)begin
+        if (isEnd_iter_in) begin
+          dst_offset_in <= 0;
+          src_offset_in <= 0;
+          wgt_offset_in <= 0;
+        end else begin
+          dst_offset_in <= dst_offset_in + insn_dst_factor_in;
+          src_offset_in <= src_offset_in + insn_src_factor_in;
+          wgt_offset_in <= wgt_offset_in + insn_wgt_factor_in;
+        end
       end
       else begin
         dst_offset_in <= dst_offset_in;

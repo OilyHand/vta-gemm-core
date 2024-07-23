@@ -1,3 +1,6 @@
+// ============================
+// GEMM Core
+
 module gemm #(
   parameter UOP_WIDTH     = 32
           , UPC_WIDTH     = 13
@@ -11,35 +14,54 @@ module gemm #(
           , ACC_IDX_WIDTH = 12
           , INP_IDX_WIDTH = 12
           , WGT_IDX_WIDTH = 11
-          , ACC_MEM_WREN  = 16
-          , OUT_MEM_WREN  = 16*16
+          , ACC_MEM_WREN  = 64
+          , OUT_MEM_WREN  = 32
 )(
-  input wire clk,
-  input wire rst,
+  // control signal
+  input  wire                     clk,
+  input  wire                     rst,
   // commands
-  input  wire [INS_WIDTH-1:0] insn, // instruction
-  input  wire [UOP_WIDTH-1:0] uop,  // micro-op code
-  output wire [UPC_WIDTH-1:0] upc,  // micro-op program counter
-  // register file access
+  input  wire [INS_WIDTH-1:0]     insn, // instruction
+  
+  // micro-op cache read access
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> DOUT" *)
+  input  wire [UOP_WIDTH-1:0]     uop,  // micro-op code
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> ADDR" *)
+  output wire [UPC_WIDTH-1:0]     upc,  // micro-op program counter
+  
+  // register file read access
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> DOUT" *)
   input  wire [ACC_MEM_WIDTH-1:0] acc_mem_rd_data,
-  output wire [ACC_MEM_WIDTH-1:0] acc_mem_wr_data,
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> ADDR" *)
   output wire [ACC_IDX_WIDTH-1:0] acc_mem_rd_addr,
+
+  // register file write access
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> DIN" *)
+  output wire [ACC_MEM_WIDTH-1:0] acc_mem_wr_data,
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> ADDR" *)
   output wire [ACC_IDX_WIDTH-1:0] acc_mem_wr_addr,
-  output wire                     acc_mem_wr_en,
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> WE" *)
+  output wire [ACC_MEM_WREN-1:0]  acc_mem_wr_we,
+  
   // input memory(buffer) access
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> DOUT" *)
   input  wire [INP_MEM_WIDTH-1:0] inp_mem_rd_data,
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> ADDR" *)
   output wire [INP_IDX_WIDTH-1:0] inp_mem_rd_addr,
   // weight memory(buffer) access
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> DOUT" *)
   input  wire [WGT_MEM_WIDTH-1:0] wgt_mem_rd_data,
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> ADDR" *)
   output wire [WGT_IDX_WIDTH-1:0] wgt_mem_rd_addr,
   // output memory(buffer) access
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> DIN" *)
   output wire [INP_MEM_WIDTH-1:0] out_mem_wr_data,
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> ADDR" *)
   output wire [ACC_IDX_WIDTH-1:0] out_mem_wr_addr,
-  output wire                     out_mem_wr_en
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> WE" *)
+  output wire [OUT_MEM_WREN-1:0]  out_mem_wr_we
 );
-  //-------------------------------------//
-  //                 UOP                 //
-  //-------------------------------------//
+  // UOP Stage
   wire [ACC_IDX_WIDTH-2:0] u_dst_offset_out;
   wire [INP_IDX_WIDTH-2:0] u_src_offset_out;
   wire [WGT_IDX_WIDTH-2:0] u_wgt_offset_out;
@@ -47,6 +69,7 @@ module gemm #(
   wire [INP_IDX_WIDTH-2:0] u_src_offset_in;
   wire [WGT_IDX_WIDTH-2:0] u_wgt_offset_in;
 
+  // UOP to IDX registers
   reg [UOP_WIDTH-1:0]     u2i_uop;
   reg [ACC_IDX_WIDTH-2:0] u2i_dst_offset_out;
   reg [INP_IDX_WIDTH-2:0] u2i_src_offset_out;
@@ -55,40 +78,36 @@ module gemm #(
   reg [INP_IDX_WIDTH-2:0] u2i_src_offset_in;
   reg [WGT_IDX_WIDTH-2:0] u2i_wgt_offset_in;
   reg u2i_reg_reset;
-  reg u2i_wr_en;
+  reg u2i_we;
 
-  //-------------------------------------//
-  //                 IDX                 //
-  //-------------------------------------//
+  // IDX Stage
   wire [ACC_IDX_WIDTH-1:0] i_dst_idx;
   wire [INP_IDX_WIDTH-1:0] i_src_idx;
   wire [WGT_IDX_WIDTH-1:0] i_wgt_idx;
 
+  // IDX to MEM registers
   reg [ACC_IDX_WIDTH-1:0] i2m_dst_idx;
   reg [INP_IDX_WIDTH-1:0] i2m_src_idx;
   reg [WGT_IDX_WIDTH-1:0] i2m_wgt_idx;
   reg i2m_reg_reset;
-  reg i2m_wr_en;
+  reg i2m_we;
 
-  //-------------------------------------//
-  //                 MEM                 //
-  //-------------------------------------//
+  // MEM to EX registers
   reg [INP_MEM_WIDTH-1:0] m2e_i_tenor;
   reg [WGT_MEM_WIDTH-1:0] m2e_w_tenor;
   reg [ACC_MEM_WIDTH-1:0] m2e_a_tenor;
   reg [ACC_MEM_WIDTH-1:0] m2e_dst_idx;
   reg m2e_reg_reset;
-  reg m2e_wr_en;
+  reg m2e_we;
 
-  //-------------------------------------//
-  //                 EX                  //
-  //-------------------------------------//
+  // EX Stage
   wire [ACC_MEM_WIDTH-1:0] e_gemm_res;
 
+  // EX to WB registers
   reg [ACC_MEM_WIDTH-1:0] e_a_tensor;
   reg [INP_MEM_WIDTH-1:0] e_o_tensor;
   reg [ACC_MEM_WIDTH-1:0] e2w_dst_idx;
-  reg e2w_wr_en;
+  reg e2w_we;
 
 
 /* ============================== UOP Stage ============================== */
@@ -111,7 +130,7 @@ module gemm #(
     ///////////////////////
       u2i_uop <= 0;
       u2i_reg_reset <= 0;
-      u2i_wr_en <= 0;
+      u2i_we <= 0;
     ///////////////////////
       u2i_dst_offset_out <= 0;
       u2i_src_offset_out <= 0;
@@ -124,7 +143,7 @@ module gemm #(
     /////////////////////////////
       u2i_uop <= uop;
       u2i_reg_reset <= insn[7];
-      u2i_wr_en <= (insn[2:0] == 3'b010);
+      u2i_we <= (insn[2:0] == 3'b010);
     /////////////////////////////
       u2i_dst_offset_out <= u_dst_offset_out;
       u2i_src_offset_out <= u_src_offset_out;
@@ -155,7 +174,7 @@ module gemm #(
     if (!rst) begin
     ///////////////////////
       i2m_reg_reset <= 0;
-      i2m_wr_en <= 0;
+      i2m_we        <= 0;
     ///////////////////////
       i2m_dst_idx <= 0;
       i2m_src_idx <= 0;
@@ -164,7 +183,7 @@ module gemm #(
     else begin
     ///////////////////////////////////
       i2m_reg_reset <= u2i_reg_reset;
-      i2m_wr_en <= u2i_wr_en;
+      i2m_we        <= u2i_we;
     ///////////////////////////////////
       i2m_dst_idx <= i_dst_idx;
       i2m_src_idx <= i_src_idx;
@@ -185,7 +204,7 @@ module gemm #(
     ///////////////////////
       m2e_reg_reset <= 0;
       m2e_dst_idx   <= 0;
-      m2e_wr_en     <= 0;
+      m2e_we        <= 0;
     ///////////////////////
       m2e_i_tenor <= 0;
       m2e_w_tenor <= 0;
@@ -194,7 +213,7 @@ module gemm #(
     ///////////////////////////////////
       m2e_reg_reset <= i2m_reg_reset;
       m2e_dst_idx   <= i2m_dst_idx;
-      m2e_wr_en     <= i2m_wr_en;
+      m2e_we        <= i2m_we;
     ///////////////////////////////////
       m2e_i_tenor <= inp_mem_rd_data;
       m2e_w_tenor <= wgt_mem_rd_data;
@@ -216,14 +235,14 @@ module gemm #(
     if (!rst) begin
     ///////////////////////
       e2w_dst_idx <= 0;
-      e2w_wr_en   <= 0;
+      e2w_we      <= 0;
     ///////////////////////
       e_a_tensor <= 0;
       e_o_tensor <= 0;
     end else begin
     ///////////////////////////////
       e2w_dst_idx <= m2e_dst_idx;
-      e2w_wr_en   <= m2e_wr_en;
+      e2w_we      <= m2e_we;
     ///////////////////////////////
       e_a_tensor <= (m2e_reg_reset) ? 0 : e_gemm_res;
       e_o_tensor <= e_gemm_res[INP_MEM_WIDTH-1:0];
@@ -236,9 +255,9 @@ module gemm #(
   // assign data
   assign acc_mem_wr_data = e_a_tensor;
   assign acc_mem_wr_addr = e2w_dst_idx;
-  assign acc_mem_wr_en   = e2w_wr_en;
+  assign acc_mem_wr_we   = e2w_we;
   assign out_mem_wr_data = e_o_tensor;
   assign out_mem_wr_addr = e2w_dst_idx;
-  assign out_mem_wr_en   = e2w_wr_en;
+  assign out_mem_wr_we   = e2w_we;
   
 endmodule
