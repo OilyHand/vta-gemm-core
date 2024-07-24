@@ -9,9 +9,6 @@ from tvm import rpc
 from tvm.contrib import utils
 from vta.testing import simulator
 
-
-
-
 ############################
 ##  VTA Hardware Setting  ##
 ############################

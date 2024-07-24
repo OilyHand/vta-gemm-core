@@ -34,6 +34,10 @@ micro-op field
 
 module tb_gemm ();
 
+//////////////////////
+//    parameters    //
+//////////////////////
+
 parameter UOP_WIDTH     = 32
         , UPC_WIDTH     = 13
         , INS_WIDTH     = 128
@@ -49,30 +53,30 @@ parameter UOP_WIDTH     = 32
         , ACC_MEM_WREN  = 64
         , OUT_MEM_WREN  = 32;
 
-///////////////////////////////////////////
+// registers
 reg clk, rst, en;
 reg [INS_WIDTH-1:0] insn;
-//---------------------------------------//
+
+// net
 wire [UOP_WIDTH-1:0] uop;
 wire [UPC_WIDTH-1:0] upc;
-//---------------------------------------//
 wire [ACC_MEM_WIDTH-1:0] acc_mem_rd_data;
 wire [ACC_IDX_WIDTH-1:0] acc_mem_rd_addr;
-//---------------------------------------//
 wire [ACC_MEM_WIDTH-1:0] acc_mem_wr_data;
 wire [ACC_IDX_WIDTH-1:0] acc_mem_wr_addr;
 wire                     acc_mem_wr_we;
-//---------------------------------------//
 wire [INP_MEM_WIDTH-1:0] inp_mem_rd_data;
 wire [INP_IDX_WIDTH-1:0] inp_mem_rd_addr;
-//---------------------------------------//
 wire [WGT_MEM_WIDTH-1:0] wgt_mem_rd_data;
 wire [WGT_IDX_WIDTH-1:0] wgt_mem_rd_addr;
-//---------------------------------------//
 wire [INP_MEM_WIDTH-1:0] out_mem_wr_data;
 wire [ACC_IDX_WIDTH-1:0] out_mem_wr_addr;
 wire [OUT_MEM_WREN-1:0]  out_mem_wr_we;
-///////////////////////////////////////////
+
+
+/////////////////////////////
+//    design under test    //
+/////////////////////////////
 
 gemm dut (
   .clk (clk),
@@ -94,69 +98,59 @@ gemm dut (
   .out_mem_wr_we  (out_mem_wr_we)
 );
 
-uop_mem uop_mem (
-  .clka     (clk),              // input wire clka
-  .rsta     (rst),              // input wire rsta
-  .ena      (en),               // input wire ena
-  .wea      (),                 // input wire [3 : 0] wea
-  .addra    (upc),              // input wire [31 : 0] addra
-  .dina     (),                 // input wire [31 : 0] dina
-  .douta    (uop),              // output wire [31 : 0] douta
-  .rsta_busy()                  //output wire rsta_busy
+
+//////////////////////////
+//    memory connect    //
+//////////////////////////
+
+uop_mem_0 uop_mem (
+  .clka (clk),
+  .rsta (rst),
+  .ena  (en),
+  .addra(upc),
+  .douta(uop)
 );
 
-acc_mem acc_mem (
-  .clka     (clk),              // input wire clka
-  .rsta     (rst),              // input wire rsta
-  .ena      (en),               // input wire ena
-  .wea      (),                 // input wire [63 : 0] wea
-  .addra    (acc_mem_rd_addr),  // input wire [31 : 0] addra
-  .dina     (),                 // input wire [511 : 0] dina
-  .douta    (acc_mem_rd_data),  // output wire [511 : 0] douta
-  
-  .clkb     (clk),              // input wire clkb
-  .rstb     (rst),              // input wire rstb
-  .enb      (en),               // input wire enb
-  .web      (acc_mem_wr_we),    // input wire [63 : 0] web
-  .addrb    (acc_mem_wr_addr),  // input wire [31 : 0] addrb
-  .dinb     (acc_mem_wr_data),  // input wire [511 : 0] dinb
-  .doutb    (),                 // output wire [511 : 0] doutb
-  .rsta_busy(),                 // output wire rsta_busy
-  .rstb_busy()                  // output wire rstb_busy
+acc_mem_0 acc_mem (
+  .clka (clk),
+  .rsta (rst),
+  .ena  (en),
+  .addra(acc_mem_rd_addr),
+  .douta(acc_mem_rd_data),
+  .enb  (en),
+  .web  (acc_mem_wr_we),
+  .addrb(acc_mem_wr_addr),
+  .dinb (acc_mem_wr_data)
 );
 
-inp_mem inp_mem (
-  .clka     (clk),              // input wire clka
-  .rsta     (rst),              // input wire rsta
-  .ena      (en),               // input wire ena
-  .wea      (),                 // input wire [15 : 0] wea
-  .addra    ({20'b0, inp_mem_rd_addr}),  // input wire [31 : 0] addra
-  .dina     (),                 // input wire [127 : 0] dina
-  .douta    (inp_mem_rd_data),  // output wire [127 : 0] douta
-  .rsta_busy()                  // output wire rsta_busy
+inp_mem_0 inp_mem (
+  .clka (clk),
+  .rsta (rst),
+  .ena  (en),
+  .addra(inp_mem_rd_addr),
+  .douta(inp_mem_rd_data)
 );
 
-wgt_mem wgt_mem_0 (
-  .clka     (clk),              // input wire clka
-  .rsta     (rst),              // input wire rsta
-  .ena      (en),               // input wire ena
-  .wea      (),                 // input wire [127 : 0] wea
-  .addra    ({21'b0, wgt_mem_rd_addr}),  // input wire [31 : 0] addra
-  .dina     (),                 // input wire [1023 : 0] dina
-  .douta    (wgt_mem_rd_data[1023:0]),  // output wire [1023 : 0] douta
-  .rsta_busy()                  // output wire rsta_busy
+wgt_mem_0 wgt_mem0 (
+  .clka       (clk),
+  .rsta       (rst),
+  .ena        (en),
+  .addra      (wgt_mem_rd_addr),
+  .douta      (wgt_mem_rd_data[1023:0])
 );
 
-wgt_mem wgt_mem_1 (
-  .clka     (clk),              // input wire clka
-  .rsta     (rst),              // input wire rsta
-  .ena      (en),               // input wire ena
-  .wea      (),                 // input wire [127 : 0] wea
-  .addra    ({21'b0, wgt_mem_rd_addr}),  // input wire [31 : 0] addra
-  .dina     (),                 // input wire [1023 : 0] dina
-  .douta    (wgt_mem_rd_data[2047:1024]),  // output wire [1023 : 0] douta
-  .rsta_busy()                  // output wire rsta_busy
+wgt_mem_1 wgt_mem1 (
+  .clka       (clk),
+  .rsta       (rst),
+  .ena        (en),
+  .addra      (wgt_mem_rd_addr),
+  .douta      (wgt_mem_rd_data[2047:1024])
 );
+
+
+//////////////////////////////
+//    running simulation    //
+//////////////////////////////
 
 always #5 clk <= ~clk;
 
@@ -168,19 +162,19 @@ initial begin
     en = 1;
   #5
     rst = 0;
-    insn[2:0]     =  3'h2;
-    insn[7:3]     =  5'h0;
-    insn[20:8]    = 13'h1; // 13 // uop_bgn
-    insn[34:21]   = 14'h10; // 14 // uop_end
-    insn[48:35]   = 14'h4; // 14 // iter_out
-    insn[62:49]   = 14'h4; // 14 // iter_in
-    insn[73:63]   = 11'h1; // 11 // dst_factor_out
-    insn[84:74]   = 11'h1; // 11 // dst_factor_in
-    insn[95:85]   = 11'h4; // 11 // src_factor_out
-    insn[106:96]  = 11'h4; // 11 // src_factor_in
-    insn[116:107] = 10'h4; // 10 // wgt_factor_out
-    insn[126:117] = 10'h4; // 10 // wgt_factor_in
-    insn[127]     =  1'b0;     // 1  // *unused
+    insn[2:0]     =  3'd2;
+    insn[7:3]     =  5'd0;
+    insn[20:8]    = 13'd1;  // uop_bgn
+    insn[34:21]   = 14'd10; // uop_end
+    insn[48:35]   = 14'd4;  // iter_out
+    insn[62:49]   = 14'd4;  // iter_in
+    insn[73:63]   = 11'd1;  // dst_factor_out
+    insn[84:74]   = 11'd1;  // dst_factor_in
+    insn[95:85]   = 11'd4;  // src_factor_out
+    insn[106:96]  = 11'd4;  // src_factor_in
+    insn[116:107] = 10'd4;  // wgt_factor_out
+    insn[126:117] = 10'd4;  // wgt_factor_in
+    insn[127]     =  1'b0;  // *unused
   #1000
     $finish;
 end
