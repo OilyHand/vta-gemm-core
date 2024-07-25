@@ -18,7 +18,7 @@ module mac_dsp #(
     assign b = $signed(wgt);
     assign c = $signed(acc);
     assign mul = a * b;
-    assign sum_out = mul + c;
+    assign sum = mul + c;
 
 endmodule
 
@@ -44,6 +44,6 @@ module mac_lut #(
     assign b = $signed(wgt);
     assign c = $signed(acc);
     assign mul = a * b;
-    assign sum_out = mul + c;
+    assign sum = mul + c;
 
 endmodule

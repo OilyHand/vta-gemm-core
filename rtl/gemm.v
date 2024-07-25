@@ -1,5 +1,4 @@
-// ============================
-// GEMM Core
+`default_nettype none
 
 module gemm #(
   parameter UOP_WIDTH     = 32
@@ -20,9 +19,7 @@ module gemm #(
   // control signal
   input  wire                     clk,
   input  wire                     rst,
-  // commands
   input  wire [INS_WIDTH-1:0]     insn, // instruction
-  
   // micro-op cache read access
   (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> DOUT" *)
   input  wire [UOP_WIDTH-1:0]     uop,  // micro-op code

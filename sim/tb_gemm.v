@@ -51,7 +51,8 @@ parameter UOP_WIDTH     = 32
         , INP_IDX_WIDTH = 12
         , WGT_IDX_WIDTH = 11
         , ACC_MEM_WREN  = 64
-        , OUT_MEM_WREN  = 32;
+        , OUT_MEM_WREN  = 32
+        , TILES = 16;
 
 // registers
 reg clk, rst, en;
@@ -73,6 +74,9 @@ wire [INP_MEM_WIDTH-1:0] out_mem_wr_data;
 wire [ACC_IDX_WIDTH-1:0] out_mem_wr_addr;
 wire [OUT_MEM_WREN-1:0]  out_mem_wr_we;
 
+wire [INP_WIDTH-1:0] inp_data [TILES-1:0];
+
+assign inp_data[0] = inp_mem_rd_data[7:0];
 
 /////////////////////////////
 //    design under test    //
@@ -127,7 +131,7 @@ inp_mem_0 inp_mem (
   .clka (clk),
   .rsta (rst),
   .ena  (en),
-  .addra(inp_mem_rd_addr),
+  .addra({18'd0, inp_mem_rd_addr, 2'd0}),
   .douta(inp_mem_rd_data)
 );
 
@@ -135,7 +139,7 @@ wgt_mem_0 wgt_mem0 (
   .clka       (clk),
   .rsta       (rst),
   .ena        (en),
-  .addra      (wgt_mem_rd_addr),
+  .addra      ({19'd0, wgt_mem_rd_addr, 2'b00}),
   .douta      (wgt_mem_rd_data[1023:0])
 );
 
@@ -143,7 +147,7 @@ wgt_mem_1 wgt_mem1 (
   .clka       (clk),
   .rsta       (rst),
   .ena        (en),
-  .addra      (wgt_mem_rd_addr),
+  .addra      ({19'd0, wgt_mem_rd_addr, 2'b00}),
   .douta      (wgt_mem_rd_data[2047:1024])
 );
 
@@ -156,24 +160,24 @@ always #5 clk <= ~clk;
 
 initial begin
   #0
-    clk = 0;
-    rst = 1;
+    clk  = 0;
+    rst  = 1;
     insn = 0;
-    en = 1;
+    en   = 1;
   #5
-    rst = 0;
+    rst  = 0;
     insn[2:0]     =  3'd2;
     insn[7:3]     =  5'd0;
     insn[20:8]    = 13'd1;  // uop_bgn
-    insn[34:21]   = 14'd10; // uop_end
-    insn[48:35]   = 14'd4;  // iter_out
-    insn[62:49]   = 14'd4;  // iter_in
+    insn[34:21]   = 14'd16; // uop_end
+    insn[48:35]   = 14'd1;  // iter_out
+    insn[62:49]   = 14'd1;  // iter_in
     insn[73:63]   = 11'd1;  // dst_factor_out
     insn[84:74]   = 11'd1;  // dst_factor_in
-    insn[95:85]   = 11'd4;  // src_factor_out
-    insn[106:96]  = 11'd4;  // src_factor_in
-    insn[116:107] = 10'd4;  // wgt_factor_out
-    insn[126:117] = 10'd4;  // wgt_factor_in
+    insn[95:85]   = 11'd1;  // src_factor_out
+    insn[106:96]  = 11'd1;  // src_factor_in
+    insn[116:107] = 10'd1;  // wgt_factor_out
+    insn[126:117] = 10'd1;  // wgt_factor_in
     insn[127]     =  1'b0;  // *unused
   #1000
     $finish;

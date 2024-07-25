@@ -1,5 +1,9 @@
 import numpy as np
 
+
+"""
+Class for dealing micro-op code
+"""
 class micro_op:
     def __init__(self, a_idx=0, i_idx=0, w_idx=0):
         self.__acc_idx = a_idx # 11 bits
@@ -12,25 +16,39 @@ class micro_op:
         self.__hex = np.vectorize(lambda x: format(x, '08X'))(uop)
     
     def __str__(self):
-        return str(self.__hex)
+        return "0x" + str(self.__hex)
+    
+    def __repr__(self):
+        return "(acc_idx, inp_idx, wgt_idx) = (%d, %d, %d)" % (self.__acc_idx, self.__inp_idx, self.__wgt_idx)
 
+"""
+Class for generating coefficient data file
+"""
 class coe:
     def array2hex(data):
-        data_uint = data.astype(np.uint8)
-        return np.vectorize(lambda x: format(x, '02X'))(data_uint)
+        data_uint8 = data.astype(np.uint8)
+        return np.vectorize(lambda x: format(x, '02X'))(data_uint8)
+    
+    def hex2array(data):
+        pass
 
-    def save_coe(hexs, filename):
+    def save_coe(filename, data, data_width, tile_width, addr_32=True):
+        if addr_32 and tile_width*data_width > 1024:
+            pass
+        
+        depth = int(data.size / tile_width)
+
+        if data.size != (depth, tile_width):
+            data = data.reshape((depth, tile_width))
+
         f = open(filename, "w")
         f.write("memory_initialization_radix=16;\nmemory_initialization_vector=\n")
-        for i0 in range(hexs.shape[0]):
-            for i1 in range(hexs.shape[1]):
-                for i2 in range(hexs.shape[2]):
-                    for i3 in range(hexs.shape[3]):
-                        f.write(hexs[i0][i1][i2][i3])
-                        if (i0+1, i1+1, i2+1, i3+1) == hexs.shape:
-                            f.write(";")
-                        elif (i2+1,i3+1) == (hexs.shape[2],hexs.shape[3]):
-                            f.write(",\n")
-                    
+        
+        for i in range(depth):
+            for j in range(tile_width):
+                f.write(data[i][j])
+            if not(i == depth-1 and j == tile_width-1):
+                f.write(",\n")
+        f.write(";")
         f.close()
-        print(filename, "is saved")
+        print("*** save complete: \"%s\"" % filename)
