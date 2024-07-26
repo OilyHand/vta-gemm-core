@@ -144,10 +144,10 @@ module systolic_row_dsp #(
 );
 
   mac_dsp U_mac_dsp_00 (
-    .inp(i_row[INP_WIDTH*1-1:0]),
-    .wgt(w_row[WGT_WIDTH*1-1:0]),
-    .acc(a_row[ACC_WIDTH*1-1:0]),
-    .sum(o_row[ACC_WIDTH*1-1:0])
+    .inp(i_row[INP_WIDTH-1:0]),
+    .wgt(w_row[WGT_WIDTH-1:0]),
+    .acc(a_row[ACC_WIDTH-1:0]),
+    .sum(o_row[ACC_WIDTH-1:0])
   );
 
   mac_dsp U_mac_dsp_01 (

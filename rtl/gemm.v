@@ -10,6 +10,7 @@ module gemm #(
           , ACC_MEM_WIDTH = ACC_WIDTH*16
           , INP_MEM_WIDTH = INP_WIDTH*16
           , WGT_MEM_WIDTH = WGT_WIDTH*16*16
+          , BUF_ADR_WIDTH = 32
           , ACC_IDX_WIDTH = 12
           , INP_IDX_WIDTH = 12
           , WGT_IDX_WIDTH = 11
@@ -44,19 +45,19 @@ module gemm #(
   (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> DOUT" *)
   input  wire [INP_MEM_WIDTH-1:0] inp_mem_rd_data,
   (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> ADDR" *)
-  output wire [INP_IDX_WIDTH-1:0] inp_mem_rd_addr,
+  output wire [BUF_ADR_WIDTH-1:0] inp_mem_rd_addr,
   // weight memory(buffer) access
   (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> DOUT" *)
   input  wire [WGT_MEM_WIDTH-1:0] wgt_mem_rd_data,
   (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> ADDR" *)
-  output wire [WGT_IDX_WIDTH-1:0] wgt_mem_rd_addr,
+  output wire [BUF_ADR_WIDTH-1:0] wgt_mem_rd_addr,
   // output memory(buffer) access
   (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> DIN" *)
   output wire [INP_MEM_WIDTH-1:0] out_mem_wr_data,
   (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> ADDR" *)
-  output wire [ACC_IDX_WIDTH-1:0] out_mem_wr_addr,
+  output wire [BUF_ADR_WIDTH-1:0] out_mem_wr_addr,
   (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> WE" *)
-  output wire [OUT_MEM_WREN-1:0]  out_mem_wr_we
+  output wire [OUT_MEM_WREN-1:0] out_mem_wr_we
 );
   // UOP Stage
   wire [ACC_IDX_WIDTH-2:0] u_dst_offset_out;
@@ -93,7 +94,7 @@ module gemm #(
   reg [INP_MEM_WIDTH-1:0] m2e_i_tenor;
   reg [WGT_MEM_WIDTH-1:0] m2e_w_tenor;
   reg [ACC_MEM_WIDTH-1:0] m2e_a_tenor;
-  reg [ACC_MEM_WIDTH-1:0] m2e_dst_idx;
+  reg [ACC_IDX_WIDTH-1:0] m2e_dst_idx;
   reg m2e_reg_reset;
   reg m2e_we;
 
@@ -103,7 +104,7 @@ module gemm #(
   // EX to WB registers
   reg [ACC_MEM_WIDTH-1:0] e_a_tensor;
   reg [INP_MEM_WIDTH-1:0] e_o_tensor;
-  reg [ACC_MEM_WIDTH-1:0] e2w_dst_idx;
+  reg [ACC_IDX_WIDTH-1:0] e2w_dst_idx;
   reg e2w_we;
 
 
@@ -192,8 +193,8 @@ module gemm #(
 /* ============================== MEM Stage ============================== */
   // addressing
   assign acc_mem_rd_addr = i2m_dst_idx;
-  assign inp_mem_rd_addr = i2m_src_idx;
-  assign wgt_mem_rd_addr = i2m_wgt_idx;
+  assign inp_mem_rd_addr = {18'd0, i2m_src_idx, 2'd0};
+  assign wgt_mem_rd_addr = {19'd0, i2m_wgt_idx, 2'd0};
   
   // --------------- reg M2E --------------- //
   always @(posedge clk, negedge rst) begin
@@ -254,7 +255,7 @@ module gemm #(
   assign acc_mem_wr_addr = e2w_dst_idx;
   assign acc_mem_wr_we   = e2w_we;
   assign out_mem_wr_data = e_o_tensor;
-  assign out_mem_wr_addr = e2w_dst_idx;
+  assign out_mem_wr_addr = {18'd0, e2w_dst_idx, 2'd0};
   assign out_mem_wr_we   = e2w_we;
   
 endmodule

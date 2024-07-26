@@ -1,5 +1,5 @@
 /*
-instruction field
+  instruction field
    ------------------------------------
     size    field       field name
    ------------------------------------
@@ -22,7 +22,7 @@ instruction field
     1       [127]       *unused
    ------------------------------------
       
-micro-op field
+  micro-op field
    ---------------------------------------
     size    field       field name
    ---------------------------------------
@@ -47,14 +47,14 @@ parameter UOP_WIDTH     = 32
         , ACC_MEM_WIDTH = ACC_WIDTH*16
         , INP_MEM_WIDTH = INP_WIDTH*16
         , WGT_MEM_WIDTH = WGT_WIDTH*16*16
+        , BUF_ADR_WIDTH = 32
         , ACC_IDX_WIDTH = 12
         , INP_IDX_WIDTH = 12
         , WGT_IDX_WIDTH = 11
         , ACC_MEM_WREN  = 64
-        , OUT_MEM_WREN  = 32
-        , TILES = 16;
+        , OUT_MEM_WREN  = 32;
 
-// registers
+// reg
 reg clk, rst, en;
 reg [INS_WIDTH-1:0] insn;
 
@@ -67,16 +67,30 @@ wire [ACC_MEM_WIDTH-1:0] acc_mem_wr_data;
 wire [ACC_IDX_WIDTH-1:0] acc_mem_wr_addr;
 wire                     acc_mem_wr_we;
 wire [INP_MEM_WIDTH-1:0] inp_mem_rd_data;
-wire [INP_IDX_WIDTH-1:0] inp_mem_rd_addr;
+wire [BUF_ADR_WIDTH-1:0] inp_mem_rd_addr;
 wire [WGT_MEM_WIDTH-1:0] wgt_mem_rd_data;
-wire [WGT_IDX_WIDTH-1:0] wgt_mem_rd_addr;
+wire [BUF_ADR_WIDTH-1:0] wgt_mem_rd_addr;
 wire [INP_MEM_WIDTH-1:0] out_mem_wr_data;
-wire [ACC_IDX_WIDTH-1:0] out_mem_wr_addr;
+wire [BUF_ADR_WIDTH-1:0] out_mem_wr_addr;
 wire [OUT_MEM_WREN-1:0]  out_mem_wr_we;
 
-wire [INP_WIDTH-1:0] inp_data [TILES-1:0];
+wire [INP_WIDTH-1:0] inp_data [15:0];
+wire [WGT_WIDTH-1:0] wgt_data [0:15][15:0];
+wire [ACC_WIDTH-1:0] acc_data [15:0];
+wire [INP_WIDTH-1:0] out_data [15:0];
 
-assign inp_data[0] = inp_mem_rd_data[7:0];
+genvar i,j,k;
+generate
+  for (i = 0; i < 16; i = i+1)
+    for (j = 0; j < 16; j = j+1)
+      assign wgt_data[15-i][j] = wgt_mem_rd_data[(i * 16 + j) * 8 +: 8];
+
+  for (k = 0; k < 16; k = k+1) begin
+    assign inp_data[k] = inp_mem_rd_data[k*8 +: 8];
+    assign acc_data[k] = acc_mem_rd_data[k*8 +: 8];
+    assign out_data[k] = out_mem_wr_data[k*8 +: 8];
+  end
+endgenerate
 
 /////////////////////////////
 //    design under test    //
@@ -103,9 +117,9 @@ gemm dut (
 );
 
 
-//////////////////////////
-//    memory connect    //
-//////////////////////////
+//////////////////
+//    memory    //
+//////////////////
 
 uop_mem_0 uop_mem (
   .clka (clk),
@@ -131,30 +145,34 @@ inp_mem_0 inp_mem (
   .clka (clk),
   .rsta (rst),
   .ena  (en),
-  .addra({18'd0, inp_mem_rd_addr, 2'd0}),
+  .addra(inp_mem_rd_addr),
   .douta(inp_mem_rd_data)
 );
 
 wgt_mem_0 wgt_mem0 (
-  .clka       (clk),
-  .rsta       (rst),
-  .ena        (en),
-  .addra      ({19'd0, wgt_mem_rd_addr, 2'b00}),
-  .douta      (wgt_mem_rd_data[1023:0])
+  .clka (clk),
+  .rsta (rst),
+  .ena  (en),
+  .addra(wgt_mem_rd_addr),
+  .douta(wgt_mem_rd_data[2047:1024])
 );
 
 wgt_mem_1 wgt_mem1 (
-  .clka       (clk),
-  .rsta       (rst),
-  .ena        (en),
-  .addra      ({19'd0, wgt_mem_rd_addr, 2'b00}),
-  .douta      (wgt_mem_rd_data[2047:1024])
+  .clka (clk),
+  .rsta (rst),
+  .ena  (en),
+  .addra(wgt_mem_rd_addr),
+  .douta(wgt_mem_rd_data[1023:0])
 );
 
 
 //////////////////////////////
 //    running simulation    //
 //////////////////////////////
+
+/*
+
+*/
 
 always #5 clk <= ~clk;
 
@@ -163,23 +181,24 @@ initial begin
     clk  = 0;
     rst  = 1;
     insn = 0;
-    en   = 1;
+    en   = 0;
   #5
-    rst  = 0;
+    rst = 0;
+    en  = 1;
     insn[2:0]     =  3'd2;
     insn[7:3]     =  5'd0;
     insn[20:8]    = 13'd1;  // uop_bgn
-    insn[34:21]   = 14'd16; // uop_end
-    insn[48:35]   = 14'd1;  // iter_out
-    insn[62:49]   = 14'd1;  // iter_in
-    insn[73:63]   = 11'd1;  // dst_factor_out
-    insn[84:74]   = 11'd1;  // dst_factor_in
-    insn[95:85]   = 11'd1;  // src_factor_out
-    insn[106:96]  = 11'd1;  // src_factor_in
-    insn[116:107] = 10'd1;  // wgt_factor_out
-    insn[126:117] = 10'd1;  // wgt_factor_in
+    insn[34:21]   = 14'd4;  // uop_end
+    insn[48:35]   = 14'd16;  // iter_out
+    insn[62:49]   = 14'd16;  // iter_in
+    insn[73:63]   = 11'd256;  // dst_factor_out // acc
+    insn[84:74]   = 11'd256;  // dst_factor_in  // acc
+    insn[95:85]   = 11'd16;  // src_factor_out // inp
+    insn[106:96]  = 11'd16;  // src_factor_in  // inp
+    insn[116:107] = 10'd128;  // wgt_factor_out // wgt
+    insn[126:117] = 10'd128;  // wgt_factor_in  // wgt
     insn[127]     =  1'b0;  // *unused
-  #1000
+  #10000000
     $finish;
 end
 

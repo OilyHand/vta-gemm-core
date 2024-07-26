@@ -1,5 +1,5 @@
 /*
-instruction field
+  instruction field
    ------------------------------------
     size    field       field name
    ------------------------------------
@@ -22,7 +22,7 @@ instruction field
     1       [127]       *unused
    ------------------------------------
       
-micro-op field
+  micro-op field
    ---------------------------------------
     size    field       field name
    ---------------------------------------
