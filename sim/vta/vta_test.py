@@ -1,5 +1,12 @@
 import numpy as np
 
+def convert_hex(data, shape=None, dtype=np.int8, tohex=False):
+    if shape != None:
+        data = data.reshape(shape)
+    if tohex:
+        return np.vectorize(lambda x: format(x, '02X'))(data.astype(dtype))
+    else:
+        return np.vectorize(lambda x: dtype(int(x, 16)))(data)
 
 """
 Class for dealing micro-op code
@@ -25,13 +32,6 @@ class micro_op:
 Class for generating coefficient data file
 """
 class coe:
-    def array2hex(data):
-        data_uint8 = data.astype(np.uint8)
-        return np.vectorize(lambda x: format(x, '02X'))(data_uint8)
-    
-    def hex2array(data):
-        pass
-
     def save_coe(filename, data, data_width, tile_width, addr_32=True):
         if addr_32 and tile_width*data_width > 1024:
             pass

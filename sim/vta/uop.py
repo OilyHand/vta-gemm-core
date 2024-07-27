@@ -1,4 +1,10 @@
 import numpy as np
-from vta_test import micro_op
+import vta_test as vt
 
-uop = micro_op(0, 0, 0)
+A = np.load("./result/inp.npy")
+
+A_hex = vt.convert_hex(A, shape=A.shape, dtype=np.uint8, tohex=True)
+print(A_hex)
+
+A_rec = vt.convert_hex(A_hex, shape=A.shape, dtype=np.int8)
+print(A_rec)
