@@ -1,4 +1,5 @@
 import numpy as np
+import vta_test as vt
 from vta_test import coe
 
 init = False
@@ -6,17 +7,17 @@ init = False
 if init:
     A = np.random.randint(-128, 128, size=(    1, 16*16)).astype(np.int8)
     B = np.random.randint(-128, 128, size=(16*16, 16*16)).astype(np.int8)
-
-A = np.load("./result/inp.npy")
-B = np.load("./result/wgt.npy")
+else:
+    A = np.load("./result/inp.npy")
+    B = np.load("./result/wgt.npy")
 
 A_packed = A.reshape(1, 1, 16, 16).transpose(0,2,1,3)
 B_packed = B.reshape(16, 16, 16, 16).transpose(0,2,1,3)
 
 C = np.dot(A.astype(np.int32), B.T.astype(np.int32)).astype(np.int8)
 
-A_hex = coe.array2hex(A_packed)
-B_hex = coe.array2hex(B_packed)
+A_hex = vt.convert_hex(A_packed)
+B_hex = vt.convert_hex(B_packed)
 
 if init:
     np.savetxt("./result/inp.csv", A, "%d", ",")
