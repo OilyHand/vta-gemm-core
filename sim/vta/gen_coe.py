@@ -1,4 +1,5 @@
 import numpy as np
+import vta_test as vt
 from vta_test import coe
 
 init = True
@@ -15,8 +16,8 @@ B_packed = B.reshape(16, 16, 16, 16).transpose(0,2,1,3)
 
 C = np.dot(A.astype(np.int32), B.T.astype(np.int32)).astype(np.int8)
 
-A_hex = coe.array2hex(A_packed)
-B_hex = coe.array2hex(B_packed)
+A_hex = vt.convert_hex(A_packed)
+B_hex = vt.convert_hex(B_packed)
 
 if init:
     np.savetxt("./result/inp.csv", A, "%4d", ",")
