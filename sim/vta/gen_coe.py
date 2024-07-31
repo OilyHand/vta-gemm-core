@@ -16,8 +16,11 @@ B_packed = B.reshape(16, 16, 16, 16).transpose(0,2,1,3)
 
 C = np.dot(A.astype(np.int32), B.T.astype(np.int32)).astype(np.int8)
 
-A_hex = vt.convert_hex(A_packed)
-B_hex = vt.convert_hex(B_packed)
+A_hex = vt.convert_hex(A_packed, dtype=np.uint8, tohex=True)
+B_hex = vt.convert_hex(B_packed, dtype=np.uint8, tohex=True)
+
+print(A_hex.__repr__)
+print(B_hex.__repr__)
 
 if init:
     np.savetxt("./result/inp.csv", A, "%4d", ",")
