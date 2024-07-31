@@ -41,14 +41,14 @@ class coe:
         if data.size != (depth, tile_width):
             data = data.reshape((depth, tile_width))
 
-        f = open(filename, "w")
-        f.write("memory_initialization_radix=16;\nmemory_initialization_vector=\n")
-        
-        for i in range(depth):
-            for j in range(tile_width):
-                f.write(data[i][j])
-            if not(i == depth-1 and j == tile_width-1):
-                f.write(",\n")
-        f.write(";")
-        f.close()
+        with open(filename, "w") as f:
+            f.write("memory_initialization_radix=16;\nmemory_initialization_vector=\n")
+            
+            for i in range(depth):
+                for j in range(tile_width):
+                    f.write(data[i][j])
+                if not(i == depth-1 and j == tile_width-1):
+                    f.write(",\n")
+            f.write(";")
+
         print("*** save complete: \"%s\"" % filename)
