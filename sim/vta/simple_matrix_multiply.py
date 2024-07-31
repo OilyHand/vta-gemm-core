@@ -15,7 +15,7 @@ from vta.testing import simulator
 
 env = vta.get_env() # Load VTA parameters
 
-host = os.environ.get("VTA_RPC_HOST", "192.168.2.89")
+host = os.environ.get("VTA_RPC_HOST", "192.168.1.8")
 port = int(os.environ.get("VTA_RPC_PORT", "9091"))
 
 if env.TARGET == "pynq":
@@ -212,3 +212,5 @@ if env.TARGET in ["sim", "tsim"]:
     print("Execution statistics:")
     for k, v in sim_stats.items():
         print("\t{:<16}: {:>16}".format(k, v))
+
+print("matrix multiplication complete!")
