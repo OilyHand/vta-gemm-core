@@ -24,7 +24,7 @@ if env.TARGET == "pynq":
     remote = rpc.connect(host, port)
     # Reconfigure the JIT runtime
     vta.reconfig_runtime(remote)
-    # vta.program_fpga(remote, bitstream="/home/sjson/work/tvm_project/host/tvm-v0.13.0/3rdparty/vta-hw/build/hardware/xilinx/vivado/pynq_1x16_i8w8a32_15_15_18_17/export/vta.bit")
+    vta.program_fpga(remote, bitstream="/home/sjson/work/tvm_project/host/tvm-v0.13.0/3rdparty/vta-hw/build/hardware/xilinx/vivado/pynq_1x16_i8w8a32_15_15_18_17/export/vta.bit")
 
 # In simulation mode, host the RPC server locally.
 elif env.TARGET in ["sim", "tsim"]:

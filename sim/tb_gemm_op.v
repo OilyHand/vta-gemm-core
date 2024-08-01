@@ -17,14 +17,14 @@ module tb_gemm_op();
 
   wire [INP_WIDTH-1:0] i_view [0:INP_DEPTH-1];
   wire [WGT_WIDTH-1:0] w_view [0:INP_DEPTH-1][0:INP_DEPTH-1];
-  wire [INP_WIDTH-1:0] o_view [0:INP_DEPTH-1];
+  wire [ACC_WIDTH/2-1:0] o_view [0:INP_DEPTH-1];
 
   reg clk;
 
   genvar m,n;
   generate
     for(m=0; m<INP_DEPTH; m=m+1) begin
-      assign o_view[m] = o_tensor[m*ACC_WIDTH +: INP_WIDTH];
+      assign o_view[m] = o_tensor[m*ACC_WIDTH +: ACC_WIDTH/2];
       assign i_view[m] = i_tensor[m*INP_WIDTH +: INP_WIDTH];
       for(n=0; n<INP_DEPTH; n=n+1)
         assign w_view[m][n] = w_tensor[(m*INP_DEPTH + n*WGT_WIDTH) +: WGT_WIDTH];
@@ -64,21 +64,16 @@ module tb_gemm_op();
     .full(w_tensor)
   );
 
-  // bram #(
-  //   // .FILE("/home/sjson/work/tvm_project/vta-gemm-core/sim/coefficients/out_mem.mem"),
-  //   .WIDTH(ACC_WIDTH),
-  //   .DEPTH(INP_DEPTH)
-  // ) out_mem (
-  //   .clk(clk),
-  //   .we(1'b1),
-  //   .din(o_tensor),
-  //   .dout()
-  // );
-
+  integer i, file;
   initial begin
   #0
     clk = 0;
   #10
+    file = $fopen("/home/sjson/work/tvm_project/vta-gemm-core/sim/vta/result/out.txt", "w");
+    for (i=0; i<INP_DEPTH; i=i+1) begin
+      $fwrite(file, "%d ", $signed(o_tensor[i*ACC_WIDTH +: INP_WIDTH]));
+    end
+    $fclose(file);
     $stop;
   end
 
@@ -98,26 +93,23 @@ module bram #(
 );
   reg [WIDTH-1:0] ram [DEPTH-1:0];
 
-  // integer i;
   initial begin
-    // i = 0;
     $readmemh(FILE, ram);
-    // for(i = 0; i < 2; i=i+1)
-    // ram[i] <= 0;
   end
 
   always @(posedge clk)
   begin
     if (we) begin
       ram[addr] <= din;
-      // $writememh(FILE, out_mem);
     end
     dout <= ram[addr];
   end
 
   genvar j;
   generate
-    for (j=0; j<DEPTH; j=j+1)
+    for(j=0; j<DEPTH; j=j+1) begin
       assign full[j*WIDTH +: WIDTH] = ram[j];
+    end
   endgenerate
+
 endmodule

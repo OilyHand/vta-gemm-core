@@ -5,4 +5,4 @@ get_coe:
 	python3 gen_coe.py
 
 clean:
-	rm ./result/*
+	rm ./result/* ../coefficients/*
