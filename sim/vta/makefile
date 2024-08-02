@@ -1,8 +1,8 @@
-test:
+sim.full:
 	python3 simple_matrix_multiply.py
 
-get_coe:
-	python3 gen_coe.py
+sim.gemm:
+	python3 prepare_sim.py
 
 clean:
 	rm ./result/* ../coefficients/*

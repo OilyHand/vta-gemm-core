@@ -40,6 +40,12 @@ Description:
 
 - The store module reads results processed by the compute module and writes them to DRAM.
 
+<br>
+
+## 1.2&ensp;Interface of Compute Module
+<center>
+  <img src="imgs/compute_module_interface.png" width="950">
+</center>
 
 <!-------------------- end of section 1 --------------------->
 
