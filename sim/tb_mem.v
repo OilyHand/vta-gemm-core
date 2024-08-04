@@ -57,7 +57,7 @@ begin
 
   for (k = 0; k < 16; k = k+1) begin
     assign inp_data[k] = inp_mem_rd_data[k*8 +: 8];
-  end 
+  end
 end
 endgenerate
 
@@ -115,7 +115,7 @@ always @(posedge clk) begin
   upc <= upc + count;
   inp_mem_rd_addr <= inp_mem_rd_addr + inp_offset;
   wgt_mem_rd_addr <= wgt_mem_rd_addr + wgt_offset;
-end   
+end
 
 initial begin
   #0
@@ -125,7 +125,7 @@ initial begin
     wgt_mem_rd_addr = 0;
   #1
     rst = 0;
-    
+
   #9999
     $finish;
 end

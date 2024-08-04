@@ -1,36 +1,38 @@
 /*
   instruction field
-   ------------------------------------
-    size    field       field name
-   ------------------------------------
-    3       [2:0]       opcode
-    1       [3]         pop_prev_dep
-    1       [4]         pop_next_dep
-    1       [5]         push_prev_dep
-    1       [6]         push_next_dep
-    1       [7]         reset_reg
-    13      [20:8]      uop_bgn
-    14      [34:21]     uop_end
-    14      [48:35]     iter_out
-    14      [62:49]     iter_in
-    11      [73:63]     dst_factor_out
-    11      [84:74]     dst_factor_in
-    11      [95:85]     src_factor_out
-    11      [106:96]    src_factor_in
-    10      [116:107]   wgt_factor_out
-    10      [126:117]   wgt_factor_in
-    1       [127]       *unused
-   ------------------------------------
-      
+    +------+------------+----------------+
+    | size | field      | field name     |
+    +------+------------+----------------+
+    | 3    | [2:0]      | opcode         |
+    | 1    | [3]        | pop_prev_dep   |
+    | 1    | [4]        | pop_next_dep   |
+    | 1    | [5]        | push_prev_dep  |
+    | 1    | [6]        | push_next_dep  |
+    | 1    | [7]        | reset_reg      |
+    | 13   | [20:8]     | uop_bgn        |
+    | 14   | [34:21]    | uop_end        |
+    | 14   | [48:35]    | iter_out       |
+    | 14   | [62:49]    | iter_in        |
+    | 11   | [73:63]    | dst_factor_out |
+    | 11   | [84:74]    | dst_factor_in  |
+    | 11   | [95:85]    | src_factor_out |
+    | 11   | [106:96]   | src_factor_in  |
+    | 10   | [116:107]  | wgt_factor_out |
+    | 10   | [126:117]  | wgt_factor_in  |
+    | 1    | [127]      | *unused        |
+    +------+------------+----------------+
+
   micro-op field
-   ---------------------------------------
-    size    field       field name
-   ---------------------------------------
-    11      [10:0]      accumulator index
-    11      [21:11]     input index
-    10      [31:22]     weight index
-   ---------------------------------------
+    +------+---------+-------------------+
+    | size | field   | field name        |
+    +------+---------+-------------------+
+    | 11   | [10:0]  | accumulator index |
+    | 11   | [21:11] | input index       |
+    | 10   | [31:22] | weight index      |
+    +------+---------+-------------------+
 */
+
+`timescale 1ns/1ps
 
 module tb_gemm ();
 
@@ -170,10 +172,6 @@ wgt_mem_1 wgt_mem1 (
 //    running simulation    //
 //////////////////////////////
 
-/*
-
-*/
-
 always #5 clk <= ~clk;
 
 initial begin
@@ -186,17 +184,21 @@ initial begin
     rst = 0;
     en  = 1;
     insn[2:0]     =  3'd2;
-    insn[7:3]     =  5'd0;
+    insn[3]       =  5'd0;
+    insn[4]       =  5'd0;
+    insn[5]       =  5'd1;
+    insn[6]       =  5'd0;
+    insn[7]       =  5'd0;
     insn[20:8]    = 13'd1;  // uop_bgn
-    insn[34:21]   = 14'd4;  // uop_end
-    insn[48:35]   = 14'd16;  // iter_out
-    insn[62:49]   = 14'd16;  // iter_in
-    insn[73:63]   = 11'd256;  // dst_factor_out // acc
-    insn[84:74]   = 11'd256;  // dst_factor_in  // acc
-    insn[95:85]   = 11'd16;  // src_factor_out // inp
-    insn[106:96]  = 11'd16;  // src_factor_in  // inp
-    insn[116:107] = 10'd128;  // wgt_factor_out // wgt
-    insn[126:117] = 10'd128;  // wgt_factor_in  // wgt
+    insn[34:21]   = 14'd2;  // uop_end
+    insn[48:35]   = 14'd16; // iter_out
+    insn[62:49]   = 14'd1;  // iter_in
+    insn[73:63]   = 11'd1;  // dst_factor_out // acc
+    insn[84:74]   = 11'd0;  // dst_factor_in  // acc
+    insn[95:85]   = 11'd1;  // src_factor_out // inp
+    insn[106:96]  = 11'd0;  // src_factor_in  // inp
+    insn[116:107] = 10'd0;  // wgt_factor_out // wgt
+    insn[126:117] = 10'd0;  // wgt_factor_in  // wgt
     insn[127]     =  1'b0;  // *unused
   #10000000
     $finish;
