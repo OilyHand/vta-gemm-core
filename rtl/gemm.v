@@ -1,5 +1,3 @@
-`default_nettype none
-
 module gemm #(
   parameter UOP_WIDTH     = 32
           , UPC_WIDTH     = 13
@@ -7,9 +5,12 @@ module gemm #(
           , INP_WIDTH     = 8
           , WGT_WIDTH     = 8
           , ACC_WIDTH     = 32
-          , ACC_MEM_WIDTH = ACC_WIDTH*16
-          , INP_MEM_WIDTH = INP_WIDTH*16
-          , WGT_MEM_WIDTH = WGT_WIDTH*16*16
+          , INP_DEPTH     = 16
+          , WGT_DEPTH     = 16*16
+          , ACC_DEPTH     = 16
+          , ACC_MEM_WIDTH = ACC_WIDTH*INP_DEPTH
+          , INP_MEM_WIDTH = INP_WIDTH*WGT_DEPTH
+          , WGT_MEM_WIDTH = WGT_WIDTH*ACC_DEPTH
           , BUF_ADR_WIDTH = 32
           , ACC_IDX_WIDTH = 12
           , INP_IDX_WIDTH = 12
@@ -26,7 +27,7 @@ module gemm #(
   input  wire [UOP_WIDTH-1:0]     uop,  // micro-op code
   (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> ADDR" *)
   output wire [UPC_WIDTH-1:0]     upc,  // micro-op program counter
-  
+
   // register file read access
   (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> DOUT" *)
   input  wire [ACC_MEM_WIDTH-1:0] acc_mem_rd_data,
@@ -40,7 +41,7 @@ module gemm #(
   output wire [ACC_IDX_WIDTH-1:0] acc_mem_wr_addr,
   (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> WE" *)
   output wire [ACC_MEM_WREN-1:0]  acc_mem_wr_we,
-  
+
   // input memory(buffer) access
   (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> DOUT" *)
   input  wire [INP_MEM_WIDTH-1:0] inp_mem_rd_data,
@@ -166,7 +167,7 @@ module gemm #(
     .src_idx(i_src_idx),
     .wgt_idx(i_wgt_idx)
   );
-  
+
   // --------------- reg I2M --------------- //
   always @(posedge clk, negedge rst) begin
     if (!rst) begin
@@ -195,7 +196,7 @@ module gemm #(
   assign acc_mem_rd_addr = i2m_dst_idx;
   assign inp_mem_rd_addr = {18'd0, i2m_src_idx, 2'd0};
   assign wgt_mem_rd_addr = {19'd0, i2m_wgt_idx, 2'd0};
-  
+
   // --------------- reg M2E --------------- //
   always @(posedge clk, negedge rst) begin
     if(!rst) begin
@@ -218,7 +219,7 @@ module gemm #(
       m2e_a_tenor <= (i2m_dst_idx == m2e_dst_idx) ? e_gemm_res : acc_mem_rd_data; // forwarding
     end
   end
-  
+
 
 /* ============================== EX Stage ============================== */
   gemm_op U_EX (
@@ -257,5 +258,5 @@ module gemm #(
   assign out_mem_wr_data = e_o_tensor;
   assign out_mem_wr_addr = {18'd0, e2w_dst_idx, 2'd0};
   assign out_mem_wr_we   = e2w_we;
-  
+
 endmodule

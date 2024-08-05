@@ -1,4 +1,4 @@
-`timescale 1ns/1ns
+`timescale 1ns/1ps
 
 module tb_gemm_op();
 
@@ -17,14 +17,14 @@ module tb_gemm_op();
 
   wire [INP_WIDTH-1:0] i_view [0:INP_DEPTH-1];
   wire [WGT_WIDTH-1:0] w_view [0:INP_DEPTH-1][0:INP_DEPTH-1];
-  wire [ACC_WIDTH/2-1:0] o_view [0:INP_DEPTH-1];
+  wire [INP_WIDTH-1:0] o_view [0:INP_DEPTH-1];
 
   reg clk;
 
   genvar m,n;
   generate
     for(m=0; m<INP_DEPTH; m=m+1) begin
-      assign o_view[m] = o_tensor[m*ACC_WIDTH +: ACC_WIDTH/2];
+      assign o_view[m] = o_tensor[m*ACC_WIDTH +: INP_WIDTH];
       assign i_view[m] = i_tensor[m*INP_WIDTH +: INP_WIDTH];
       for(n=0; n<INP_DEPTH; n=n+1)
         assign w_view[m][n] = w_tensor[(m*INP_DEPTH + n*WGT_WIDTH) +: WGT_WIDTH];
@@ -69,11 +69,6 @@ module tb_gemm_op();
   #0
     clk = 0;
   #10
-    file = $fopen("/home/sjson/work/tvm_project/vta-gemm-core/sim/vta/result/out.txt", "w");
-    for (i=0; i<INP_DEPTH; i=i+1) begin
-      $fwrite(file, "%d ", $signed(o_tensor[i*ACC_WIDTH +: INP_WIDTH]));
-    end
-    $fclose(file);
     $stop;
   end
 
@@ -82,7 +77,7 @@ endmodule
 module bram #(
   parameter WIDTH = 8
           , DEPTH = 16
-          , FILE = "test.mem"
+          , FILE = "filename.mem"
 )(
   input  wire clk,
   input  wire we,

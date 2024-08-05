@@ -155,7 +155,7 @@ if __name__ == "__main__":
     A = np.random.randint(-128, 128, size=( 1, 16)).astype(np.int8)
     B = np.random.randint(-128, 128, size=(16, 16)).astype(np.int8)
 
-    C = np.dot(A.astype(np.int32), B.T.astype(np.int32))
+    C = np.dot(A.astype(np.int32), B.T.astype(np.int32)).astype(np.int8)
 
     A_hex = convert_hex(A, dtype=np.uint8, tohex=True)
     B_hex = convert_hex(B, dtype=np.uint8, tohex=True)
