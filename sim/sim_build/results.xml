@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1722923527" />
+    <testcase classname="test_runner" file="/home/sjson/work/tvm_project/vta-gemm-core/sim/test_runner.py" lineno="48" name="test_gemm_op" ratio_time="45.40536952642564" sim_time_ns="1.001" time="0.02204585075378418" />
+  </testsuite>
+</testsuites>

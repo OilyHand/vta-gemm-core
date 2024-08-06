@@ -11,25 +11,10 @@ module tb_gemm_op();
           , WT_WIDTH  = WGT_WIDTH * WGT_DEPTH
           , AT_WIDTH  = ACC_WIDTH * INP_DEPTH;
 
+  reg  clk;
   wire [IT_WIDTH-1:0] i_tensor;
   wire [WT_WIDTH-1:0] w_tensor;
   wire [AT_WIDTH-1:0] o_tensor;
-
-  wire [INP_WIDTH-1:0] i_view [0:INP_DEPTH-1];
-  wire [WGT_WIDTH-1:0] w_view [0:INP_DEPTH-1][0:INP_DEPTH-1];
-  wire [INP_WIDTH-1:0] o_view [0:INP_DEPTH-1];
-
-  reg clk;
-
-  genvar m,n;
-  generate
-    for(m=0; m<INP_DEPTH; m=m+1) begin
-      assign o_view[m] = o_tensor[m*ACC_WIDTH +: INP_WIDTH];
-      assign i_view[m] = i_tensor[m*INP_WIDTH +: INP_WIDTH];
-      for(n=0; n<INP_DEPTH; n=n+1)
-        assign w_view[m][n] = w_tensor[(m*INP_DEPTH + n*WGT_WIDTH) +: WGT_WIDTH];
-    end
-  endgenerate
 
   gemm_op U_GEMM (
     .i_tensor(i_tensor),
@@ -38,73 +23,39 @@ module tb_gemm_op();
     .o_tensor(o_tensor)
   );
 
-  always #5 clk <= ~clk;
-
-  bram #(
-    .FILE("/home/sjson/work/tvm_project/vta-gemm-core/sim/coefficients/inp_mem.mem"),
-    .WIDTH(INP_WIDTH),
-    .DEPTH(INP_DEPTH)
+  bram_sp #(
+    .WIDTH(IT_WIDTH),
+    .DEPTH(1),
+    .FILE("/home/sjson/work/tvm_project/vta-gemm-core/sim/mem/inp_mem.mem")
   ) inp_mem (
     .clk(clk),
-    .we(1'b0),
+    .en(1),
+    .we(0),
+    .addr(0),
     .din(),
-    .dout(),
-    .full(i_tensor)
+    .dout(i_tensor)
   );
 
-  bram #(
-    .FILE("/home/sjson/work/tvm_project/vta-gemm-core/sim/coefficients/wgt_mem.mem"),
-    .WIDTH(WGT_WIDTH),
-    .DEPTH(WGT_DEPTH)
+  bram_sp #(
+    .WIDTH(WT_WIDTH),
+    .DEPTH(1),
+    .FILE("/home/sjson/work/tvm_project/vta-gemm-core/sim/mem/wgt_mem.mem")
   ) wgt_mem (
     .clk(clk),
-    .we(1'b0),
+    .en(1),
+    .we(0),
+    .addr(0),
     .din(),
-    .dout(),
-    .full(w_tensor)
+    .dout(w_tensor)
   );
 
-  integer i, file;
+  always #5 clk = ~clk;
+
   initial begin
-  #0
-    clk = 0;
-  #10
+    clk = 1;
+
+    #1000
     $stop;
   end
-
-endmodule
-
-module bram #(
-  parameter WIDTH = 8
-          , DEPTH = 16
-          , FILE = "filename.mem"
-)(
-  input  wire clk,
-  input  wire we,
-  input  wire addr,
-  input  wire [WIDTH-1:0] din,
-  output reg  [WIDTH-1:0] dout,
-  output wire [WIDTH*DEPTH-1:0] full
-);
-  reg [WIDTH-1:0] ram [DEPTH-1:0];
-
-  initial begin
-    $readmemh(FILE, ram);
-  end
-
-  always @(posedge clk)
-  begin
-    if (we) begin
-      ram[addr] <= din;
-    end
-    dout <= ram[addr];
-  end
-
-  genvar j;
-  generate
-    for(j=0; j<DEPTH; j=j+1) begin
-      assign full[j*WIDTH +: WIDTH] = ram[j];
-    end
-  endgenerate
 
 endmodule

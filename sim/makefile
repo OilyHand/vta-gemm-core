@@ -1,10 +1,8 @@
-SIM ?= icarus
-TOPLEVEL_LANG ?= verilog
+sim.gemm_op:
+	python3 test_runner.py -t gemm_op
 
-PWD = $(shell pwd)
-VERILOG_SOURCE = $(PWD)/../rtl/gemm_op.v
+sim.gemm_top:
+	python3 test_runner.py -t gemm_top
 
-TOPLEVEL := gemm_op
-MODULE   := tb_gemm_op
-
-include $(shell cocotb-config --makefiles)/Makefile.sim
+clean:
+	rm ./sim_build/*

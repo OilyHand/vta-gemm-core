@@ -127,7 +127,7 @@ def save_mem(filename, data, data_width, tile_width, addr_32=True):
     with open(filename, "w") as f:
         for i in range(depth):
             for j in range(tile_width):
-                f.write(data[i][j] + " ")
+                f.write(data[i][j])
 
     print("*** save complete: \"%s\"" % filename)
 
