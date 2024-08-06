@@ -1,4 +1,7 @@
 *.log
 *.jou
 gemm_project/
+sim/__pycache__/
 sim/vta/__pycache__/
+sim/gemm_tb/__pycache__/
+sim/sim_build
