@@ -17,8 +17,13 @@ module bram_sp #(
   reg [WIDTH-1:0] ram [DEPTH-1:0];
 
   // initialize
+  integer i;
   initial begin
-    $readmemh(FILE, ram);
+    for(i=0; i<DEPTH; i=i+1)
+      ram[i] = 0;
+    if(FILE != "") begin
+      $readmemh(FILE, ram);
+    end
   end
 
   // memory access
@@ -62,8 +67,13 @@ module bram_dp #(
   reg [WIDTH-1:0] ram [DEPTH-1:0];
 
   // initialize
+  integer i;
   initial begin
-    $readmemh(FILE, ram);
+    for(i=0; i<DEPTH; i=i+1)
+      ram[i] = 0;
+    if(FILE != "") begin
+      $readmemh(FILE, ram);
+    end
   end
 
   // port A, memory access

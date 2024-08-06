@@ -53,46 +53,36 @@ module tb_gemm_top ();
     , INP_IDX_WIDTH = 12
     , WGT_IDX_WIDTH = 11
     , ACC_MEM_WREN  = 64
-    , OUT_MEM_WREN  = 32
+    , OUT_MEM_WREN  = 32;
 
-reg clk, rst, en;
-reg [INS_WIDTH-1:0] insn;
+  reg clk, rst, en;
+  reg [INS_WIDTH-1:0] insn;
+  reg [UOP_WIDTH-1:0] uop_push_val;
+  reg [UPC_WIDTH-1:0] uop_push_addr;
+  reg uop_we;
 
+  wire [UOP_WIDTH-1:0]      uop;
+  wire [UPC_WIDTH-1:0]      upc;
+  wire [ACC_MEM_WIDTH-1:0]  acc_mem_rd_data;
+  wire [ACC_IDX_WIDTH-1:0]  acc_mem_rd_addr;
+  wire [ACC_MEM_WIDTH-1:0]  acc_mem_wr_data;
+  wire [ACC_IDX_WIDTH-1:0]  acc_mem_wr_addr;
+  wire [ACC_MEM_WREN-1:0]   acc_mem_wr_we;
+  wire [INP_MEM_WIDTH-1:0]  inp_mem_rd_data;
+  wire [BUF_ADR_WIDTH-1:0]  inp_mem_rd_addr;
+  wire [WGT_MEM_WIDTH-1:0]  wgt_mem_rd_data;
+  wire [BUF_ADR_WIDTH-1:0]  wgt_mem_rd_addr;
+  wire [INP_MEM_WIDTH-1:0]  out_mem_wr_data;
+  wire [BUF_ADR_WIDTH-1:0]  out_mem_wr_addr;
+  wire [OUT_MEM_WREN-1:0]   out_mem_wr_we;
 
-wire [UOP_WIDTH-1:0]      uop;
-wire [UPC_WIDTH-1:0]      upc;
-wire [ACC_MEM_WIDTH-1:0]  acc_mem_rd_data;
-wire [ACC_IDX_WIDTH-1:0]  acc_mem_rd_addr;
-wire [ACC_MEM_WIDTH-1:0]  acc_mem_wr_data;
-wire [ACC_IDX_WIDTH-1:0]  acc_mem_wr_addr;
-wire [ACC_MEM_WREN-1:0]   acc_mem_wr_we;
-wire [INP_MEM_WIDTH-1:0]  inp_mem_rd_data;
-wire [BUF_ADR_WIDTH-1:0]  inp_mem_rd_addr;
-wire [WGT_MEM_WIDTH-1:0]  wgt_mem_rd_data;
-wire [BUF_ADR_WIDTH-1:0]  wgt_mem_rd_addr;
-wire [INP_MEM_WIDTH-1:0]  out_mem_wr_data;
-wire [BUF_ADR_WIDTH-1:0]  out_mem_wr_addr;
-wire [OUT_MEM_WREN-1:0]   out_mem_wr_we;
-
+  integer counter;
   initial begin
-    insn[2:0]     =  3'd2;
-    insn[3]       =  5'd0;
-    insn[4]       =  5'd0;
-    insn[5]       =  5'd1;
-    insn[6]       =  5'd0;
-    insn[7]       =  5'd0;
-    insn[20:8]    = 13'd1;  // uop_bgn
-    insn[34:21]   = 14'd2;  // uop_end
-    insn[48:35]   = 14'd16; // iter_out
-    insn[62:49]   = 14'd1;  // iter_in
-    insn[73:63]   = 11'd1;  // dst_factor_out
-    insn[84:74]   = 11'd0;  // dst_factor_in
-    insn[95:85]   = 11'd1;  // src_factor_out
-    insn[106:96]  = 11'd0;  // src_factor_in
-    insn[116:107] = 10'd0;  // wgt_factor_out
-    insn[126:117] = 10'd0;  // wgt_factor_in
-    insn[127]     =  1'b0;  // *unused
+    counter = 0;
   end
+
+  always @(posedge clk)
+    counter = counter+1;
 
   /////////////////////////
   //    instantiation    //
@@ -132,7 +122,7 @@ wire [OUT_MEM_WREN-1:0]   out_mem_wr_we;
   /** memory modules **/
   bram_sp #(
     .WIDTH(INP_WIDTH*INP_DEPTH),
-    .DEPTH(1024),
+    .DEPTH(2048),
     .FILE("/home/sjson/work/tvm_project/vta-gemm-core/sim/coefficients/inp_mem.mem")
   ) inp_mem (
     .clk (clk),
@@ -143,7 +133,7 @@ wire [OUT_MEM_WREN-1:0]   out_mem_wr_we;
 
   bram_sp #(
     .WIDTH(WGT_WIDTH*WGT_DEPTH),
-    .DEPTH(1024),
+    .DEPTH(2048),
     .FILE("/home/sjson/work/tvm_project/vta-gemm-core/sim/coefficients/wgt_mem.mem")
   ) wgt_mem (
     .clk (clk),
@@ -153,9 +143,8 @@ wire [OUT_MEM_WREN-1:0]   out_mem_wr_we;
   );
 
   bram_sp #(
-    .WIDTH(INP_WIDTH),
-    .DEPTH(1024),
-    .FILE("/home/sjson/work/tvm_project/vta-gemm-core/sim/coefficients/uop_mem.mem")
+    .WIDTH(UOP_WIDTH),
+    .DEPTH(2048)
   ) uop_mem (
     .clk (clk),
     .en  (en),
@@ -164,9 +153,8 @@ wire [OUT_MEM_WREN-1:0]   out_mem_wr_we;
   );
 
   bram_dp #(
-    .WIDTH(128),
-    .DEPTH(1024),
-    .FILE("/home/sjson/work/tvm_project/vta-gemm-core/sim/coefficients/empty.mem")
+    .WIDTH(512),
+    .DEPTH(2048)
   ) acc_mem (
     // port A
     .clka (clk),
@@ -180,4 +168,9 @@ wire [OUT_MEM_WREN-1:0]   out_mem_wr_we;
     .addrb(acc_mem_wr_addr),
     .dinb (acc_mem_wr_data)
   );
+
+  initial begin
+    $dumpfile("result.vcd");
+    $dumpvars;
+  end
 endmodule

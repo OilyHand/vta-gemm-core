@@ -24,22 +24,20 @@ class uop:
         self.__inp_idx = inp_idx
         self.__wgt_idx = wgt_idx
 
-        uop =  np.uint32(self.__acc_idx << 21) \
-             + np.uint32(self.__inp_idx << 10) \
-             + np.uint32(self.__wgt_idx)
+        self.bitstr  = "{0:011b}".format(self.__acc_idx)
+        self.bitstr += "{0:011b}".format(self.__inp_idx)
+        self.bitstr += "{0:010b}".format(self.__wgt_idx)
 
-        self.__hex = np.vectorize(lambda x: format(x, '08X'))(uop)
+        self.hex = format(int(self.bitstr, 2), '08X')
 
     # str expression
     def __str__(self):
-        return "0x" + str(self.__hex)
+        return "0x" + str(self.hex)
 
     # repr expression
     def __repr__(self):
         return "(acc_idx, inp_idx, wgt_idx) = (%d, %d, %d)" % \
                 (self.__acc_idx, self.__inp_idx, self.__wgt_idx)
-
-
 
 
 ##################################
@@ -74,23 +72,61 @@ class insn_gemm :
     +------+------------+----------------+
 
     '''
-    def __init__(self):
-        self.opcode = 0
-        self.pop_prev_dep = 0
-        self.pop_next_dep = 0
-        self.push_prev_dep = 0
-        self.push_next_dep = 0
-        self.reset_reg = 0
-        self.uop_bgn = 0
-        self.uop_end = 0
-        self.iter_out = 0
-        self.iter_in = 0
-        self.dst_factor_out = 0
-        self.dst_factor_in = 0
-        self.src_factor_out = 0
-        self.src_factor_in = 0
-        self.wgt_factor_out = 0
-        self.wgt_factor_in = 0
+    def __init__(
+        self,
+        opcode=0,
+        pop_prev_dep=0,
+        pop_next_dep=0,
+        push_prev_dep=0,
+        push_next_dep=0,
+        reset_reg=0,
+        uop_bgn=0,
+        uop_end=0,
+        iter_out=0,
+        iter_in=0,
+        dst_factor_out=0,
+        dst_factor_in=0,
+        src_factor_out=0,
+        src_factor_in=0,
+        wgt_factor_out=0,
+        wgt_factor_in=0
+    ):
+        self.__opcode = opcode
+        self.__pop_prev_dep = pop_prev_dep
+        self.__pop_next_dep = pop_next_dep
+        self.__push_prev_dep = push_prev_dep
+        self.__push_next_dep = push_next_dep
+        self.__reset_reg = reset_reg
+        self.__uop_bgn = uop_bgn
+        self.__uop_end = uop_end
+        self.__iter_out = iter_out
+        self.__iter_in = iter_in
+        self.__dst_factor_out = dst_factor_out
+        self.__dst_factor_in = dst_factor_in
+        self.__src_factor_out = src_factor_out
+        self.__src_factor_in = src_factor_in
+        self.__wgt_factor_out = wgt_factor_out
+        self.__wgt_factor_in = wgt_factor_in
+
+        self.bitstr =  "{0:03b}".format(self.__opcode)
+        self.bitstr += "{0:1b}".format(self.__pop_prev_dep)
+        self.bitstr += "{0:1b}".format(self.__pop_next_dep)
+        self.bitstr += "{0:1b}".format(self.__push_prev_dep)
+        self.bitstr += "{0:1b}".format(self.__push_next_dep)
+        self.bitstr += "{0:1b}".format(self.__reset_reg)
+        self.bitstr += "{0:013b}".format(self.__uop_bgn)
+        self.bitstr += "{0:014b}".format(self.__uop_end)
+        self.bitstr += "{0:014b}".format(self.__iter_out)
+        self.bitstr += "{0:014b}".format(self.__iter_in)
+        self.bitstr += "{0:011b}".format(self.__dst_factor_out)
+        self.bitstr += "{0:011b}".format(self.__dst_factor_in)
+        self.bitstr += "{0:011b}".format(self.__src_factor_out)
+        self.bitstr += "{0:011b}".format(self.__src_factor_in)
+        self.bitstr += "{0:010b}".format(self.__wgt_factor_out)
+        self.bitstr += "{0:010b}".format(self.__wgt_factor_in)
+        self.bitstr += "0"
+
+        self.hex = format(int(self.bitstr, 2), "032X")
 
     def __str__(self):
         str_out  = "opcode: %d\n" % self.opcode
@@ -105,11 +141,9 @@ class insn_gemm :
                    (self.iter_out, self.iter_in)
         str_out += "factor_out: (wgt=%d, inp=%d, acc=%d)\n" % \
                    (self.wgt_factor_out, self.src_factor_out, self.dst_factor_out)
-        str_out += "factor_in:  (wgt=%d, inp=%d, acc=%d)\n" % \
+        str_out += "factor_in:  (wgt=%d, inp=%d, acc=%d)" % \
                    (self.wgt_factor_in, self.src_factor_in, self.dst_factor_in)
         return str_out
-
-
 
 
 def save_mem(filename, data, data_width, tile_width, addr_32=True):
@@ -132,7 +166,6 @@ def save_mem(filename, data, data_width, tile_width, addr_32=True):
     print("*** save complete: \"%s\"" % filename)
 
 
-
 def convert_hex(data, shape=None, dtype=np.int8, tohex=False):
     '''
     convert number to hex string or hex string to number
@@ -143,26 +176,3 @@ def convert_hex(data, shape=None, dtype=np.int8, tohex=False):
         return np.vectorize(lambda x: format(x, '02X'))(data.astype(dtype))
     else:
         return np.vectorize(lambda x: dtype(int(x, 16)))(data)
-
-
-
-
-#################################
-##    Generate Memory Files    ##
-#################################
-
-if __name__ == "__main__":
-    A = np.random.randint(-128, 128, size=( 1, 16)).astype(np.int8)
-    B = np.random.randint(-128, 128, size=(16, 16)).astype(np.int8)
-
-    C = np.dot(A.astype(np.int32), B.T.astype(np.int32)).astype(np.int8)
-
-    A_hex = convert_hex(A, dtype=np.uint8, tohex=True)
-    B_hex = convert_hex(B, dtype=np.uint8, tohex=True)
-
-    np.savetxt("./result/inp_mem.csv", A, "%4d", ",")
-    np.savetxt("./result/wgt_mem.csv", B, "%4d", ",")
-    np.savetxt("./result/out_mem.csv", C, "%4d", ",")
-
-    save_mem("../coefficients/inp_mem.mem", A_hex, 8, 16)
-    save_mem("../coefficients/wgt_mem.mem", B_hex, 8, 16*16)

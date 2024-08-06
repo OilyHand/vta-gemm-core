@@ -51,11 +51,11 @@ module tb_gemm_op();
 
   always #5 clk = ~clk;
 
-  initial begin
-    clk = 1;
+  // initial begin
+  //   clk = 1;
 
-    #1000
-    $stop;
-  end
+  //   #1000
+  //   $stop;
+  // end
 
 endmodule
