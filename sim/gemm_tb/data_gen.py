@@ -108,23 +108,23 @@ class insn_gemm :
         self.__wgt_factor_out = wgt_factor_out
         self.__wgt_factor_in = wgt_factor_in
 
-        self.bitstr =  "{0:03b}".format(self.__opcode)
-        self.bitstr += "{0:1b}".format(self.__pop_prev_dep)
-        self.bitstr += "{0:1b}".format(self.__pop_next_dep)
-        self.bitstr += "{0:1b}".format(self.__push_prev_dep)
-        self.bitstr += "{0:1b}".format(self.__push_next_dep)
-        self.bitstr += "{0:1b}".format(self.__reset_reg)
-        self.bitstr += "{0:013b}".format(self.__uop_bgn)
-        self.bitstr += "{0:014b}".format(self.__uop_end)
-        self.bitstr += "{0:014b}".format(self.__iter_out)
-        self.bitstr += "{0:014b}".format(self.__iter_in)
-        self.bitstr += "{0:011b}".format(self.__dst_factor_out)
-        self.bitstr += "{0:011b}".format(self.__dst_factor_in)
-        self.bitstr += "{0:011b}".format(self.__src_factor_out)
-        self.bitstr += "{0:011b}".format(self.__src_factor_in)
-        self.bitstr += "{0:010b}".format(self.__wgt_factor_out)
+        self.bitstr  = "0"
         self.bitstr += "{0:010b}".format(self.__wgt_factor_in)
-        self.bitstr += "0"
+        self.bitstr += "{0:010b}".format(self.__wgt_factor_out)
+        self.bitstr += "{0:011b}".format(self.__src_factor_in)
+        self.bitstr += "{0:011b}".format(self.__src_factor_out)
+        self.bitstr += "{0:011b}".format(self.__dst_factor_in)
+        self.bitstr += "{0:011b}".format(self.__dst_factor_out)
+        self.bitstr += "{0:014b}".format(self.__iter_in)
+        self.bitstr += "{0:014b}".format(self.__iter_out)
+        self.bitstr += "{0:014b}".format(self.__uop_end)
+        self.bitstr += "{0:013b}".format(self.__uop_bgn)
+        self.bitstr += "{0:1b}".format(self.__reset_reg)
+        self.bitstr += "{0:1b}".format(self.__push_next_dep)
+        self.bitstr += "{0:1b}".format(self.__push_prev_dep)
+        self.bitstr += "{0:1b}".format(self.__pop_next_dep)
+        self.bitstr += "{0:1b}".format(self.__pop_prev_dep)
+        self.bitstr += "{0:03b}".format(self.__opcode)
 
         self.hex = format(int(self.bitstr, 2), "032X")
 
@@ -146,27 +146,22 @@ class insn_gemm :
         return str_out
 
 
-def save_mem(filename, data, data_width, tile_width, addr_32=True):
+def save_mem(filename, data, tile_width):
     '''
     save memory file for bram
     '''
-    if addr_32 and tile_width*data_width > 1024:
-        pass
-
-    depth = int(data.size / tile_width)
-
-    if data.size != (depth, tile_width):
-        data = data.reshape((depth, tile_width))
 
     with open(filename, "w") as f:
-        for i in range(depth):
-            for j in range(tile_width):
-                f.write(data[i][j])
+        for i in range(data.size):
+            if i%tile_width == 0:
+                f.write(" ")
+            f.write(data[0][i])
+
 
     print("*** save complete: \"%s\"" % filename)
 
 
-def convert_hex(data, shape=None, dtype=np.int8, tohex=False):
+def convert_hex(data, shape=None, dtype=np.uint8, tohex=True):
     '''
     convert number to hex string or hex string to number
     '''

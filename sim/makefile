@@ -4,5 +4,7 @@ sim.gemm_op:
 sim.gemm_top:
 	python3 test_runner.py -t gemm_top
 
+.PHONY : clean
 clean:
 	rm ./sim_build/*
+

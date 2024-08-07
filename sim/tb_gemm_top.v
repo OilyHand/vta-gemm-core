@@ -35,142 +35,182 @@
 `timescale 1ns/1ps
 
 module tb_gemm_top ();
-  parameter
-      UOP_WIDTH     = 32
-    , UPC_WIDTH     = 13
-    , INS_WIDTH     = 128
-    , INP_WIDTH     = 8
-    , WGT_WIDTH     = 8
-    , ACC_WIDTH     = 32
-    , INP_DEPTH     = 16
-    , WGT_DEPTH     = 16*16
-    , ACC_DEPTH     = 16
-    , ACC_MEM_WIDTH = ACC_WIDTH*INP_DEPTH
-    , INP_MEM_WIDTH = INP_WIDTH*WGT_DEPTH
-    , WGT_MEM_WIDTH = WGT_WIDTH*ACC_DEPTH
-    , BUF_ADR_WIDTH = 32
-    , ACC_IDX_WIDTH = 12
-    , INP_IDX_WIDTH = 12
-    , WGT_IDX_WIDTH = 11
-    , ACC_MEM_WREN  = 64
-    , OUT_MEM_WREN  = 32;
+    // parameters
+    parameter
+          UOP_WIDTH     = 32
+        , UPC_WIDTH     = 13
+        , INS_WIDTH     = 128
+        , INP_WIDTH     = 8
+        , WGT_WIDTH     = 8
+        , ACC_WIDTH     = 32
+        , INP_DEPTH     = 16
+        , WGT_DEPTH     = 16*16
+        , ACC_DEPTH     = 16
+        , ACC_MEM_WIDTH = ACC_WIDTH*INP_DEPTH
+        , INP_MEM_WIDTH = INP_WIDTH*WGT_DEPTH
+        , WGT_MEM_WIDTH = WGT_WIDTH*ACC_DEPTH
+        , BUF_ADR_WIDTH = 32
+        , ACC_IDX_WIDTH = 12
+        , INP_IDX_WIDTH = 12
+        , WGT_IDX_WIDTH = 11
+        , ACC_MEM_WREN  = 64
+        , OUT_MEM_WREN  = 32;
 
-  reg clk, rst, en;
-  reg [INS_WIDTH-1:0] insn;
-  reg [UOP_WIDTH-1:0] uop_push_val;
-  reg [UPC_WIDTH-1:0] uop_push_addr;
-  reg uop_we;
+    parameter
+          INP_MEM_PATH = "/home/sjson/work/tvm_project/vta-gemm-core/sim/mem/inp_mem.mem"
+        , WGT_MEM_PATH = "/home/sjson/work/tvm_project/vta-gemm-core/sim/mem/wgt_mem.mem"
+        , ACC_MEM_PATH = "/home/sjson/work/tvm_project/vta-gemm-core/sim/mem/acc_mem.mem";
 
-  wire [UOP_WIDTH-1:0]      uop;
-  wire [UPC_WIDTH-1:0]      upc;
-  wire [ACC_MEM_WIDTH-1:0]  acc_mem_rd_data;
-  wire [ACC_IDX_WIDTH-1:0]  acc_mem_rd_addr;
-  wire [ACC_MEM_WIDTH-1:0]  acc_mem_wr_data;
-  wire [ACC_IDX_WIDTH-1:0]  acc_mem_wr_addr;
-  wire [ACC_MEM_WREN-1:0]   acc_mem_wr_we;
-  wire [INP_MEM_WIDTH-1:0]  inp_mem_rd_data;
-  wire [BUF_ADR_WIDTH-1:0]  inp_mem_rd_addr;
-  wire [WGT_MEM_WIDTH-1:0]  wgt_mem_rd_data;
-  wire [BUF_ADR_WIDTH-1:0]  wgt_mem_rd_addr;
-  wire [INP_MEM_WIDTH-1:0]  out_mem_wr_data;
-  wire [BUF_ADR_WIDTH-1:0]  out_mem_wr_addr;
-  wire [OUT_MEM_WREN-1:0]   out_mem_wr_we;
 
-  integer counter;
-  initial begin
-    counter = 0;
-  end
+    // control signals
+    reg clk, rst, en;
 
-  always @(posedge clk)
-    counter = counter+1;
+    // uop related
+    reg [INS_WIDTH-1:0] insn;
+    reg [UOP_WIDTH-1:0] uop_push_val;
+    reg [UPC_WIDTH-1:0] uop_push_addr;
+    reg uop_we;
 
-  /////////////////////////
-  //    instantiation    //
-  /////////////////////////
+    // nets
+    wire [UOP_WIDTH-1:0]      uop;
+    wire [UPC_WIDTH-1:0]      upc;
+    wire [ACC_MEM_WIDTH-1:0]  acc_mem_rd_data;
+    wire [ACC_IDX_WIDTH-1:0]  acc_mem_rd_addr;
+    wire [ACC_MEM_WIDTH-1:0]  acc_mem_wr_data;
+    wire [ACC_IDX_WIDTH-1:0]  acc_mem_wr_addr;
+    wire [ACC_MEM_WREN-1:0]   acc_mem_wr_we;
+    wire [INP_MEM_WIDTH-1:0]  inp_mem_rd_data;
+    wire [BUF_ADR_WIDTH-1:0]  inp_mem_rd_addr;
+    wire [WGT_MEM_WIDTH-1:0]  wgt_mem_rd_data;
+    wire [BUF_ADR_WIDTH-1:0]  wgt_mem_rd_addr;
+    wire [INP_MEM_WIDTH-1:0]  out_mem_wr_data;
+    wire [BUF_ADR_WIDTH-1:0]  out_mem_wr_addr;
+    wire [OUT_MEM_WREN-1:0]   out_mem_wr_we;
 
-  /** gemm module **/
-  gemm #(
-    .UOP_WIDTH(UOP_WIDTH),
-    .UPC_WIDTH(UPC_WIDTH),
-    .INS_WIDTH(INS_WIDTH),
-    .INP_WIDTH(INP_WIDTH),
-    .WGT_WIDTH(WGT_WIDTH),
-    .ACC_WIDTH(ACC_WIDTH),
-    .INP_DEPTH(INP_DEPTH),
-    .WGT_DEPTH(WGT_DEPTH),
-    .ACC_DEPTH(ACC_DEPTH)
-  ) U_GEMM (
-    .clk (clk),
-    .rst (rst),
-    .insn(insn),
-    .uop (uop),
-    .upc (upc),
-    .acc_mem_rd_data(acc_mem_rd_data),
-    .acc_mem_rd_addr(acc_mem_rd_addr),
-    .acc_mem_wr_data(acc_mem_wr_data),
-    .acc_mem_wr_addr(acc_mem_wr_addr),
-    .acc_mem_wr_we  (acc_mem_wr_we),
-    .inp_mem_rd_data(inp_mem_rd_data),
-    .inp_mem_rd_addr(inp_mem_rd_addr),
-    .wgt_mem_rd_data(wgt_mem_rd_data),
-    .wgt_mem_rd_addr(wgt_mem_rd_addr),
-    .out_mem_wr_data(out_mem_wr_data),
-    .out_mem_wr_addr(out_mem_wr_addr),
-    .out_mem_wr_we  (out_mem_wr_we)
-  );
+    // insn fields
+    wire [2:0]  insn_0_opcode         = insn[2:0];
+    wire        insn_1_pop_prev_dep   = insn[3];
+    wire        insn_2_pop_next_dep   = insn[4];
+    wire        insn_3_push_prev_dep  = insn[5];
+    wire        insn_4_push_next_dep  = insn[6];
+    wire        insn_5_reset_reg      = insn[7];
+    wire [12:0] insn_6_uop_bgn        = insn[20:8];
+    wire [13:0] insn_7_uop_end        = insn[34:21];
+    wire [13:0] insn_8_iter_out       = insn[48:35];
+    wire [13:0] insn_9_iter_in        = insn[62:49];
+    wire [10:0] insn_a_dst_factor_out = insn[73:63];
+    wire [10:0] insn_b_dst_factor_in  = insn[84:74];
+    wire [10:0] insn_c_src_factor_out = insn[95:85];
+    wire [10:0] insn_d_src_factor_in  = insn[106:96];
+    wire [9:0]  insn_e_wgt_factor_out = insn[116:107];
+    wire [9:0]  insn_f_wgt_factor_in  = insn[126:117];
 
-  /** memory modules **/
-  bram_sp #(
-    .WIDTH(INP_WIDTH*INP_DEPTH),
-    .DEPTH(2048),
-    .FILE("/home/sjson/work/tvm_project/vta-gemm-core/sim/coefficients/inp_mem.mem")
-  ) inp_mem (
-    .clk (clk),
-    .en  (en),
-    .addr(inp_mem_rd_addr),
-    .dout(inp_mem_rd_data)
-  );
+    integer counter;
+    initial begin
+        counter = 0;
+    end
 
-  bram_sp #(
-    .WIDTH(WGT_WIDTH*WGT_DEPTH),
-    .DEPTH(2048),
-    .FILE("/home/sjson/work/tvm_project/vta-gemm-core/sim/coefficients/wgt_mem.mem")
-  ) wgt_mem (
-    .clk (clk),
-    .en  (en),
-    .addr(wgt_mem_rd_addr),
-    .dout(wgt_mem_rd_data)
-  );
+    always @(posedge clk)
+        counter = counter+1;
 
-  bram_sp #(
-    .WIDTH(UOP_WIDTH),
-    .DEPTH(2048)
-  ) uop_mem (
-    .clk (clk),
-    .en  (en),
-    .addr(upc),
-    .dout(uop)
-  );
+    /////////////////////////
+    //    instantiation    //
+    /////////////////////////
 
-  bram_dp #(
-    .WIDTH(512),
-    .DEPTH(2048)
-  ) acc_mem (
-    // port A
-    .clka (clk),
-    .ena  (en),
-    .addra(acc_mem_rd_addr),
-    .douta(acc_mem_rd_data),
-    // port B
-    .clkb (clk),
-    .enb  (en),
-    .web  (acc_mem_wr_we),
-    .addrb(acc_mem_wr_addr),
-    .dinb (acc_mem_wr_data)
-  );
+    /** gemm module **/
+    gemm #(
+        .UOP_WIDTH(UOP_WIDTH),
+        .UPC_WIDTH(UPC_WIDTH),
+        .INS_WIDTH(INS_WIDTH),
+        .INP_WIDTH(INP_WIDTH),
+        .WGT_WIDTH(WGT_WIDTH),
+        .ACC_WIDTH(ACC_WIDTH),
+        .INP_DEPTH(INP_DEPTH),
+        .WGT_DEPTH(WGT_DEPTH),
+        .ACC_DEPTH(ACC_DEPTH)
+    ) U_GEMM (
+        .clk (clk),
+        .rst (rst),
+        .insn(insn),
+        .uop (uop),
+        .upc (upc),
+        .acc_mem_rd_data(acc_mem_rd_data),
+        .acc_mem_rd_addr(acc_mem_rd_addr),
+        .acc_mem_wr_data(acc_mem_wr_data),
+        .acc_mem_wr_addr(acc_mem_wr_addr),
+        .acc_mem_wr_we  (acc_mem_wr_we),
+        .inp_mem_rd_data(inp_mem_rd_data),
+        .inp_mem_rd_addr(inp_mem_rd_addr),
+        .wgt_mem_rd_data(wgt_mem_rd_data),
+        .wgt_mem_rd_addr(wgt_mem_rd_addr),
+        .out_mem_wr_data(out_mem_wr_data),
+        .out_mem_wr_addr(out_mem_wr_addr),
+        .out_mem_wr_we  (out_mem_wr_we)
+    );
 
-  initial begin
-    $dumpfile("result.vcd");
-    $dumpvars;
-  end
+    /** memory modules **/
+    bram_sp #(
+        .WIDTH(INP_MEM_WIDTH),
+        .DEPTH(2048),
+        .ADDR(INP_IDX_WIDTH),
+        .FILE(INP_MEM_PATH)
+    ) inp_mem (
+        .clk (clk),
+        .en  (en),
+        .rst (rst),
+        .addr(inp_mem_rd_addr),
+        .dout(inp_mem_rd_data)
+    );
+
+    bram_sp #(
+        .WIDTH(WGT_MEM_WIDTH),
+        .DEPTH(1024),
+        .ADDR(WGT_IDX_WIDTH),
+        .FILE(WGT_MEM_PATH)
+    ) wgt_mem (
+        .clk (clk),
+        .en  (en),
+        .rst (rst),
+        .addr(wgt_mem_rd_addr),
+        .dout(wgt_mem_rd_data)
+    );
+
+    bram_sp #(
+        .WIDTH(UOP_WIDTH),
+        .DEPTH(2),
+        .ADDR(UPC_WIDTH)
+    ) uop_mem (
+        .clk (clk),
+        .en  (en),
+        .rst (rst),
+        .addr(upc),
+        .dout(uop)
+    );
+
+    bram_dp #(
+        .WIDTH(ACC_MEM_WIDTH),
+        .DEPTH(2048),
+        .ADDR(ACC_IDX_WIDTH),
+        .FILE(ACC_MEM_PATH)
+    ) acc_mem (
+        // port A
+        .clka (clk),
+        .ena  (en),
+        .rsta (rst),
+        .addra(acc_mem_rd_addr),
+        .douta(acc_mem_rd_data),
+        // port B
+        .clkb (clk),
+        .enb  (en),
+        .rstb (rst),
+        .web  (acc_mem_wr_we),
+        .addrb(acc_mem_wr_addr),
+        .dinb (acc_mem_wr_data)
+    );
+
+    initial begin
+        $dumpfile("result.vcd");
+        $dumpvars(0);
+    end
+
 endmodule
