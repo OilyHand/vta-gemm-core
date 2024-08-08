@@ -8,9 +8,9 @@ module gemm #(
           , INP_DEPTH     = 16
           , WGT_DEPTH     = 16*16
           , ACC_DEPTH     = 16
-          , ACC_MEM_WIDTH = ACC_WIDTH*INP_DEPTH
-          , INP_MEM_WIDTH = INP_WIDTH*WGT_DEPTH
-          , WGT_MEM_WIDTH = WGT_WIDTH*ACC_DEPTH
+          , ACC_MEM_WIDTH = ACC_WIDTH*ACC_DEPTH
+          , INP_MEM_WIDTH = INP_WIDTH*INP_DEPTH
+          , WGT_MEM_WIDTH = WGT_WIDTH*WGT_DEPTH
           , BUF_ADR_WIDTH = 32
           , ACC_IDX_WIDTH = 12
           , INP_IDX_WIDTH = 12
@@ -19,45 +19,31 @@ module gemm #(
           , OUT_MEM_WREN  = 32
 )(
   // control signal
-  input  wire                     clk,
-  input  wire                     rst,
+  input  wire                     ap_clk,
+  input  wire                     ap_rst_n,
   input  wire [INS_WIDTH-1:0]     insn, // instruction
   // micro-op cache read access
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> DOUT" *)
   input  wire [UOP_WIDTH-1:0]     uop,  // micro-op code
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> ADDR" *)
   output wire [UPC_WIDTH-1:0]     upc,  // micro-op program counter
 
   // register file read access
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> DOUT" *)
   input  wire [ACC_MEM_WIDTH-1:0] acc_mem_rd_data,
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> ADDR" *)
   output wire [ACC_IDX_WIDTH-1:0] acc_mem_rd_addr,
 
   // register file write access
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> DIN" *)
   output wire [ACC_MEM_WIDTH-1:0] acc_mem_wr_data,
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> ADDR" *)
   output wire [ACC_IDX_WIDTH-1:0] acc_mem_wr_addr,
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> WE" *)
   output wire [ACC_MEM_WREN-1:0]  acc_mem_wr_we,
 
   // input memory(buffer) access
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> DOUT" *)
   input  wire [INP_MEM_WIDTH-1:0] inp_mem_rd_data,
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> ADDR" *)
   output wire [BUF_ADR_WIDTH-1:0] inp_mem_rd_addr,
   // weight memory(buffer) access
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> DOUT" *)
   input  wire [WGT_MEM_WIDTH-1:0] wgt_mem_rd_data,
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> ADDR" *)
   output wire [BUF_ADR_WIDTH-1:0] wgt_mem_rd_addr,
   // output memory(buffer) access
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> DIN" *)
   output wire [INP_MEM_WIDTH-1:0] out_mem_wr_data,
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> ADDR" *)
   output wire [BUF_ADR_WIDTH-1:0] out_mem_wr_addr,
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 <interface_name> WE" *)
   output wire [OUT_MEM_WREN-1:0] out_mem_wr_we
 );
   // UOP Stage
@@ -111,8 +97,8 @@ module gemm #(
 
 /* ============================== UOP Stage ============================== */
   uop_fetch U_UOP (
-    .clk  (clk),
-    .rst  (rst),
+    .clk  (ap_clk),
+    .rst  (ap_rst_n),
     .insn (insn),
     .upc  (upc),
     .dst_offset_out(u_dst_offset_out),
@@ -124,8 +110,8 @@ module gemm #(
   );
 
   // --------------- reg U2I --------------- //
-  always @(posedge clk, negedge rst) begin
-    if(!rst) begin
+  always @(posedge ap_clk, negedge ap_rst_n) begin
+    if(!ap_rst_n) begin
     ///////////////////////
       u2i_uop <= 0;
       u2i_reg_reset <= 0;
@@ -169,8 +155,8 @@ module gemm #(
   );
 
   // --------------- reg I2M --------------- //
-  always @(posedge clk, negedge rst) begin
-    if (!rst) begin
+  always @(posedge ap_clk, negedge ap_rst_n) begin
+    if (!ap_rst_n) begin
     ///////////////////////
       i2m_reg_reset <= 0;
       i2m_we        <= 0;
@@ -198,8 +184,8 @@ module gemm #(
   assign wgt_mem_rd_addr = {19'd0, i2m_wgt_idx, 2'd0};
 
   // --------------- reg M2E --------------- //
-  always @(posedge clk, negedge rst) begin
-    if(!rst) begin
+  always @(posedge ap_clk, negedge ap_rst_n) begin
+    if(!ap_rst_n) begin
     ///////////////////////
       m2e_reg_reset <= 0;
       m2e_dst_idx   <= 0;
@@ -230,8 +216,8 @@ module gemm #(
   );
 
   // --------------- reg E2W --------------- //
-  always @(posedge clk, negedge rst) begin
-    if (!rst) begin
+  always @(posedge ap_clk, negedge ap_rst_n) begin
+    if (!ap_rst_n) begin
     ///////////////////////
       e2w_dst_idx <= 0;
       e2w_we      <= 0;

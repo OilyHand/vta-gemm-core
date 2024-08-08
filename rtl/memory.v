@@ -16,6 +16,7 @@ module bram_sp #(
     output reg  [WIDTH-1:0] dout
 );
     // memory
+    (* ram_style = "block" *)
     reg [WIDTH-1:0] ram [0:DEPTH-1];
 
     // memory access
@@ -69,7 +70,8 @@ module bram_dp #(
     input  wire [WIDTH-1:0] dinb,
     output reg  [WIDTH-1:0] doutb
 );
-  // memory
+    // memory
+    (* ram_style = "block" *)
     reg [WIDTH-1:0] ram [0:DEPTH-1];
 
     integer i;

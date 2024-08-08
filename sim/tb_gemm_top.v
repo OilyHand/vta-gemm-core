@@ -35,7 +35,7 @@
 `timescale 1ns/1ps
 
 module tb_gemm_top ();
-    // parameters
+    // width parameters
     parameter
           UOP_WIDTH     = 32
         , UPC_WIDTH     = 13
@@ -56,6 +56,7 @@ module tb_gemm_top ();
         , ACC_MEM_WREN  = 64
         , OUT_MEM_WREN  = 32;
 
+    // file path
     parameter
           INP_MEM_PATH = "/home/sjson/work/tvm_project/vta-gemm-core/sim/mem/inp_mem.mem"
         , WGT_MEM_PATH = "/home/sjson/work/tvm_project/vta-gemm-core/sim/mem/wgt_mem.mem"
@@ -129,11 +130,11 @@ module tb_gemm_top ();
         .WGT_DEPTH(WGT_DEPTH),
         .ACC_DEPTH(ACC_DEPTH)
     ) U_GEMM (
-        .clk (clk),
-        .rst (rst),
-        .insn(insn),
-        .uop (uop),
-        .upc (upc),
+        .ap_clk         (clk),
+        .ap_rst_n       (rst),
+        .insn           (insn),
+        .uop            (uop),
+        .upc            (upc),
         .acc_mem_rd_data(acc_mem_rd_data),
         .acc_mem_rd_addr(acc_mem_rd_addr),
         .acc_mem_wr_data(acc_mem_wr_data),

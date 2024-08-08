@@ -96,7 +96,7 @@ async def test_gemm_top(dut):
     dut.insn.value = int(insn_test.bitstr, 2)
 
     # running reset acc_mem
-    for i in range(16):
+    for i in range(128):
         await RisingEdge(dut.clk)
 
 

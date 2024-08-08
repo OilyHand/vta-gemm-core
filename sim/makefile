@@ -7,4 +7,5 @@ sim.gemm_top:
 .PHONY : clean
 clean:
 	rm ./sim_build/*
+	rm ./mem/*
 
