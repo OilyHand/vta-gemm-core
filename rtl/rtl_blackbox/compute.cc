@@ -1,6 +1,6 @@
-#include "vta.h"
+#include "example.h"
 
-exterm "C" void gemm(
+extern "C" void gemm(
     insn_T insn,
     uop_T uop_mem[VTA_UOP_BUFF_DEPTH],
     bus_T acc_mem[VTA_ACC_BUFF_DEPTH][ACC_MAT_AXI_RATIO],

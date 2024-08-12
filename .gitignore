@@ -9,4 +9,5 @@ sim/gemm_tb/__pycache__/
 sim/sim_build/
 *.mem
 *.csv
+*.npy
 troubleshooting.txt

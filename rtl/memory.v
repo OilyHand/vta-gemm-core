@@ -19,8 +19,22 @@ module bram_sp #(
     (* ram_style = "block" *)
     reg [WIDTH-1:0] ram [0:DEPTH-1];
 
+    wire [7:0] view0, view1, view2, view3, view4, view5;
+    assign view0 = ram[0][0+:8];
+    assign view1 = ram[0][8+:8];
+    assign view2 = ram[0][8*2+:8];
+    assign view3 = ram[0][8*3+:8];
+    assign view4 = ram[0][8*4+:8];
+    assign view5 = ram[0][8*5+:8];
+
     // memory access
     integer i;
+    initial begin
+        $dumpfile("hello.vcd");
+        $dumpvars(0, view0);
+        $dumpvars(0, view1);
+        $dumpvars(0, view2);
+    end
     always @(posedge clk, negedge rst) begin
         if(!rst) begin
             // initialize memory
@@ -96,7 +110,7 @@ module bram_dp #(
         end
     end
 
-  // port B, memory access
+    // port B, memory access
     always @(posedge clkb, negedge rstb) begin
         if(!rstb) begin
             // initialize memory

@@ -221,8 +221,8 @@ module tb_gemm_top ();
     );
 
     initial begin
-        // $dumpfile("result.vcd");
-        // $dumpvars(0);
+        $dumpfile("result.vcd");
+        $dumpvars(0);
     end
 
 endmodule
