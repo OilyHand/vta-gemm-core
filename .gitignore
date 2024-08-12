@@ -6,5 +6,7 @@ gemm_rtl_blackbox/
 sim/__pycache__/
 sim/vta/__pycache__/
 sim/gemm_tb/__pycache__/
-sim/sim_build
+sim/sim_build/
+*.mem
+*.csv
 troubleshooting.txt

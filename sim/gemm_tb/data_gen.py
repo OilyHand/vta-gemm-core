@@ -153,8 +153,8 @@ def save_mem(filename, data, tile_width):
 
     with open(filename, "w") as f:
         for i in range(data.size):
-            if i%tile_width == 0:
-                f.write(" ")
+            if (i%tile_width == 0) and (i != 0):
+                f.write("\n")
             f.write(data[0][i])
 
 

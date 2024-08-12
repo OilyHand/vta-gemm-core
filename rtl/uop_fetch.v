@@ -21,7 +21,7 @@
     10      [126:117]   wgt_factor_in
     1       [127]       *unused
    ------------------------------------
-      
+
   micro-op field
    ---------------------------------------
     size    field       field name
@@ -66,7 +66,7 @@ module uop_fetch #(
 
 ///////////////////////////////////////////////////////////////////////////////
   wire [UPC_WIDTH-1:0] upc_next = upc + 1;
-  
+
   always @(posedge clk, negedge rst) begin
     // reset
     if(!rst) begin
@@ -90,30 +90,37 @@ module uop_fetch #(
   wire isEnd_iter_in  = (iter_in_next  == insn_iter_in);
   wire isEnd_iter_out = (iter_out_next == insn_iter_out);
 
+  reg fsm;
+
   always @(posedge clk, negedge rst) begin
     // reset
     if(!rst) begin
       iter_out <= 0;
       iter_in  <= 0;
+      fsm      <= 0;
     // count up
     end else begin
       // outer iteration increment
-      if (isEnd_iter_in && isEnd_upc)
-        if (isEnd_iter_out)
-          iter_out <= 0;
+      if (fsm) begin
+        if (isEnd_iter_in && isEnd_upc)
+          if (isEnd_iter_out)
+            iter_out <= 0;
+          else
+            iter_out <= iter_out_next;
         else
-          iter_out <= iter_out_next;
-      else 
-        iter_out <= iter_out;
-      
+          iter_out <= iter_out;
+
       // inner iteration increment
       if (isEnd_upc)
         if (isEnd_iter_in)
           iter_in <= 0;
         else
           iter_in <= iter_in_next;
-      else 
+      else
         iter_in <= iter_in;
+      end else begin
+        fsm <= 1;
+      end
     end
   end
 

@@ -46,9 +46,9 @@ module tb_gemm_top ();
         , INP_DEPTH     = 16
         , WGT_DEPTH     = 16*16
         , ACC_DEPTH     = 16
-        , ACC_MEM_WIDTH = ACC_WIDTH*INP_DEPTH
-        , INP_MEM_WIDTH = INP_WIDTH*WGT_DEPTH
-        , WGT_MEM_WIDTH = WGT_WIDTH*ACC_DEPTH
+        , ACC_MEM_WIDTH = ACC_WIDTH*ACC_DEPTH
+        , INP_MEM_WIDTH = INP_WIDTH*INP_DEPTH
+        , WGT_MEM_WIDTH = WGT_WIDTH*WGT_DEPTH
         , BUF_ADR_WIDTH = 32
         , ACC_IDX_WIDTH = 12
         , INP_IDX_WIDTH = 12
@@ -59,8 +59,7 @@ module tb_gemm_top ();
     // file path
     parameter
           INP_MEM_PATH = "/home/sjson/work/tvm_project/vta-gemm-core/sim/mem/inp_mem.mem"
-        , WGT_MEM_PATH = "/home/sjson/work/tvm_project/vta-gemm-core/sim/mem/wgt_mem.mem"
-        , ACC_MEM_PATH = "/home/sjson/work/tvm_project/vta-gemm-core/sim/mem/acc_mem.mem";
+        , WGT_MEM_PATH = "/home/sjson/work/tvm_project/vta-gemm-core/sim/mem/wgt_mem.mem";
 
 
     // control signals
@@ -159,7 +158,7 @@ module tb_gemm_top ();
         .clk (clk),
         .en  (en),
         .rst (rst),
-        .addr(inp_mem_rd_addr),
+        .addr(inp_mem_rd_addr[2+:INP_IDX_WIDTH]),
         .dout(inp_mem_rd_data)
     );
 
@@ -172,8 +171,21 @@ module tb_gemm_top ();
         .clk (clk),
         .en  (en),
         .rst (rst),
-        .addr(wgt_mem_rd_addr),
+        .addr(wgt_mem_rd_addr[2+:INP_IDX_WIDTH]),
         .dout(wgt_mem_rd_data)
+    );
+
+    bram_sp #(
+        .WIDTH(INP_MEM_WIDTH),
+        .DEPTH(1024),
+        .ADDR(INP_IDX_WIDTH)
+    ) out_mem (
+        .clk (clk),
+        .en  (en),
+        .rst (rst),
+        .we  (out_mem_wr_we),
+        .addr(out_mem_wr_addr[2+:INP_IDX_WIDTH]),
+        .din (out_mem_wr_data)
     );
 
     bram_sp #(
@@ -191,8 +203,7 @@ module tb_gemm_top ();
     bram_dp #(
         .WIDTH(ACC_MEM_WIDTH),
         .DEPTH(2048),
-        .ADDR(ACC_IDX_WIDTH),
-        .FILE(ACC_MEM_PATH)
+        .ADDR(ACC_IDX_WIDTH)
     ) acc_mem (
         // port A
         .clka (clk),
@@ -210,8 +221,8 @@ module tb_gemm_top ();
     );
 
     initial begin
-        $dumpfile("result.vcd");
-        $dumpvars(0);
+        // $dumpfile("result.vcd");
+        // $dumpvars(0);
     end
 
 endmodule

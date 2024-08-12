@@ -80,25 +80,33 @@ async def test_gemm_top(dut):
     dut.rst.value = 0
     insn_test = insn_gemm(2, 0, 0, 1, 0, 1, 0, 1, 16, 1, 1, 0, 0, 0, 0, 0)
     dut.insn.value = int(insn_test.bitstr, 2)
-    await Timer(1, units="ns")
-    dut.rst.value = 1
-    await Timer(4, units="ns")
+    await Timer(5, units="ns")
 
     # clock generate
     cocotb.start_soon(Clock(dut.clk, 10, units="ns").start())
+    dut.rst.value = 1
 
     # running reset acc_mem
     for i in range(16):
         await RisingEdge(dut.clk)
+    await RisingEdge(dut.clk)
 
     # run gemm operation
-    insn_test = insn_gemm(2, 0, 0, 1, 0, 0, 1, 2, 16, 1, 1, 0, 0, 0, 1, 0)
+    for i in range(16):
+        insn_test = insn_gemm(2, 0, 0, 1, 0, 0, 1, 2, 16, 1, 1, 0, 0, 0, 1, 0)
+        dut.insn.value = int(insn_test.bitstr, 2)
+
+        for j in range(16):
+            await RisingEdge(dut.clk)
+
+
+    await RisingEdge(dut.clk)
+
+    dut._log.info("gemm complete!")
+
+    insn_test = insn_gemm(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
     dut.insn.value = int(insn_test.bitstr, 2)
-
-    # running reset acc_mem
-    for i in range(128):
-        await RisingEdge(dut.clk)
-
+    await RisingEdge(dut.clk)
 
 ## simulation runner ###########################################################
 def gemm_runner(hdl_top_level="tb_gemm_top", testcase="test_gemm_top"):
