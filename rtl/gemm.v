@@ -18,34 +18,55 @@ module gemm #(
           , ACC_MEM_WREN  = 64
           , OUT_MEM_WREN  = 32
 )(
-  // control signal
-  input  wire                     ap_clk,
-  input  wire                     ap_rst_n,
-  input  wire [INS_WIDTH-1:0]     insn, // instruction
-  // micro-op cache read access
-  input  wire [UOP_WIDTH-1:0]     uop,  // micro-op code
-  output wire [UPC_WIDTH-1:0]     upc,  // micro-op program counter
+  // control signals
+  input  wire ap_clk,
+  input  wire ap_rst,
+  input  wire ap_ce,
+  input  wire ap_start,
+  input  wire ap_continue,
+  output wire ap_idle,
+  output wire ap_done,
+  output wire ap_ready,
 
-  // register file read access
-  input  wire [ACC_MEM_WIDTH-1:0] acc_mem_rd_data,
+  // instruction
+  input  wire [INS_WIDTH-1:0] insn,
+
+  // micro-op cache access
+  input  wire [UOP_WIDTH-1:0] uop,
+  input  wire                 uop_ce,
+  output wire [UPC_WIDTH-1:0] upc,
+
+  // register file access
+    // port 1
   output wire [ACC_IDX_WIDTH-1:0] acc_mem_rd_addr,
-
-  // register file write access
-  output wire [ACC_MEM_WIDTH-1:0] acc_mem_wr_data,
+  input  wire                     acc_mem_rd_ce,
+  output wire [ACC_MEM_WREN-1:0]  acc_mem_rd_we,
+  output wire                     acc_mem_rd_data_out,
+  input  wire [ACC_MEM_WIDTH-1:0] acc_mem_rd_data_in,
+    // port 2
   output wire [ACC_IDX_WIDTH-1:0] acc_mem_wr_addr,
+  input  wire                     acc_mem_wr_ce,
   output wire [ACC_MEM_WREN-1:0]  acc_mem_wr_we,
+  output wire [ACC_MEM_WIDTH-1:0] acc_mem_wr_data_out,
+  input  wire [ACC_MEM_WIDTH-1:0] acc_mem_wr_data_in,
 
   // input memory(buffer) access
   input  wire [INP_MEM_WIDTH-1:0] inp_mem_rd_data,
+  input  wire                     inp_mem_rd_ce,
   output wire [BUF_ADR_WIDTH-1:0] inp_mem_rd_addr,
+
   // weight memory(buffer) access
   input  wire [WGT_MEM_WIDTH-1:0] wgt_mem_rd_data,
+  input  wire                     wgt_mem_rd_ce,
   output wire [BUF_ADR_WIDTH-1:0] wgt_mem_rd_addr,
+
   // output memory(buffer) access
-  output wire [INP_MEM_WIDTH-1:0] out_mem_wr_data,
   output wire [BUF_ADR_WIDTH-1:0] out_mem_wr_addr,
-  output wire [OUT_MEM_WREN-1:0] out_mem_wr_we
+  input  wire                     out_mem_wr_ce,
+  output wire [INP_MEM_WIDTH-1:0] out_mem_wr_data,
+  output wire [OUT_MEM_WREN-1:0]  out_mem_wr_we
 );
+////////////////////////////////////////////////////////////////////////////////
   // UOP Stage
   wire [ACC_IDX_WIDTH-2:0] u_dst_offset_out;
   wire [INP_IDX_WIDTH-2:0] u_src_offset_out;
@@ -66,14 +87,14 @@ module gemm #(
   reg u2i_we;
 
   // IDX Stage
-  wire [ACC_IDX_WIDTH-1:0] i_dst_idx;
-  wire [INP_IDX_WIDTH-1:0] i_src_idx;
-  wire [WGT_IDX_WIDTH-1:0] i_wgt_idx;
+  wire [ACC_IDX_WIDTH-2:0] i_dst_idx;
+  wire [INP_IDX_WIDTH-2:0] i_src_idx;
+  wire [WGT_IDX_WIDTH-2:0] i_wgt_idx;
 
   // IDX to MEM registers
-  reg [ACC_IDX_WIDTH-1:0] i2m_dst_idx;
-  reg [INP_IDX_WIDTH-1:0] i2m_src_idx;
-  reg [WGT_IDX_WIDTH-1:0] i2m_wgt_idx;
+  reg [ACC_IDX_WIDTH-2:0] i2m_dst_idx;
+  reg [INP_IDX_WIDTH-2:0] i2m_src_idx;
+  reg [WGT_IDX_WIDTH-2:0] i2m_wgt_idx;
   reg i2m_reg_reset;
   reg i2m_we;
 
@@ -94,11 +115,19 @@ module gemm #(
   reg [ACC_IDX_WIDTH-1:0] e2w_dst_idx;
   reg e2w_we;
 
+////////////////////////////////////////////////////////////////////////////////
+  assign acc_mem_rd_we       = 0;
+  assign acc_mem_rd_data_out = 0;
+
+  // assign ap_idle  = 0;
+  // assign ap_done  = 0;
+  // assign ap_ready = 1;
+////////////////////////////////////////////////////////////////////////////////
 
 /* ============================== UOP Stage ============================== */
   uop_fetch U_UOP (
     .clk  (ap_clk),
-    .rst  (ap_rst_n),
+    .rst  (ap_rst),
     .insn (insn),
     .upc  (upc),
     .dst_offset_out(u_dst_offset_out),
@@ -110,8 +139,8 @@ module gemm #(
   );
 
   // --------------- reg U2I --------------- //
-  always @(posedge ap_clk, negedge ap_rst_n) begin
-    if(!ap_rst_n) begin
+  always @(posedge ap_clk, negedge ap_rst) begin
+    if(!ap_rst) begin
     ///////////////////////
       u2i_uop <= 0;
       u2i_reg_reset <= 0;
@@ -139,7 +168,6 @@ module gemm #(
     end
   end
 
-
 /* ============================== IDX Stage ============================== */
   idx_decode U_IDX (
     .uop(u2i_uop),
@@ -155,8 +183,8 @@ module gemm #(
   );
 
   // --------------- reg I2M --------------- //
-  always @(posedge ap_clk, negedge ap_rst_n) begin
-    if (!ap_rst_n) begin
+  always @(posedge ap_clk, negedge ap_rst) begin
+    if (!ap_rst) begin
     ///////////////////////
       i2m_reg_reset <= 0;
       i2m_we        <= 0;
@@ -179,13 +207,13 @@ module gemm #(
 
 /* ============================== MEM Stage ============================== */
   // addressing
-  assign acc_mem_rd_addr = i2m_dst_idx;
-  assign inp_mem_rd_addr = {18'd0, i2m_src_idx, 2'd0};
-  assign wgt_mem_rd_addr = {19'd0, i2m_wgt_idx, 2'd0};
+  assign acc_mem_rd_addr = {1'b0, i2m_dst_idx};
+  assign inp_mem_rd_addr = {19'd0, i2m_src_idx, 2'd0};
+  assign wgt_mem_rd_addr = {20'd0, i2m_wgt_idx, 2'd0};
 
   // --------------- reg M2E --------------- //
-  always @(posedge ap_clk, negedge ap_rst_n) begin
-    if(!ap_rst_n) begin
+  always @(posedge ap_clk, negedge ap_rst) begin
+    if(!ap_rst) begin
     ///////////////////////
       m2e_reg_reset <= 0;
       m2e_dst_idx   <= 0;
@@ -202,7 +230,8 @@ module gemm #(
     ///////////////////////////////////
       m2e_i_tenor <= inp_mem_rd_data;
       m2e_w_tenor <= wgt_mem_rd_data;
-      m2e_a_tenor <= (i2m_dst_idx == m2e_dst_idx) ? e_gemm_res : acc_mem_rd_data; // forwarding
+      m2e_a_tenor <= acc_mem_rd_data_in;
+      // m2e_a_tenor <= (i2m_dst_idx == m2e_dst_idx) ? e_gemm_res : acc_mem_rd_data_in; // forwarding
     end
   end
 
@@ -216,8 +245,8 @@ module gemm #(
   );
 
   // --------------- reg E2W --------------- //
-  always @(posedge ap_clk, negedge ap_rst_n) begin
-    if (!ap_rst_n) begin
+  always @(posedge ap_clk, negedge ap_rst) begin
+    if (!ap_rst) begin
     ///////////////////////
       e2w_dst_idx <= 0;
       e2w_we      <= 0;
@@ -238,11 +267,11 @@ module gemm #(
 /* ============================== WB Stage ============================== */
   // write enable signal setting
   // assign data
-  assign acc_mem_wr_data = e_a_tensor;
-  assign acc_mem_wr_addr = e2w_dst_idx;
+  assign acc_mem_wr_data_out = e_a_tensor;
+  assign acc_mem_wr_addr = {1'b0, e2w_dst_idx};
   assign acc_mem_wr_we   = e2w_we;
   assign out_mem_wr_data = e_o_tensor;
-  assign out_mem_wr_addr = {18'd0, e2w_dst_idx, 2'd0};
+  assign out_mem_wr_addr = {19'd0, e2w_dst_idx, 2'd0};
   assign out_mem_wr_we   = e2w_we;
 
 endmodule

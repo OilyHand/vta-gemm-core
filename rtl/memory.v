@@ -1,6 +1,6 @@
-////////////////////////////////////
-//    single port block memory    //
-////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+//                          single port block memory                          //
+////////////////////////////////////////////////////////////////////////////////
 module bram_sp #(
     parameter WIDTH = 128  // memory data width
             , DEPTH = 1024 // memory depth
@@ -29,12 +29,6 @@ module bram_sp #(
 
     // memory access
     integer i;
-    initial begin
-        $dumpfile("hello.vcd");
-        $dumpvars(0, view0);
-        $dumpvars(0, view1);
-        $dumpvars(0, view2);
-    end
     always @(posedge clk, negedge rst) begin
         if(!rst) begin
             // initialize memory
@@ -57,10 +51,9 @@ module bram_sp #(
 
 endmodule
 
-
-//////////////////////////////////
-//    dual port block memory    //
-//////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+//                           dual port block memory                           //
+////////////////////////////////////////////////////////////////////////////////
 module bram_dp #(
     parameter WIDTH = 128,  // memory data width
     parameter DEPTH = 1024, // memory depth

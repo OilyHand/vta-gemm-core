@@ -1,10 +1,10 @@
 {
-    "c_function_name"     : "gemm_core",
+    "c_function_name"     : "gemm",
     "rtl_top_module_name" : "gemm",
 
     "c_files": [
         {
-            "c_file" : "gemm.cc",
+            "c_file" : "vta.cc",
             "cflag" : ""
         }
     ],
@@ -20,71 +20,80 @@
 
     "c_parameters" : [
         {
-            "c_name" : "insn",
+            "c_name" : "insn_raw",
             "c_port_direction" : "in",
             "rtl_ports" : {
                 "data_read_in" : "insn"
             }
-        }, {
+        },{
             "c_name" : "uop_mem",
             "c_port_direction" : "in",
             "RAM_type" : "RAM_1P",
             "rtl_ports" : {
                 "RAM_address"      : "upc",
+                "RAM_clock_enable" : "uop_ce",
                 "RAM_data_read_in" : "uop"
             }
-        }, {
+        },{
             "c_name" : "acc_mem",
             "c_port_direction" : "inout",
             "RAM_type" : "RAM_T2P",
             "rtl_ports" : {
-                "RAM_address"            : "acc_mem_rd_addr",
-                "RAM_data_read_in"       : "acc_mem_rd_data",
-                "RAM_address_snd"        : "acc_mem_wr_addr",
-                "RAM_write_enable_snd"   : "acc_mem_wr_we",
-                "RAM_data_write_out_snd" : "acc_mem_wr_data"
+                "RAM_address"           :"acc_mem_rd_addr",
+                "RAM_clock_enable"      :"acc_mem_rd_ce",
+                "RAM_write_enable"      :"acc_mem_rd_we",
+                "RAM_data_write_out"    :"acc_mem_rd_data_out",
+                "RAM_data_read_in"      :"acc_mem_rd_data_in",
+                "RAM_address_snd"       :"acc_mem_wr_addr",
+                "RAM_clock_enable_snd"  :"acc_mem_wr_ce",
+                "RAM_write_enable_snd"  :"acc_mem_wr_we",
+                "RAM_data_write_out_snd":"acc_mem_wr_data_out",
+                "RAM_data_read_in_snd"  :"acc_mem_wr_data_in"
             }
-        }, {
+        },{
             "c_name" : "inp_mem",
             "c_port_direction" : "in",
             "RAM_type" : "RAM_1P",
             "rtl_ports" : {
                 "RAM_address"      : "inp_mem_rd_addr",
+                "RAM_clock_enable" : "inp_mem_rd_ce",
                 "RAM_data_read_in" : "inp_mem_rd_data"
             }
-        }, {
+        },{
             "c_name" : "wgt_mem",
             "c_port_direction" : "in",
             "RAM_type" : "RAM_1P",
             "rtl_ports" : {
                 "RAM_address"      : "wgt_mem_rd_addr",
+                "RAM_clock_enable" : "wgt_mem_rd_ce",
                 "RAM_data_read_in" : "wgt_mem_rd_data"
             }
-        }, {
+        },{
             "c_name" : "out_mem",
             "c_port_direction" : "out",
             "RAM_type" : "RAM_1P",
             "rtl_ports" : {
-                "RAM_address"       :"out_mem_wr_addr",
-                "RAM_write_enable"  :"out_mem_wr_we",
-                "RAM_data_write_out":"out_mem_wr_data"
+                "RAM_address"       : "out_mem_wr_addr",
+                "RAM_clock_enable"  : "out_mem_wr_ce",
+                "RAM_write_enable"  : "out_mem_wr_we",
+                "RAM_data_write_out": "out_mem_wr_data"
             }
         }
     ],
 
     "rtl_common_signal" : {
-        "module_clock": "ap_clk",
-        "module_reset": "ap_rst_n",
-        "module_clock_enable": "",
-        "ap_ctrl_chain_protocol_idle": "",
-        "ap_ctrl_chain_protocol_start": "",
-        "ap_ctrl_chain_protocol_ready": "",
-        "ap_ctrl_chain_protocol_done": "",
-        "ap_ctrl_chain_protocol_continue": ""
+        "module_clock"                    : "ap_clk",
+        "module_reset"                    : "ap_rst",
+        "module_clock_enable"             : "ap_ce",
+        "ap_ctrl_chain_protocol_idle"     : "ap_idle",
+        "ap_ctrl_chain_protocol_start"    : "ap_start",
+        "ap_ctrl_chain_protocol_ready"    : "ap_ready",
+        "ap_ctrl_chain_protocol_done"     : "ap_done",
+        "ap_ctrl_chain_protocol_continue" : "ap_continue"
     },
 
     "rtl_performance" : {
-        "latency" : "0",
+        "latency" : "1",
         "II"      : "1"
     },
 
