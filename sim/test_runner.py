@@ -19,7 +19,8 @@ rtl_path = sim_path.parent/"rtl"
 def prepare_data(
         inp_shape=(1, 16), wgt_shape=(16,16),
         vta_inp_shape=(1,16), vta_wgt_shape=(16,16),
-        dtype=np.int8):
+        dtype=np.int8
+    ):
 
     inp_array = np.random.randint(
         np.iinfo(dtype).min, np.iinfo(dtype).max, size=inp_shape

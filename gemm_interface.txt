@@ -1,0 +1,54 @@
+`timescale 1 ns / 1 ps
+
+module gemm (
+  /* control signals */
+  input  wire ap_clk;
+  input  wire ap_rst;
+  input  wire ap_start;
+  output reg  ap_done;
+  output reg  ap_idle;
+  output reg  ap_ready;
+
+  /********* instruction *********/
+  input  wire [127:0]  insn_raw_V;
+
+  /********** micro-op cache port **********/
+  output wire [12:0]   uop_mem_V_2_address0;
+  output reg           uop_mem_V_2_ce0;
+  input  wire [31:0]   uop_mem_V_2_q0;
+
+  /********** register file port **********/
+  output reg  [10:0]   acc_mem_V_2_address0;
+  output reg           acc_mem_V_2_ce0;
+  output reg  [63:0]   acc_mem_V_2_we0;
+  output wire [511:0]  acc_mem_V_2_d0;
+  input  wire [511:0]  acc_mem_V_2_q0;
+
+  /********* input buffer port *********/
+  output wire [31:0]   inp_mem_V_Addr_A;
+  output reg           inp_mem_V_EN_A;
+  output wire [15:0]   inp_mem_V_WEN_A;
+  output wire [127:0]  inp_mem_V_Din_A;
+  input  wire [127:0]  inp_mem_V_Dout_A;
+
+  /********* weight buffer port *********/
+  output wire [31:0]   wgt_mem_0_V_Addr_A;
+  output reg           wgt_mem_0_V_EN_A;
+  output wire [127:0]  wgt_mem_0_V_WEN_A;
+  output wire [1023:0] wgt_mem_0_V_Din_A;
+  input  wire [1023:0] wgt_mem_0_V_Dout_A;
+  output wire [31:0]   wgt_mem_1_V_Addr_A;
+  output reg           wgt_mem_1_V_EN_A;
+  output wire [127:0]  wgt_mem_1_V_WEN_A;
+  output wire [1023:0] wgt_mem_1_V_Din_A;
+  input  wire [1023:0] wgt_mem_1_V_Dout_A;
+
+  /******** output buffer port ********/
+  output wire [31:0]   out_mem_V_Addr_A;
+  output reg           out_mem_V_EN_A;
+  output reg  [15:0]   out_mem_V_WEN_A;
+  output wire [127:0]  out_mem_V_Din_A;
+  input  wire [127:0]  out_mem_V_Dout_A;
+);
+
+endmodule

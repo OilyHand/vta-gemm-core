@@ -1,5 +1,5 @@
 <!--
-Filename: GEMM.md  
+Filename: GEMM.md
 Description:
 -->
 
@@ -78,32 +78,32 @@ Description:
 <br>
 
 - **`LOG_UOP_BUFF_DEPTH`**  _(log2 of on-chip micro-op buffer depth)_
-  
+
   = `VTA_LOG_UOP_BUFF_SIZE` - `VTA_LOG_UOP_WIDTH` + 3
-  
+
   = 15 - 5 + 3
-  
+
   = **13**
-  
+
   - `VTA_LOG_UOP_WIDTH` = 5  _(log2 of micro op data type width)_
   - `LOG_UOP_BUFF_SIZE` = 15
 
 <br>
 
 - **`LOOP_ITER_WIDTH`** _(GEMM/ALU Instruction: loop max iter bits)_
-  
+
   = **14**
 
 <br>
 
 - **`LOG_ACC_BUFF_DEPTH`** _(log2 of on-chip accumulator buffer depth)_
-  
+
   = `VTA_LOG_ACC_BUFF_SIZE` - `VTA_LOG_BATCH` - `VTA_LOG_BLOCK_OUT` - `VTA_LOG_ACC_WIDTH` + 3
-  
+
   = 17 - 0 - 4 - 5 + 3
-  
+
   = **11**
-  
+
   - `LOG_ACC_WIDTH` = 5
   - `LOG_BATCH` = 0
   - `LOG_BLOCK` = 4
@@ -112,13 +112,13 @@ Description:
 <br>
 
 - **`LOG_INP_BUFF_DEPTH`** _(log2 of activation micro-op buffer depth)_
-  
+
   = `VTA_LOG_INP_BUFF_SIZE` - `VTA_LOG_BATCH` - `VTA_LOG_BLOCK_IN` - `VTA_LOG_INP_WIDTH` + 3
-  
+
   = 15 - 0 - 4 - 3+ 3
-  
-  = **11** 
-  
+
+  = **11**
+
   - `LOG_INP_WIDTH` = 3
   - `LOG_BATCH` = 0
   - `LOG_BLOCK` = 4
@@ -127,13 +127,13 @@ Description:
 <br>
 
 - **`VTA_LOG_WGT_BUFF_DEPTH`** _(log2 of weight micro-op buffer depth)_
-  
+
   = `VTA_LOG_WGT_BUFF_SIZE` - `VTA_LOG_BLOCK_OUT` - `VTA_LOG_BLOCK_IN` - `VTA_LOG_WGT_WIDTH` + 3
-  
+
   = 18 - 4 - 4 - 3 + 3
-  
+
   = **10**
-  
+
   - `LOG_WGT_WIDTH` = 3
   - `LOG_BATCH` = 0
   - `LOG_BLOCK` = 4
@@ -148,7 +148,7 @@ Description:
 | `OPCODE`               | 3        | -                     |
 | `DEPT FLAGS`           | 4        | -                     |
 | `RESET`                | 1        | -                     |
-| `MICRO-OP BEGIN ~ END` | 27       | `uop_bgn` / `uop_end` |  
+| `MICRO-OP BEGIN ~ END` | 27       | `uop_bgn` / `uop_end` |
 | `LOOP EXTENT 0 ~ 1`    | 28       | `end0` / `end1`       |
 
 <br>
@@ -235,9 +235,9 @@ void compute(
   bus_T inp_mem[VTA_INP_BUFF_DEPTH][INP_MAT_AXI_RATIO],
   bus_T wgt_mem[VTA_WGT_BUFF_DEPTH][WGT_MAT_AXI_RATIO],
   bus_T out_mem[VTA_ACC_BUFF_DEPTH][OUT_MAT_AXI_RATIO]) {
-... 
+...
 pragma ~
-... 
+...
 
   // Micro-op storage ---> Micro-op Cache
   static uop_T uop_mem[VTA_UOP_BUFF_DEPTH];
@@ -287,7 +287,7 @@ gemm(
   acc_mem,  // register file
 //----------------------------------------------------
   inp_mem,  // input memory
-  wgt_mem,  // weight memory 
+  wgt_mem,  // weight memory
   out_mem   // output memory
 );
 ```
@@ -300,7 +300,7 @@ void gemm(
   insn_T insn_raw, // gemm instruction
   uop_T uop_mem[VTA_UOP_BUFF_DEPTH], // micro-op cache
   bus_T acc_mem[VTA_ACC_BUFF_DEPTH][ACC_MAT_AXI_RATIO], // register file
-  bus_T inp_mem[VTA_INP_BUFF_DEPTH][INP_MAT_AXI_RATIO], // input memory 
+  bus_T inp_mem[VTA_INP_BUFF_DEPTH][INP_MAT_AXI_RATIO], // input memory
   bus_T wgt_mem[VTA_WGT_BUFF_DEPTH][WGT_MAT_AXI_RATIO], // weight memory
   bus_T out_mem[VTA_ACC_BUFF_DEPTH][OUT_MAT_AXI_RATIO]  // output memory
 )
@@ -418,7 +418,7 @@ void gemm(
 
 2. 내부 루프가 완료된 이후에 각 outer loop offset을 증가
    - `insn.dst_factor_out` : `x0` >> `x0` 만큼 증가
-   - `insn.src_factor_out` : `y0` >> `y0` 만큼 증가 
+   - `insn.src_factor_out` : `y0` >> `y0` 만큼 증가
    - `insn.wgt_factor_out` : `z0` >> `z0` 만큼 증가
 
 <br>
@@ -434,8 +434,8 @@ void gemm(
 <br>
 
 #### iterate over micro-op
-  
-1. micro-op cache(buffer)로부터 upc(micro-op program counter)가 가리키는 곳의 micro-op 코드를 가져온다. 
+
+1. micro-op cache(buffer)로부터 upc(micro-op program counter)가 가리키는 곳의 micro-op 코드를 가져온다.
    - pc의 범위 : (value of `uop_bgn` field) ~ (value of `uop_end` field
 <br>
 
@@ -463,7 +463,7 @@ void gemm(
 <br>
 
 #### Inner GEMM loop
-1. 
+1.
 
 <!-------------------- end of section 3 --------------------->
 
@@ -485,11 +485,62 @@ void gemm(
 | BRAMs                    | 140 (36Kb blocks) |
 | DSP Slices               | 220               |
 | Peak DSP Performance     | 276 GMACs         |
- 
+
 
 <br>
 
 <br>
+
+```verilog
+/* control signals */
+input  ap_clk;
+input  ap_rst;
+input  ap_start;
+output ap_done;
+output ap_idle;
+output ap_ready;
+
+/****** instruction ******/
+input  [127:0]  insn_raw_V;
+
+/*********** uop_mem port ***********/
+output [12:0]   uop_mem_V_2_address0;
+output          uop_mem_V_2_ce0;
+input  [31:0]   uop_mem_V_2_q0;
+
+/*********** acc_mem port ***********/
+output [10:0]   acc_mem_V_2_address0;
+output          acc_mem_V_2_ce0;
+output [63:0]   acc_mem_V_2_we0;
+output [511:0]  acc_mem_V_2_d0;
+input  [511:0]  acc_mem_V_2_q0;
+
+/********* inp_mem port *********/
+output [31:0]   inp_mem_V_Addr_A;
+output          inp_mem_V_EN_A;
+output [15:0]   inp_mem_V_WEN_A;
+output [127:0]  inp_mem_V_Din_A;
+input  [127:0]  inp_mem_V_Dout_A;
+
+/********* wgt_mem port *********/
+output [31:0]   wgt_mem_0_V_Addr_A;
+output          wgt_mem_0_V_EN_A;
+output [127:0]  wgt_mem_0_V_WEN_A;
+output [1023:0] wgt_mem_0_V_Din_A;
+input  [1023:0] wgt_mem_0_V_Dout_A;
+output [31:0]   wgt_mem_1_V_Addr_A;
+output          wgt_mem_1_V_EN_A;
+output [127:0]  wgt_mem_1_V_WEN_A;
+output [1023:0] wgt_mem_1_V_Din_A;
+input  [1023:0] wgt_mem_1_V_Dout_A;
+
+/********* out_mem port *********/
+output [31:0]   out_mem_V_Addr_A;
+output          out_mem_V_EN_A;
+output [15:0]   out_mem_V_WEN_A;
+output [127:0]  out_mem_V_Din_A;
+input  [127:0]  out_mem_V_Dout_A;
+```
 
 <!--
 References

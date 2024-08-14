@@ -1,5 +1,5 @@
 from __future__ import absolute_import, print_function
-
+from pathlib import Path
 import os
 import tvm
 from tvm import te
@@ -31,7 +31,7 @@ elif env.TARGET in ["sim", "tsim"]:
     remote = rpc.LocalSession()
 
 
-
+sim_path = Path(__file__).resolve().parent
 
 ##############################
 ##  Channel Factor Setting  ##
@@ -192,7 +192,11 @@ C_nd = tvm.nd.array(np.zeros((o, m, env.BATCH, env.BLOCK_OUT)).astype(C.dtype), 
 if env.TARGET in ["sim", "tsim"]:
     simulator.clear_stats()
 
-# Invoke the module to perform the computation
+np.savetxt(sim_path/"mem/A_nd.csv", A_nd.numpy().reshape(1, 256), "%4d", ",")
+np.savetxt(sim_path/"mem/B_nd.csv", B_nd.numpy().reshape(256, 256), "%4d", ",")
+
+# Invoke the module to perform the computationArrays are not equal
+
 f(A_nd, B_nd, C_nd)
 
 
@@ -203,8 +207,15 @@ f(A_nd, B_nd, C_nd)
 #############################
 
 # Compute reference result with numpy
+
 C_ref = np.dot(A_orig.astype(env.acc_dtype), B_orig.T.astype(env.acc_dtype)).astype(C.dtype)
 C_ref = C_ref.reshape(o, env.BATCH, m, env.BLOCK_OUT).transpose((0, 2, 1, 3))
+
+C_ref_2d = C_ref.reshape(1, 256)
+C_vta_2d = C_nd.numpy().reshape(1, 256)
+np.savetxt(sim_path/"mem/reference.csv", C_ref_2d, "%4d", ",")
+np.savetxt(sim_path/"mem/vta_result.csv", C_vta_2d, "%4d", ",")
+
 np.testing.assert_equal(C_ref, C_nd.numpy())
 
 # Print stats
